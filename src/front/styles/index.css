@@ -1,3 +1,21 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+.my-logo {
+    width: 60px;
+}
+
+.my-name {
+    text-align: center;
+    color: #F3AD53; 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif , sans-serif;
+    padding: 5px 0px
+}
+
+.my-container {
+    background-color: #F5C98F;
+    width: 90%;
+    height: 390px;
+    margin: auto;
+    padding: 3px 10px;
+}

@@ -6,8 +6,11 @@ export const Navbar = () => {
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
 				<Link to="/">
-					<img src="https://img.freepik.com/vector-premium/capybara-esta-leyendo-al-estilo-dibujos-animados_995281-13314.jpg?w=360" alt="logo" className="w-25" /> 
+					<img src="https://img.freepik.com/vector-premium/capybara-esta-leyendo-al-estilo-dibujos-animados_995281-13314.jpg?w=360" alt="logo" className="my-logo" /> 
 				</Link>
+				<div className="my-name">
+				<h1>Suma Saber</h1>
+				</div>
 				<div className="ml-auto">
 					<Link to="/demo">
 						<button className="btn btn-primary m-2">Login</button>
