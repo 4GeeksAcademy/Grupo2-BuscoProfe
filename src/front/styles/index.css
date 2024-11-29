@@ -106,6 +106,13 @@ body {
     background-color: #D14D46; 
   }
   
+  .form-check{
+    width: 1px;    
+    display: flex;
+    flex-direction: row;
+   
+  }
+
   .forgot-password {
     margin-top: 15px;
     color: #36C9C6; 
