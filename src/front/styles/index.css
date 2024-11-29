@@ -40,3 +40,85 @@
     margin: 10px;
     
 }
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #E6EBE0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-container {
+    background-color: #FFFFFF; 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login-form h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #36C9C6;
+    text-align: center;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #9BC1BC; 
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #F4F1BB; 
+    color: #333; 
+    outline: none;
+  }
+  
+  .login-form input:focus {
+    border-color: #36C9C6; 
+    background-color: #E6EBE0;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ED6A5A; 
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-form button:hover {
+    background-color: #D14D46; 
+  }
+  
+  .forgot-password {
+    margin-top: 15px;
+    color: #36C9C6; 
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  .brand-logo {
+    width: 80px;
+    margin-bottom: 20px;
+  }
+  
