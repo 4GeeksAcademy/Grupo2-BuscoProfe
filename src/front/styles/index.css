@@ -18,4 +18,25 @@
     height: 390px;
     margin: auto;
     padding: 3px 10px;
+    
+}
+
+.info{
+    border: 1px solid #F3AD53;
+    padding: 5px;
+    margin: auto;
+    width: 100%;
+    height: 200px;
+
+}
+
+.my-card{
+    width: auto;
+    height: 100px;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    padding: 5px 5px;
+    margin: 10px;
+    
 }
