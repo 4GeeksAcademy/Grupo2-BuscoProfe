@@ -1,0 +1,50 @@
+/* Estilos para el Navbar */
+.navbar {
+    width: 100%;
+    background: rgb(34,193,195);
+    background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    padding: 0.8rem 2rem; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    font-size: 1.8rem; 
+    font-weight: 700;
+    color: #003049;
+    text-decoration: none;
+  }
+  
+  .navbar-links {
+    display: flex;
+    margin-left: 1000px;
+    justify-content: flex-end !important; 
+    width: 100%; 
+    justify-content: flex-end;
+}
+  
+  .navbar-link {
+    font-size: 1.1rem; 
+    color: #003049;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem; 
+    border-radius: 25px;
+    transition: background-color 0.3s ease-in-out;
+    display: inline-block; 
+  }
+  
+
+
+
+
+  
+  

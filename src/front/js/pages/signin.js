@@ -3,32 +3,39 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
 export const SignIn = () => {
-    const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-    return (
-        <div className="login-container mt-4">
-            <form className="login-form">
-                <h2>Registrarse</h2>
-                <input type="text" placeholder="Usuario"/>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Contraseña" />
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Quiero aprender
-                        </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                           Quiero enseñar
-                        </label>
-                </div>
-                <button type="submit">Entrar</button>
-                {/* <a href="#" className="forgot-password">¿Olvidaste tu contraseña?</a> */}
-            </form>
-        </div>
-    );
+  return (
+    <div id="signinform">
+      <h2 id="headerTitle">Registrarse</h2>
+      <div className="row">
+        <label htmlFor="username">Usuario</label>
+        <input type="text" id="username" placeholder="Usuario" />
+      </div>
+
+      <div className="row">
+        <label htmlFor="email">Email</label>
+        <input type="email" id="email" placeholder="Email" />
+      </div>
+
+      <div className="row">
+        <label htmlFor="password">Contraseña</label>
+        <input type="password" id="password" placeholder="Contraseña" />
+      </div>
+
+      <div className="row">
+        <label htmlFor="role">Elige tu rol</label>
+        <select id="role" className="input-field">
+          <option value="1">Quiero aprender</option>
+          <option value="2">Quiero enseñar</option>
+        </select>
+      </div>
+
+      <div className="row">
+        <button type="submit" className="submit-button">Registrarse</button>
+      </div>
+    </div>
+  );
 };
 
 export default SignIn;

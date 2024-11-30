@@ -1,131 +1,185 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
-.my-logo {
-    width: 60px;
-}
-
-.my-name {
-    text-align: center;
-    color: #F3AD53; 
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif , sans-serif;
-    padding: 5px 0px
-}
-
-.my-container {
-    background-color: #F5C98F;
-    width: 90%;
-    height: 390px;
-    margin: auto;
-    padding: 3px 10px;
-    
-}
-
-.info{
-    border: 1px solid #F3AD53;
-    padding: 5px;
-    margin: auto;
-    width: 100%;
-    height: 200px;
-
-}
-
-.my-card{
-    width: auto;
-    height: 100px;
-    display: flex;
-    text-align: center;
-    justify-content: space-between;
-    padding: 5px;
-    margin: 10px;
-    
-}
-
+/* Estilos para el login */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #E6EBE0; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .login-container {
-    background-color: #FFFFFF; 
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .login-form h2 {
-    margin-bottom: 20px;
-    font-size: 28px;
-    color: #36C9C6;
-    text-align: center;
-  }
-  
-  .login-form input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px solid #9BC1BC; 
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #F4F1BB; 
-    color: #333; 
-    outline: none;
-  }
-  
-  .login-form input:focus {
-    border-color: #36C9C6; 
-    background-color: #E6EBE0;
-  }
-  
-  .login-form button {
-    width: 100%;
-    padding: 12px;
-    background-color: #ED6A5A; 
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .login-form button:hover {
-    background-color: #D14D46; 
-  }
-  
-  .form-check{
-    width: 1px;    
-    display: flex;
-    flex-direction: row;
-   
-  }
+  background: rgb(34,193,195);
+  background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  font-family: 'Work Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-top: 100px;
+}
 
-  .forgot-password {
-    margin-top: 15px;
-    color: #36C9C6; 
-    font-size: 14px;
-    text-decoration: none;
-  }
-  
-  .forgot-password:hover {
-    text-decoration: underline;
-  }
-  
-  .brand-logo {
-    width: 80px;
-    margin-bottom: 20px;
-  }
-  
+#loginform {
+  max-width: 800px; /* Aumentamos el max-width */
+  min-width: 450px; /* Aumentamos el min-width */
+  width: 100%;
+  height: auto;
+  margin: 10px auto 0 auto;
+  background-color: #FFFFFF;
+  border-radius: 25px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#headerTitle {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+  padding-bottom: 1rem;
+  color: #003049; 
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.row input {
+  width: 90%; 
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  box-shadow: inset 0px -3px 0px 0px rgba(187,187,187,0.2);
+  transition: box-shadow 0.2s ease-in;
+  border-radius: 10px;
+  background-color: #E4F1EA;
+}
+
+.row input:focus {
+  box-shadow: inset 0px -3px 0px 0px rgba(34,193,195,0.7);
+  outline: none;
+}
+
+.row label {
+  color: rgba(187,187,187,0.9);
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  align-self: flex-start; 
+}
+
+.row button {
+  width: 95%; 
+  height: 40px;
+  font-weight: 700;
+  color: white;
+  background: rgb(34,193,195);
+  background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.25s ease-out;
+}
+
+.row button:hover {
+  opacity: 0.8;
+}
+
+/* Estilos para el signin */
+body {
+  background: rgb(34,193,195);
+  background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  font-family: 'Work Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-top: 100px;
+}
+
+#signinform {
+  max-width: 800px; 
+  min-width: 450px; 
+  width: 100%;
+  height: auto;
+  margin: 10px auto;
+  background-color: #FFFFFF;
+  border-radius: 25px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#headerTitle {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+  padding-bottom: 1rem;
+  color: #003049;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.row input {
+  width: 90%; /* Aumentamos el ancho a 90% */
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  box-shadow: inset 0px -3px 0px 0px rgba(187,187,187,0.2);
+  transition: box-shadow 0.2s ease-in;
+  border-radius: 10px;
+  background-color: #E4F1EA;
+}
+
+.row input:focus {
+  box-shadow: inset 0px -3px 0px 0px rgba(34,193,195,0.7);
+  outline: none;
+}
+
+.row select {
+  width: 90%; 
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #E4F1EA;
+  box-shadow: inset 0px -3px 0px 0px rgba(187,187,187,0.2);
+}
+
+.row select:focus {
+  box-shadow: inset 0px -3px 0px 0px rgba(34,193,195,0.7);
+  outline: none;
+}
+
+.row label {
+  color: rgba(187,187,187,0.9);
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+
+.row button {
+  width: 95%; 
+  height: 40px;
+  font-weight: 700;
+  color: white;
+  background: rgb(34,193,195);
+  background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: opacity 0.25s ease-out;
+}
+
+.row button:hover {
+  opacity: 0.8;
+}
+
+#button {
+  padding-bottom: 1.5rem;
+}

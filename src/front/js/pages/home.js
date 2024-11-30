@@ -6,7 +6,7 @@ import "../../styles/home.css";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
-	return <div className="my-container">
+	return <div className="my-container mt-3">
 		<div className="info">
 		<h5>Info</h5>
 		<p>Aquí podrás, como estudiante, encontrar un profe que se adapte a tus necesidades.
