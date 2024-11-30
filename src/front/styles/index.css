@@ -13,8 +13,8 @@ body {
 }
 
 #loginform {
-  max-width: 800px; /* Aumentamos el max-width */
-  min-width: 450px; /* Aumentamos el min-width */
+  max-width: 800px; 
+  min-width: 450px; 
   width: 100%;
   height: auto;
   margin: 10px auto 0 auto;

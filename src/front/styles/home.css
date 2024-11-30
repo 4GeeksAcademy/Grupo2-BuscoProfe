@@ -1,9 +1,92 @@
-/*
-    home.css: This website contains selectors only used in home.css
+/* home */
+.home-container {
+  font-family: 'Work Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
-/* 
-} */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background: white;
+  color: #fff;
+  color: #003049;
+}
+
+.hero-content {
+  max-width: 100%;
+}
+
+.hero-content h1 {
+  font-size: 1.8rem; 
+  font-weight: 700;
+  color: #003049;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #003049;
+}
+
+.hero-content .btn-primary {
+  background-color: #ff5a5f;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-content .btn-primary:hover {
+  background-color: #c81d25;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* About Us Section */
+.about-us {
+  background-color: #E4F1EA;
+  padding: 2rem;
+  text-align: center;
+}
+
+.about-us h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #003049;
+}
+
+.about-us-cards {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-width: 30%;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #087e8b;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555;
+}
