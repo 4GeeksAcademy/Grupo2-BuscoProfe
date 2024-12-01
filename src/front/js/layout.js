@@ -13,6 +13,7 @@ import { Footer } from "./component/footer";
 import Login from "./pages/login";
 import SignIn from "./pages/signin";
 import TeacherSignIn from "./pages/teacherSignin";
+import SearchClass from "./pages/searchclass";
 
 //create your first component
 const Layout = () => {
@@ -33,6 +34,7 @@ const Layout = () => {
                         <Route element={<Login />} path="/login"/>
                         <Route element={<SignIn />} path="/signin" />
                         <Route element={<TeacherSignIn />} path="/teachersignin" />
+                        <Route element={<SearchClass />} path="/searchclass" />
                         {/* <Route element={<Demo />} path="/demo" /> */}
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
