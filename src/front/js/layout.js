@@ -12,8 +12,13 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import Login from "./pages/login";
 import SignIn from "./pages/signin";
+<<<<<<< HEAD
 import StudentRegister from "./pages/studentSignin";
 import TeacherSignIn from "./pages/teacherSignin";
+=======
+import TeacherSignIn from "./pages/teacherSignin";
+import StudentSignIn from "./pages/learn";
+>>>>>>> dbfd1049c7444cd8ed30d52479f25b03ff4b6e53
 
 //create your first component
 const Layout = () => {
@@ -21,7 +26,7 @@ const Layout = () => {
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
         <div>
@@ -31,11 +36,18 @@ const Layout = () => {
                     {/* <Login /> */}
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Login />} path="/login"/>
+                        <Route element={<Login />} path="/login" />
                         <Route element={<SignIn />} path="/signin" />
+<<<<<<< HEAD
                         <Route element={<TeacherSignIn />} path="/teacherSignin" />
                         <Route element={<StudentRegister />} path="/studentSignin" />
                         <Route element={<SignIn />} path="/signin" />
+=======
+                        <Route element={<TeacherSignIn />} path="/teacherSignIn" />
+                        <Route element={<StudentSignIn />} path="/studenSignIn" />
+
+
+>>>>>>> dbfd1049c7444cd8ed30d52479f25b03ff4b6e53
                         {/* <Route element={<Demo />} path="/demo" /> */}
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
