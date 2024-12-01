@@ -141,6 +141,24 @@ body {
   outline: none;
 }
 
+  .login-form select.custom-select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #9BC1BC; 
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #F4F1BB; 
+    color: #333; 
+    outline: none;
+    appearance: none; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23336'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E"); /* Icono de dropdown */
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
 .row select {
   width: 90%; 
   padding-left: 1.5rem;
