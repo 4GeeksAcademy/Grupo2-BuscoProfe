@@ -72,11 +72,11 @@ export const SignIn = () => {
 
       <div className="row">
         {formData.role === '1' ? (
-          <Link to="/learn">
+          <Link to="/studentSignin">
             <button type="submit" className="submit-button">Registrarse</button>
           </Link>
         ) : (
-          <Link to="/signin">
+          <Link to="/teacherSignin">
             <button type="submit" className="submit-button">Registrarse</button>
           </Link>
         )}
