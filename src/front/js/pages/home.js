@@ -8,35 +8,88 @@ export const Home = () => {
 
 	return (
 		<div className="home-container">
-		  <section className="hero">
-			<div className="hero-content">
-			  <h1>Suma Saber!</h1>
-			  <p>
-				Encuentra profesores que se adapten a tus necesidades y, como profesor, 
-				comparte tus conocimientos con el mundo.
-			  </p>
+			<section className="hero">
+				<div className="hero-content">
+					<h1>Suma Saber!</h1>
+					<p>
+						Encuentra profesores que se adapten a tus necesidades y, como profesor,
+						comparte tus conocimientos con el mundo.
+					</p>
+				</div>
+			</section>
+
+			{/* sobre nosotros */}
+
+			<section className="about-us">
+				<h2>Sobre Nosotros</h2>
+				<div className="about-us-cards">
+					<div className="card">
+						<div className="card-body">
+							<h5 className="card-title">¿Eres profesor o quieres serlo?</h5>
+							<p className="card-text">
+								Crea tu perfil, comparte lo que sabes y enseña desde cualquier lugar. Gana dinero a tu ritmo con flexibilidad y herramientas para gestionar tus clases.
+							</p>
+						</div>
+					</div>
+					<div className="card">
+						<div className="card-body">
+							<h5 className="card-title">Encuentra al profesor ideal para ti</h5>
+							<p className="card-text">
+								Descubre profesores especializados y clases personalizadas a tu ritmo. Accede a contenido exclusivo, tutorías y recomendaciones para avanzar rápido.
+								¡Todo lo que necesitas para aprender de manera fácil y divertida!
+							</p>
+						</div>
+					</div>
+					<div className="card">
+						<div className="card-body">
+							<h5 className="card-title">Nuestra plataforma</h5>
+							<p className="card-text">
+								SumaSaber permite a estudiantes avanzados ganar ingresos mientras ayudan a otros a alcanzar sus metas. Conectamos a estudiantes y profesores de forma fácil y segura, brindando oportunidades para enseñar desde cualquier lugar y continuar creciendo, todo 100% online.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* ¿Tienes dudas? */}
+
+			<div className="fqs mt-4">
+				<h2>¿Tienes dudas?</h2>
+				<div class="accordion accordion-flush" id="accordionFlushExample">
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+								¿Cómo puedo registrarme como estudiante o profesor?
+							</button>
+						</h2>
+						<div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+							<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+								¿Qué métodos de pago aceptan?
+							</button>
+						</h2>
+						<div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+							<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+								¿Cómo programo mis clases?
+							</button>
+						</h2>
+						<div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+							<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+						</div>
+					</div>
+		
+				</div>
 			</div>
-			<div className="hero-image">
-			  <img src="https://files.oaiusercontent.com/file-WYbXVk5tAHCD6KuBBhwTLJ?se=2024-11-30T16%3A55%3A19Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D299%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Ddescarga%2520%25281%2529-fotor-bg-remover-20241130134921.png&sig=Olzw/6z2VPaSFwbs/A/oSjL6P7PSaaSAOhXIuLEkh9U%3D" alt="Hero Illustration" />
-			</div>
-		  </section>
-	
-		  {/* About Us Section */}
-		  <section className="about-us">
-			<h2>Sobre Nosotros</h2>
-			<div className="about-us-cards">
-			  <div className="card">
-				<p>Conecta con la creatividad para enseñar y aprender.</p>
-			  </div>
-			  <div className="card">
-				<p>Clases diseñadas para adaptarse a tus metas.</p>
-			  </div>
-			  <div className="card">
-				<p>Aprende y crece al ritmo que tú elijas.</p>
-			  </div>
-			</div>
-		  </section>
 		</div>
-	  );
-	};
+	);
+};
 

@@ -12,6 +12,7 @@
   }
   
   .navbar-container {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,10 +27,10 @@
   
   .navbar-links {
     display: flex;
-    margin-left: 1000px;
     justify-content: flex-end !important; 
     width: 100%; 
     justify-content: flex-end;
+    margin: auto;
 }
   
   .navbar-link {
