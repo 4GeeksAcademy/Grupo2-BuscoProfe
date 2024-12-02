@@ -39,11 +39,11 @@ export const SignIn = () => {
       <form onSubmit={handleSubmit}>
         <div className="row">
           <label htmlFor="userName">Usuario</label>
-          <input 
-            type="text" 
-            id="userName" 
-            className="px-3 py-2" 
-            placeholder="Usuario" 
+          <input
+            type="text"
+            id="userName"
+            className="px-3 py-2"
+            placeholder="Usuario"
             value={formData.userName}
             onChange={handleChange}
             required
@@ -52,11 +52,11 @@ export const SignIn = () => {
 
         <div className="row">
           <label htmlFor="email">Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            className="px-3 py-2" 
-            placeholder="Email" 
+          <input
+            type="email"
+            id="email"
+            className="px-3 py-2"
+            placeholder="Email"
             value={formData.email}
             onChange={handleChange}
             required
@@ -65,11 +65,11 @@ export const SignIn = () => {
 
         <div className="row">
           <label htmlFor="password">Contraseña</label>
-          <input 
-            type="password" 
-            id="password" 
-            className="px-3 py-2" 
-            placeholder="Contraseña" 
+          <input
+            type="password"
+            id="password"
+            className="px-3 py-2"
+            placeholder="Contraseña"
             value={formData.password}
             onChange={handleChange}
             required
@@ -91,24 +91,18 @@ export const SignIn = () => {
           </select>
         </div>
 
-<<<<<<< HEAD
-      <div className="row">
-        {formData.role === '1' ? (
-          <Link to="/studentSignin">
-            <button type="submit" className="submit-button">Registrarse</button>
-          </Link>
-        ) : (
-          <Link to="/teacherSignin">
-            <button type="submit" className="submit-button">Registrarse</button>
-          </Link>
-        )}
-      </div>
-=======
         <div className="row">
-          <button type="submit" className="submit-button">Registrarse</button>
+          {formData.role === '1' ? (
+            <Link to="/studentSignin">
+              <button type="submit" className="submit-button">Registrarse</button>
+            </Link>
+          ) : (
+            <Link to="/teacherSignin">
+              <button type="submit" className="submit-button">Registrarse</button>
+            </Link>
+          )}
         </div>
       </form>
->>>>>>> dbfd1049c7444cd8ed30d52479f25b03ff4b6e53
     </div>
   );
 };
