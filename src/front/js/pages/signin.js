@@ -27,9 +27,9 @@ export const SignIn = () => {
 
     // Redirigir según el rol seleccionado
     if (formData.role === '2') {
-      navigate("/teachersignin");
+      navigate("/teacherSignin");
     } else {
-      navigate("/studentsignin");
+      navigate("/studentSignin");
     }
   };
 
