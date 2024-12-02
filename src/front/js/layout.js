@@ -12,13 +12,8 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import Login from "./pages/login";
 import SignIn from "./pages/signin";
-<<<<<<< HEAD
 import StudentRegister from "./pages/studentSignin";
 import TeacherSignIn from "./pages/teacherSignin";
-=======
-import TeacherSignIn from "./pages/teacherSignin";
-import StudentSignIn from "./pages/learn";
->>>>>>> dbfd1049c7444cd8ed30d52479f25b03ff4b6e53
 
 //create your first component
 const Layout = () => {
@@ -38,16 +33,9 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<SignIn />} path="/signin" />
-<<<<<<< HEAD
                         <Route element={<TeacherSignIn />} path="/teacherSignin" />
                         <Route element={<StudentRegister />} path="/studentSignin" />
                         <Route element={<SignIn />} path="/signin" />
-=======
-                        <Route element={<TeacherSignIn />} path="/teacherSignIn" />
-                        <Route element={<StudentSignIn />} path="/studenSignIn" />
-
-
->>>>>>> dbfd1049c7444cd8ed30d52479f25b03ff4b6e53
                         {/* <Route element={<Demo />} path="/demo" /> */}
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import Hero from "../component/hero";
 import "../../styles/home.css";
 
 
@@ -8,15 +9,8 @@ export const Home = () => {
 
 	return (
 		<div className="home-container">
-			<section className="hero">
-				<div className="hero-content">
-					<h1>Suma Saber!</h1>
-					<p>
-						Encuentra profesores que se adapten a tus necesidades y, como profesor,
-						comparte tus conocimientos con el mundo.
-					</p>
-				</div>
-			</section>
+
+			<Hero />
 
 			{/* sobre nosotros */}
 
@@ -86,7 +80,7 @@ export const Home = () => {
 							<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
 						</div>
 					</div>
-		
+
 				</div>
 			</div>
 		</div>
