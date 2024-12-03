@@ -92,10 +92,17 @@ export const SignIn = () => {
         </div>
 
         <div className="row">
-          <button type="submit" className="submit-button">Registrarse</button>
+          {formData.role === '1' ? (
+            <Link to="/studentSignin">
+              <button type="submit" className="submit-button">Registrarse</button>
+            </Link>
+          ) : (
+            <Link to="/teacherSignin">
+              <button type="submit" className="submit-button">Registrarse</button>
+            </Link>
+          )}
         </div>
       </form>
-
     </div>
   );
 };
