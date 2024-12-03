@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -26,18 +26,20 @@ export const Home = () => {
 					<div className="card">
 						<div className="card-body">
 							<h5 className="card-title">¿Eres profesor o quieres serlo?</h5>
+							<Link to="/teacherSignin">
 							<p className="card-text">
 								Crea tu perfil, comparte lo que sabes y enseña desde cualquier lugar. Gana dinero a tu ritmo con flexibilidad y herramientas para gestionar tus clases.
-							</p>
+							</p></Link>
 						</div>
 					</div>
 					<div className="card">
 						<div className="card-body">
 							<h5 className="card-title">Encuentra al profesor ideal para ti</h5>
-							<p className="card-text">
+							
+							<Link to="/studentSignin"><p className="card-text">
 								Descubre profesores especializados y clases personalizadas a tu ritmo. Accede a contenido exclusivo, tutorías y recomendaciones para avanzar rápido.
 								¡Todo lo que necesitas para aprender de manera fácil y divertida!
-							</p>
+							</p></Link>
 						</div>
 					</div>
 					<div className="card">

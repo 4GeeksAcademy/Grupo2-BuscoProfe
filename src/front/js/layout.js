@@ -15,6 +15,7 @@ import SignIn from "./pages/signin";
 import SearchClass from "./pages/searchclass.js"
 import StudentSignIn from "./pages/studentSignin";
 import TeacherSignIn from "./pages/teacherSignin";
+import SelectClass from "./pages/selectclass";
 
 
 
@@ -39,7 +40,7 @@ const Layout = () => {
                         <Route element={<TeacherSignIn />} path="/teacherSignin" />
                         <Route element={<StudentSignIn />} path="/studentSignin" />
                         <Route element={<SearchClass />} path="/searchclass" />
-                        {/* <Route element={<Demo />} path="/demo" /> */}
+                        <Route element={<SelectClass />} path="/selectclass" />                       
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
