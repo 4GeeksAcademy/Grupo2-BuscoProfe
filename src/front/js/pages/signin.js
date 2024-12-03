@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -27,9 +27,9 @@ export const SignIn = () => {
 
     // Redirigir según el rol seleccionado
     if (formData.role === '2') {
-      navigate("/teachersignin");
+      navigate("/teacherSignin");
     } else {
-      navigate("/studentsignin");
+      navigate("/studentSignin");
     }
   };
 
