@@ -1,7 +1,7 @@
 /* Estilos para el login */
 body {
-  background: rgb(34,193,195);
-  background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  background: rgb(34, 193, 195);
+  background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
   font-family: 'Work Sans', sans-serif;
   margin: 0;
   padding: 0;
@@ -9,12 +9,11 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding-top: 100px;
 }
 
 #loginform {
-  max-width: 800px; 
-  min-width: 450px; 
+  max-width: 800px;
+  min-width: 450px;
   width: 100%;
   height: auto;
   margin: 10px auto 0 auto;
@@ -32,7 +31,7 @@ body {
   font-size: 2rem;
   margin: 0;
   padding-bottom: 1rem;
-  color: #003049; 
+  color: #003049;
 }
 
 .row {
@@ -43,36 +42,36 @@ body {
 }
 
 .row input {
-  width: 90%; 
+  width: 90%;
   padding-left: 1.5rem;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border: none;
-  box-shadow: inset 0px -3px 0px 0px rgba(187,187,187,0.2);
+  box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
   transition: box-shadow 0.2s ease-in;
   border-radius: 10px;
   background-color: #E4F1EA;
 }
 
 .row input:focus {
-  box-shadow: inset 0px -3px 0px 0px rgba(34,193,195,0.7);
+  box-shadow: inset 0px -3px 0px 0px rgba(34, 193, 195, 0.7);
   outline: none;
 }
 
 .row label {
-  color: rgba(187,187,187,0.9);
+  color: rgba(187, 187, 187, 0.9);
   padding-bottom: 0.5rem;
   padding-left: 1rem;
-  align-self: flex-start; 
+  align-self: flex-start;
 }
 
 .row button {
-  width: 95%; 
+  width: 95%;
   height: 40px;
   font-weight: 700;
   color: white;
-  background: rgb(34,193,195);
-  background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  background: rgb(34, 193, 195);
+  background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -86,8 +85,8 @@ body {
 
 /* Estilos para el signin */
 body {
-  background: rgb(34,193,195);
-  background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  background: rgb(34, 193, 195);
+  background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
   font-family: 'Work Sans', sans-serif;
   margin: 0;
   padding: 0;
@@ -99,8 +98,8 @@ body {
 }
 
 #signinform {
-  max-width: 800px; 
-  min-width: 450px; 
+  max-width: 800px;
+  min-width: 450px;
   width: 100%;
   height: auto;
   margin: 10px auto;
@@ -126,12 +125,13 @@ body {
 }
 
 .row input {
-  width: 90%; /* Aumentamos el ancho a 90% */
+  width: 90%;
+  /* Aumentamos el ancho a 90% */
   padding-left: 1.5rem;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border: none;
-  box-shadow: inset 0px -3px 0px 0px rgba(187,187,187,0.2);
+  box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
   transition: box-shadow 0.2s ease-in;
   border-radius: 10px;
   background-color: #E4F1EA;
@@ -154,23 +154,23 @@ body {
 }
 
 .row select:focus {
-  box-shadow: inset 0px -3px 0px 0px rgba(34,193,195,0.7);
+  box-shadow: inset 0px -3px 0px 0px rgba(34, 193, 195, 0.7);
   outline: none;
 }
 
 .row label {
-  color: rgba(187,187,187,0.9);
+  color: rgba(187, 187, 187, 0.9);
   padding-bottom: 0.5rem;
   padding-left: 1rem;
 }
 
 .row button {
-  width: 95%; 
+  width: 95%;
   height: 40px;
   font-weight: 700;
   color: white;
-  background: rgb(34,193,195);
-  background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  background: rgb(34, 193, 195);
+  background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -183,6 +183,7 @@ body {
 
 #button {
   padding-bottom: 1.5rem;
+
 }
 
 
