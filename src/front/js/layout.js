@@ -13,8 +13,6 @@ import { Footer } from "./component/footer";
 import Login from "./pages/login";
 import SignIn from "./pages/signin";
 import SearchClass from "./pages/searchclass.js"
-import StudentSignIn from "./pages/studentSignin";
-import TeacherSignIn from "./pages/teacherSignin";
 import SelectClass from "./pages/selectclass";
 
 
@@ -37,8 +35,6 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<SignIn />} path="/signin" />                     
-                        <Route element={<TeacherSignIn />} path="/teacherSignin" />
-                        <Route element={<StudentSignIn />} path="/studentSignin" />
                         <Route element={<SearchClass />} path="/searchclass" />
                         <Route element={<SelectClass />} path="/selectclass" />                       
                         <Route element={<Single />} path="/single/:theid" />
