@@ -82,6 +82,7 @@ body {
   opacity: 0.8;
 }
 
+
 /* Estilos para el signin */
 body {
   background: rgb(34, 193, 195);
@@ -182,4 +183,48 @@ body {
 
 #button {
   padding-bottom: 1.5rem;
+
+}
+
+
+/* Estilos del checkbox */
+.row input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  appearance: none; /* Elimina el diseño predeterminado del checkbox */
+  background-color: #E4F1EA;
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer;
+  box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Animación cuando el checkbox está marcado */
+.row input[type="checkbox"]:checked {
+  background-color: rgba(34, 193, 195, 0.7); 
+  transform: scale(1.1); /* Agranda un poquito el checkbox */
+}
+
+/* Efecto de "rebote" al marcar el checkbox */
+.row input[type="checkbox"]:active {
+  transform: scale(0.9); /* Hace que el checkbox se haga más pequeño y rebote */
+}
+
+/* Agrega un tick en el medio cuando está marcado */
+.row input[type="checkbox"]:checked::after {
+  content: '\2713'; /* Unicode para el símbolo de checkmark ✓ podemos remplazar por otro si queremos */
+  font-size: 12px; /* Tamaño del tick */
+  color: white; /* Color del tick */
+  position: absolute;
+  top: 1.3px; /* Correciones para que quede en el medio */
+  left: 7.5px; /* Correciones para que quede en el medio */
+  font-weight: bold;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Estilo para el hover */
+.row input[type="checkbox"]:hover {
+  box-shadow: inset 0px -3px 0px 0px rgba(34, 193, 195, 0.5); /* Sombra al pasar el mouse imita la sombra de los inputs al cliquearlos*/
 }

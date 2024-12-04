@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-
+import { Link } from 'react-router-dom';
 
 export const SearchClass = () => {
     const { store, actions } = useContext(Context);
@@ -29,7 +29,12 @@ export const SearchClass = () => {
                     <option>Nocturno</option>
                 </select>
                 
-        <button className="btn btn-success d-flex mx-auto">Buscar</button>
+        
+               
+                      <Link to="/selectclass">
+                        <button className="btn btn-success d-flex mx-auto">Buscar</button>
+                      </Link>
+                   
             </div>
         </div>
 
