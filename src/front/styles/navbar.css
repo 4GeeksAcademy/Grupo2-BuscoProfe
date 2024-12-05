@@ -1,51 +1,58 @@
 /* Estilos para el Navbar */
 .navbar {
-    width: 100%;
-    background: rgb(34,193,195);
-    background: linear-gradient(90deg, #22c1c3 0%, #fdbb2d 100%);
-    padding: 0.8rem 2rem; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-  
-  .navbar-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-logo {
-    font-size: 1.8rem; 
-    font-weight: 700;
-    color: #003049;
-    text-decoration: none;
-  }
-  
-  .navbar-links {
-    display: flex;
-    justify-content: flex-end !important; 
-    width: 100%; 
-    justify-content: flex-end;
-    margin: auto;
+  width: 100%;
+  background-color: #f8f7f2; 
+  padding: 0.8rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
-  
-  .navbar-link {
-    font-size: 1.1rem; 
-    color: #003049;
-    text-decoration: none;
-    padding: 0.6rem 1.2rem; 
-    border-radius: 25px;
-    transition: background-color 0.3s ease-in-out;
-    display: inline-block; 
-  }
-  
 
+.navbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color:	#677f67; 
+  text-decoration: none;
+}
 
+.navbar-links {
+  display: flex;
+  justify-content: flex-end !important;
+  width: 100%;
+  margin: auto;
+}
 
-  
-  
+.navbar-link {
+  font-size: 1.1rem;
+  color: #677f67; 
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  display: inline-block;
+  margin-right: 1rem; 
+}
+
+.navbar-link:last-child {
+  margin-right: 0;
+}
+
+/* Efecto hover  */
+.navbar-link:hover {
+  background-color: #789195; 
+  color: #f8f7f2; 
+}
+
+.navbar-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #789195;
+}

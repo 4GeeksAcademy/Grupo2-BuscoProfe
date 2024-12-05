@@ -1,7 +1,6 @@
 /* Estilos para el login */
 body {
-  background: rgb(34, 193, 195);
-  background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  background-color: #f8f7f2; /* Fondo sólido */
   font-family: 'Work Sans', sans-serif;
   margin: 0;
   padding: 0;
@@ -31,7 +30,7 @@ body {
   font-size: 2rem;
   margin: 0;
   padding-bottom: 1rem;
-  color: #003049;
+  color: #415e66; /* Color actualizado */
 }
 
 .row {
@@ -47,19 +46,19 @@ body {
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border: none;
-  box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
+  box-shadow: inset 0px -3px 0px 0px rgba(120, 145, 149, 0.2); /* Color de sombra actualizado */
   transition: box-shadow 0.2s ease-in;
   border-radius: 10px;
-  background-color: #E4F1EA;
+  background-color: #d8e3df; /* Color de fondo más claro para inputs */
 }
 
 .row input:focus {
-  box-shadow: inset 0px -3px 0px 0px rgba(34, 193, 195, 0.7);
+  box-shadow: inset 0px -3px 0px 0px rgba(65, 94, 102, 0.7); /* Sombra en el foco actualizada */
   outline: none;
 }
 
 .row label {
-  color: rgba(187, 187, 187, 0.9);
+  color: rgba(120, 145, 149, 0.9); /* Color actualizado */
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   align-self: flex-start;
@@ -70,8 +69,7 @@ body {
   height: 40px;
   font-weight: 700;
   color: white;
-  background: rgb(34, 193, 195);
-  background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  background: linear-gradient(90deg, rgba(120, 145, 149, 1) 0%, rgba(65, 94, 102, 1) 100%); /* Degradado más vibrante */
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -82,11 +80,9 @@ body {
   opacity: 0.8;
 }
 
-
 /* Estilos para el signin */
 body {
-  background: rgb(34, 193, 195);
-  background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  background-color: #f8f7f2; /* Fondo sólido */
   font-family: 'Work Sans', sans-serif;
   margin: 0;
   padding: 0;
@@ -114,117 +110,108 @@ body {
   font-size: 2rem;
   margin: 0;
   padding-bottom: 1rem;
-  color: #003049;
+  color: #415e66; /* Color actualizado */
 }
 
-.row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.row input {
-  width: 90%;
-  /* Aumentamos el ancho a 90% */
-  padding-left: 1.5rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-  border: none;
-  box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
-  transition: box-shadow 0.2s ease-in;
-  border-radius: 10px;
-  background-color: #E4F1EA;
-}
-
+/* Estilos para los inputs */
+.row input,
 .row select {
   width: 90%;
   padding-left: 1.5rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
+  padding-right: 1.5rem;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
   border: none;
   border-radius: 10px;
-  background-color: #E4F1EA;
-  box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
+  background-color: #d8e3df; /* Color de fondo más claro para inputs */
+  box-shadow: inset 0px -3px 0px 0px rgba(120, 145, 149, 0.2);
+  transition: box-shadow 0.2s ease-in-out;
+  height: 50px;
 }
 
+.row input:focus,
 .row select:focus {
-  box-shadow: inset 0px -3px 0px 0px rgba(34, 193, 195, 0.7);
+  box-shadow: inset 0px -3px 0px 0px rgba(65, 94, 102, 0.7); /* Sombra en el foco actualizada */
   outline: none;
 }
 
-.row select:focus {
-  box-shadow: inset 0px -3px 0px 0px rgba(34, 193, 195, 0.7);
-  outline: none;
-}
-
-.row label {
-  color: rgba(187, 187, 187, 0.9);
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
+.row select {
+  transition: box-shadow 0.2s ease-in-out;
 }
 
 .row button {
   width: 95%;
-  height: 40px;
+  height: 45px;
   font-weight: 700;
   color: white;
-  background: rgb(34, 193, 195);
-  background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  background: linear-gradient(90deg, #40b5ad, #a2c3a6); /* Nuevo degradado */
   border: none;
-  border-radius: 25px;
+  border-radius: 15px;
   cursor: pointer;
-  transition: opacity 0.25s ease-out;
+  transition: opacity 0.25s ease-out, background-color 0.3s ease-out;
 }
 
 .row button:hover {
   opacity: 0.8;
 }
 
-#button {
-  padding-bottom: 1.5rem;
-
+.row button:active {
+  background-color: #003049;
 }
 
+#button {
+  padding-bottom: 1.5rem;
+}
 
 /* Estilos del checkbox */
 .row input[type="checkbox"] {
   width: 20px;
   height: 20px;
   margin-left: 10px;
-  appearance: none; /* Elimina el diseño predeterminado del checkbox */
-  background-color: #E4F1EA;
-  border: none; 
-  border-radius: 5px; 
+  appearance: none;
+  background-color: #d8e3df;
+  border: 1px solid #d8e3df;
+  border-radius: 5px;
   cursor: pointer;
-  box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
+  position: relative; /* Necesario para posicionar el tick */
+  display: inline-block;
+  vertical-align: middle; /* Alinea el checkbox verticalmente */
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-/* Animación cuando el checkbox está marcado */
 .row input[type="checkbox"]:checked {
-  background-color: rgba(34, 193, 195, 0.7); 
-  transform: scale(1.1); /* Agranda un poquito el checkbox */
+  background-color: rgba(65, 94, 102, 0.7); /* Fondo cuando se marca el checkbox */
+  transform: scale(1.1);
 }
 
-/* Efecto de "rebote" al marcar el checkbox */
-.row input[type="checkbox"]:active {
-  transform: scale(0.9); /* Hace que el checkbox se haga más pequeño y rebote */
-}
-
-/* Agrega un tick en el medio cuando está marcado */
 .row input[type="checkbox"]:checked::after {
-  content: '\2713'; /* Unicode para el símbolo de checkmark ✓ podemos remplazar por otro si queremos */
-  font-size: 12px; /* Tamaño del tick */
-  color: white; /* Color del tick */
+  content: '\2713'; /* Marca de check */
+  font-size: 12px;
+  color: white;
   position: absolute;
-  top: 1.3px; /* Correciones para que quede en el medio */
-  left: 7.5px; /* Correciones para que quede en el medio */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -50%); /* Ajuste final para centrar completamente */
   font-weight: bold;
   transition: opacity 0.2s ease-in-out;
 }
 
-/* Estilo para el hover */
 .row input[type="checkbox"]:hover {
-  box-shadow: inset 0px -3px 0px 0px rgba(34, 193, 195, 0.5); /* Sombra al pasar el mouse imita la sombra de los inputs al cliquearlos*/
+  box-shadow: inset 0px -3px 0px 0px rgba(65, 94, 102, 0.5);
 }
+
+/* Alineación de los títulos y labels */
+.row label {
+  color: rgba(120, 145, 149, 0.9); /* Color de texto actualizado */
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  align-self: flex-start;
+  display: inline-block; /* Asegura que se alineen correctamente */
+  vertical-align: middle; /* Centra el texto verticalmente */
+  margin-top: 0; /* Elimina el margen superior si es necesario */
+}
+
+
+
