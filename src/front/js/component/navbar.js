@@ -15,7 +15,7 @@ export const Navbar = () => {
 							placeholder="Buscar clases por materia"
 							aria-label="Search"
 						/>
-						 <Link to="/searchclass">
+						 <Link to="/selectclass">
 						<button className="btn btn-outline-success" type="submit" ><i class="fa-solid fa-magnifying-glass"></i>
 						</button>
 						</Link>
