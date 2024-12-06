@@ -7,7 +7,7 @@ export const Navbar = () => {
 		<nav className="navbar">
 			<div className="navbar-container">
 				<a href="/" className="navbar-logo">SumaSaber</a>
-				<div className="container-fluid">
+				<div className="container-fluid w-50">
 					<form className="d-flex" role="search">
 						<input
 							className="form-control me-2"

@@ -149,3 +149,36 @@
   padding: 16px;
   margin-bottom: 16px;
 }
+
+.card-select {
+  margin: 2px;
+  border: 1px solid #003049;
+  min-width: 150px;
+  height: auto;
+  
+}
+
+.card-select img {
+  width: 50%;
+  margin-left: 55px;
+}
+
+.card-select a {
+  display: flex;
+  justify-content: center;
+}
+
+.container-cards {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  margin-top: 100px;
+}
+
+.card-select p {
+  margin: 5px;
+}
+
+.card-select h5 {
+  margin: 5px;
+}
