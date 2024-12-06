@@ -4,16 +4,28 @@ import "../../styles/navbar.css"
 
 export const Navbar = () => {
 	return (
-			<nav className="navbar">
-			  <div className="navbar-container">
+		<nav className="navbar">
+			<div className="navbar-container">
 				<a href="/" className="navbar-logo">SumaSaber</a>
-				<div className="navbar-links p-1">
-				  <a href="/login" className="navbar-link">Iniciar sesión</a>
-				  <a href="/signin" className="navbar-link">Registrarse</a>
+				<div className="container-fluid">
+					<form className="d-flex" role="search">
+						<input
+							className="form-control me-2"
+							type="search"
+							placeholder="Buscar clases por materia"
+							aria-label="Search"
+						/>
+						<button className="btn btn-outline-success" type="submit" ><i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</form>
 				</div>
-			  </div>
-			</nav>
-		  );
-		};
-		
+				<div className="navbar-links p-1">
+					<a href="/login" className="navbar-link">Iniciar sesión</a>
+					<a href="/signin" className="navbar-link">Registrarse</a>
+				</div>
+			</div>
+		</nav>
+	);
+};
+
 export default Navbar;
