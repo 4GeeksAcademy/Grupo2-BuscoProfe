@@ -64,16 +64,23 @@ class Student(db.Model):
             "time_preferences": self.time_preferences,
         }
 
+# Tabla pivot para la relación entre Teacher y Subject
+teacher_subject = db.Table('teacher_subject',
+    db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
+)
+
 # Tabla para los profesores
 class Teacher(db.Model):
     __tablename__ = 'teachers'
     id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     level = db.Column(db.Enum(TeacherLevel), nullable=False)
-#    subjects = db.relationship(
-#        'Subject',
-#        secondary='teacher_subject',
-#        backref=db.backref('teachers', lazy='dynamic')
-#    )
+    subjects = db.relationship(
+        'Subject',
+        secondary=teacher_subject,
+        backref='teachers', 
+        lazy='dynamic'
+    )
     time_preferences = db.Column(db.JSON)
 
     def __repr__(self):
@@ -104,8 +111,3 @@ class Subject(db.Model):
             "description": self.description,
         }
 
-# Tabla pivot para la relación entre Teacher y Subject
-teacher_subject = db.Table('teacher_subject',
-    db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
-    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
-)
