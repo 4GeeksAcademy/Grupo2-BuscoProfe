@@ -64,12 +64,23 @@ class Student(db.Model):
             "time_preferences": self.time_preferences,
         }
 
+# Tabla pivot para la relación entre Teacher y Subject
+teacher_subject = db.Table('teacher_subject',
+    db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
+)
+
 # Tabla para los profesores
 class Teacher(db.Model):
     __tablename__ = 'teachers'
     id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     level = db.Column(db.Enum(TeacherLevel), nullable=False)
-    subjects = db.Column(db.JSON)
+    subjects = db.relationship(
+        'Subject',
+        secondary=teacher_subject,
+        backref='teachers', 
+        lazy='dynamic'
+    )
     time_preferences = db.Column(db.JSON)
 
     def __repr__(self):
@@ -82,3 +93,21 @@ class Teacher(db.Model):
             "subjects": self.subjects,
             "time_preferences": self.time_preferences,
         }
+
+# Tabla para las materias
+class Subject(db.Model):
+    __tablename__ = 'subjects'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
+    description = db.Column(db.Text, nullable=True)
+
+    def __repr__(self):
+        return f'<Subject {self.name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+        }
+
