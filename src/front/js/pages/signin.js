@@ -6,6 +6,18 @@ const ROLES = {
   TEACHER: "teacher"
 };
 
+const SUBJECTS = [
+  {
+    id: 1,
+    name: "Matemáticas",
+  },
+  {
+    id: 2,
+    name: "Programación",
+  }
+]
+
+
 const STUDENT_LEVELS = {
   "Bachillerato": "StudentLevel_Bachillerato",
   "Universitario": "StudentLevel_Universitario"
@@ -70,15 +82,15 @@ const SignIn = () => {
       role: formData.role,
       ...(formData.role === ROLES.STUDENT
         ? {
-            level: STUDENT_LEVELS[formData.level],
-            subjects: formData.subjects.split(","),
-            timePreferences: formData.timePreferences,
-          }
+          level: STUDENT_LEVELS[formData.level],
+          subjects: formData.subjects.split(","),
+          timePreferences: formData.timePreferences,
+        }
         : {
-            level: TEACHER_LEVELS[formData.educationLevel],
-            subjects: formData.subject.split(","),
-            timePreferences: formData.timePreferences,
-          }),
+          level: TEACHER_LEVELS[formData.educationLevel],
+          subjects: formData.subject.split(","),
+          timePreferences: formData.timePreferences,
+        }),
     };
 
     const result = await actions.registerUser(payload);
@@ -217,17 +229,24 @@ const SignIn = () => {
         {/* Si se elige teacher se muestran los campos del teacher */}
         {formData.role === ROLES.TEACHER && (
           <>
+            {/* TODO: improve with a diferent component or chips */}
             <div className="row">
               <label htmlFor="subject">Doy clases de</label>
-              <input
-                type="text"
+              <select
                 id="subject"
-                className="px-3 py-2"
-                placeholder="Materia que enseñas (separadas por comas)"
+                className="input-field px-3 py-2"
                 value={formData.subject}
                 onChange={handleChange}
+                placeholder="Materia que enseñas (crtl + click para seleccionar varias)"
+                multiple
                 required
-              />
+              >
+                {SUBJECTS.map((subject) => (
+                  <option key={subject.id} value={parseInt(subject.id)}>
+                    {subject.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="row">

@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, Blueprint
 from flask_jwt_extended import create_access_token
-from api.models import db, User, Student, Teacher
+from api.models import db, User, Student, Teacher, Subject
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from datetime import timedelta
@@ -43,11 +43,19 @@ def register_user():
             if 'level' not in data or 'subjects' not in data:
                 return jsonify({"message": "Missing fields for student (level, subjects)"}), 400
 
+            subjects = []
+            for subject in data['subjects']:
+                subject = Subject.query.filter_by(id=subject).first()
+                subjects.append(subject)
+
+            if new_user is None:
+                return jsonify({"message": "Invalid subject ID"}), 400
+            
             # Create Student record
             new_student = Student(
                 user=new_user,
                 level=data['level'],
-                subjects=data['subjects'],
+                subjects=subjects,
                 time_preferences=data.get('timePreferences', [])
             )
             
@@ -59,34 +67,38 @@ def register_user():
             if 'level' not in data or 'subjects' not in data:
                 return jsonify({"message": "Missing fields for teacher (level, subjects)"}), 400
             
+            subjects = []
+            for subject in data['subjects']:
+                subject = Subject.query.filter_by(id=subject).first()
+                subjects.append(subject)
+
+            if new_user is None:
+                return jsonify({"message": "Invalid subject ID"}), 400
+
+            if len(subjects) == 0:
+                return jsonify({"message": "At least one subject is required"}), 400
+
             # Create Professor record
             new_teacher = Teacher(
                 user=new_user,
                 level=data['level'],
-                subjects=data['subjects'],
+                subjects=subjects,
                 time_preferences=data.get('timePreferences', [])
             )
 
             # Add user and professor to the session
             db.session.add(new_user)
             db.session.add(new_teacher)
+            
+            db.session.commit()
 
         else:
             return jsonify({"message": "Invalid role, must be either 'student' or 'professor'"}), 400
 
-        try:
-            # Commit the transaction to save the user and their corresponding record
-            db.session.commit()
-            
             # Respond with a success message
-            return jsonify({"message": "User registered successfully"}), 201
-
-        except Exception as e:
-            # In case of an error, roll back the transaction
-            db.session.rollback()
-            return jsonify({"message": f"An error occurred: {str(e)}"}), 500
+        return jsonify({"message": "User registered successfully"}), 201
     except Exception as err:
-        return jsonify(err.args), 500
+        return jsonify({"message": f"An error occurred: {str(e)}"}), 500
 
 
 @api.route('/login', methods=['POST'])
