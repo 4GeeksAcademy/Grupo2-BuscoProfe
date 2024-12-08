@@ -83,6 +83,12 @@ class Teacher(db.Model):
     )
     time_preferences = db.Column(db.JSON)
 
+    def __init__(self, *args, **kwargs,):
+        super(Teacher, self).__init__(*args, **kwargs)
+        self.subjects = kwargs.pop('subjects', [])
+        self.time_preferences = kwargs.pop('time_preferences', [])
+        self.level = kwargs.pop('level', None)
+
     def __repr__(self):
         return f'<Teacher {self.id}>'
 
