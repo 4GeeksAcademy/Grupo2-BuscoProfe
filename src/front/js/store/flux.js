@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			user: null, // Guardar el usuario autenticado
-			token: null // Guardar el token JWT
+			token: null, // Guardar el token JWT
+			subjects: [] // Guardar las materias obtenidas desde el backend
 		},
 		actions: {
 			// Use getActions to call a function within a function
@@ -100,6 +101,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.error("Error while logging in user:", error);
 					return { error: "An error occurred while logging in the user." };
+				}
+			},
+
+			getSubjects: async () => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/subjects");
+					if (response.ok) {
+						const data = await response.json();
+						setStore({ subjects: data });
+						return data;
+					} else {
+						console.error("Error fetching subjects:", response.statusText);
+					}
+				} catch (error) {
+					console.error("Error while fetching subjects:", error);
 				}
 			}
 		}

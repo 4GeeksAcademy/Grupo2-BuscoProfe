@@ -45,13 +45,38 @@ class User(db.Model):
     def check_password(self, password):
         return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
 
+
+
+# Tabla pivot para la relación entre Teacher y Subject
+teacher_subject = db.Table('teacher_subject',
+    db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
+)
+
+# Tabla pivot para la relación entre Student y Subject (Intereses)
+student_interest = db.Table('student_interest',
+    db.Column('student_id', db.Integer, db.ForeignKey('students.id'), primary_key=True),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
+)
+
 # Tabla para los estudiantes
 class Student(db.Model):
     __tablename__ = 'students'
     id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     level = db.Column(db.Enum(StudentLevel), nullable=False)
-    subjects = db.Column(db.JSON)
+    subjects = db.relationship(
+        'Subject',
+        secondary=student_interest,
+        backref='students', 
+        lazy='dynamic'
+    )
     time_preferences = db.Column(db.JSON)
+
+    def __init__(self, *args, **kwargs,):
+        super(Student, self).__init__(*args, **kwargs)
+        self.subjects = kwargs.pop('subjects', [])
+        self.time_preferences = kwargs.pop('time_preferences', [])
+        self.level = kwargs.pop('level', None)
 
     def __repr__(self):
         return f'<Student {self.id}>'
@@ -63,12 +88,6 @@ class Student(db.Model):
             "subjects": self.subjects,
             "time_preferences": self.time_preferences,
         }
-
-# Tabla pivot para la relación entre Teacher y Subject
-teacher_subject = db.Table('teacher_subject',
-    db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
-    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'), primary_key=True)
-)
 
 # Tabla para los profesores
 class Teacher(db.Model):

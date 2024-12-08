@@ -22,8 +22,14 @@
 .navbar-logo {
   font-size: 1.8rem;
   font-weight: 700;
-  color:	#677f67; 
+  color: #677f67; /* Color inicial */
   text-decoration: none;
+  transition: color 0.3s ease-in-out; /* Si necesitas animación */
+}
+
+.navbar-logo:hover {
+  color: #677f67; /* Mantiene el color al pasar el cursor */
+  text-decoration: none; /* Asegura que no se subraye */
 }
 
 .navbar-links {

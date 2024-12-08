@@ -1,8 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../../styles/navbar.css"
 
 export const Navbar = () => {
+	const location = useLocation();
+	const isSignInPage = location.pathname === "/signin";
+	const isLoginPage = location.pathname === "/login";
+
+
 	return (
 		<nav className="navbar">
 			<div className="navbar-container">
@@ -15,15 +20,16 @@ export const Navbar = () => {
 							placeholder="Buscar clases por materia"
 							aria-label="Search"
 						/>
-						 <Link to="/selectclass">
-						<button className="btn btn-outline-success" type="submit" ><i class="fa-solid fa-magnifying-glass"></i>
-						</button>
+						<Link to="/selectclass">
+							<button className="btn btn-outline-success" type="submit">
+								<i className="fa-solid fa-magnifying-glass"></i>
+							</button>
 						</Link>
 					</form>
 				</div>
 				<div className="navbar-links p-1">
-					<a href="/login" className="navbar-link">Iniciar sesión</a>
-					<a href="/signin" className="navbar-link">Registrarse</a>
+					{!isLoginPage && <a href="/login" className="navbar-link">Iniciar sesión</a>}
+					{!isSignInPage && <a href="/signin" className="navbar-link">Registrarse</a>}
 				</div>
 			</div>
 		</nav>
