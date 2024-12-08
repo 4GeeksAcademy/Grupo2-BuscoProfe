@@ -192,21 +192,6 @@
   padding: 5px;
 }
 
-.comentarios {
-  margin-left: 15px;
-  margin-top: 10px;
-}
 
-.comentario-box {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  height: 70px;
-  border: 1px solid grey;
-  border-radius: 5px;
-  margin: 2px;
-  text-align: center;
-  align-items: center;
   
 
-}

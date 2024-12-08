@@ -1,15 +1,26 @@
 import React from "react";
-import '../../styles/TeacherDashboard.css';
+import '../../styles/teacherView.css';
+import '../../styles/home.css';
 
 function TeacherView() {
     return (
-        <div className="dashboard-container">
+        <div className="view-container">
             {/* Header */}
-            <header className="dashboard-header">
-                <span className="teacher-name">NOMBRE</span>
-                <a href="/perfil" className="profile-link">
-                    ir al perfil
-                </a>
+            <header className="view-header-teacher">
+                <span className="teacher-name">Juan Pérez</span>
+                <h4>Ing en sistemas</h4>
+                <img src="https://t4.ftcdn.net/jpg/00/85/77/75/360_F_85777561_m6EMdjM6Knkz7OLJmN5zr5ZeK359S3G5.jpg" className="card-img-top rounded-circle" alt="foto de juan perez" />
+                
+                <section className="calificaciones d-flex mx-3">
+                <span className="teacher-name">Calificación</span>
+                <div class="rating">
+                    <span className="star">★</span>
+                    <span className="star">★</span>
+                    <span className="star">★</span>
+                    <span className="star">★</span>
+                    <span className="star text-secondary">★</span>
+                </div>
+            </section>
             </header>
 
             {/* Stats */}
@@ -24,24 +35,22 @@ function TeacherView() {
                 </div>
             </section>
 
+            <header className="view-header">
+                <span className="teacher-name">Calificación</span>             
+            </header>
+            
 
-            <section className="calificaciones d-flex mx-3">
+            <header className="view-header">
+                             
+            </header>
 
-                <h3>Calificación</h3>
-                <div class="rating">
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star">★</span>
-                    <span className="star text-secondary">★</span>
-                </div>
-
-            </section>
-            <section className="comentarios">
-                <h3>Comentarios</h3>
-                <div className="comentario-box">Un genio, me re ayudó</div>
-                <div className="comentario-box">Super guay</div>
-                <div className="comentario-box">Capo total, lo recomiendo</div>
+            <section className="dashboard-stats">              
+                <div className="stat-box">Un genio, me re ayudó</div>
+                <div className="stat-box">Super guay</div>
+                <div className="stat-box">Capo total, lo recomiendo</div>
+                <div className="stat-box">En matemáticas, el mejor</div>
+                <div className="stat-box">Arreglamos un horario y cumplió sin problema. Responsable y divertido</div>
+                <div className="stat-box">Recomiendo 100%, lo volvería a contratar</div>
             </section>
 
         </div>
