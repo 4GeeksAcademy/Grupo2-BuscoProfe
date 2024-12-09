@@ -15,7 +15,7 @@ function TeacherView() {
 
                             <section className="calificaciones d-flex mx-3">
                                 <span className="teacher-name">Calificación</span>
-                                <div class="rating m-2">
+                                  <div class="rating m-2">
                                     <span className="star">★</span>
                                     <span className="star">★</span>
                                     <span className="star">★</span>
