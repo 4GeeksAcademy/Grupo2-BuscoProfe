@@ -143,7 +143,6 @@ def get_all_subjects():
     except Exception as e:
         return jsonify({"message": f"An error occurred: {str(e)}"}), 500
 
-
 @api.route('/teachers_subjects', methods=['GET'])
 def get_teachers_and_subjects():
     try:

@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link, useLocation } from "react-router-dom";
 import "../../styles/navbar.css"
+
 
 export const Navbar = () => {
 	const location = useLocation();
 	const isSignInPage = location.pathname === "/signin";
 	const isLoginPage = location.pathname === "/login";
-
+	const [search, setSearch] = useState("")
+	const [allResults, setAllResults] = useState ([])
+	
+	const {store}= useContext(Context)
+	
+	const handleChange = (event)=>{
+		setSearch(event.target.value)
+	}
 
 	return (
 		<nav className="navbar">
@@ -18,6 +27,9 @@ export const Navbar = () => {
 							className="form-control me-2"
 							type="search"
 							placeholder="Buscar clases por materia"
+							name= "search"
+							value= {search}
+							onChange={handleChange}
 							aria-label="Search"
 						/>
 						<Link to="/selectclass">
