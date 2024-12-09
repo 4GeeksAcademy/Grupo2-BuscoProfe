@@ -1,7 +1,11 @@
 .view-container {
-  min-width: 50%;
-  margin: 0 auto;
-  border: 1px solid red;
+  min-width: 100%;
+  margin: auto;
+}
+
+.calificaciones {
+  align-items: center;
+  text-align: center;
 }
 
 .comentarios {
@@ -59,6 +63,7 @@
   display: flex;
   justify-content: space-between;
   margin-left: 155px;
+  align-items: center;
 }
 
 .stat-box {
@@ -85,4 +90,15 @@
 .container-footer {
   display: flex;
   margin-left: 30px;
+}
+
+.container-coment {
+ 
+  width: 400px;
+  height: 40px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin: 5px;
+  align-items: center;
+  text-align: center;
 }

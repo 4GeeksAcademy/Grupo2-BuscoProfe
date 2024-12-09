@@ -10,7 +10,7 @@ function TeacherView() {
                     <section className="dashboard-stats">
                         <div className="stat-box">
                             <span className="teacher-name">Juan Pérez</span>
-                            <h4>Ing en sistemas</h4>
+                            <h4>Ing. en sistemas</h4>
                             <img src="https://t4.ftcdn.net/jpg/00/85/77/75/360_F_85777561_m6EMdjM6Knkz7OLJmN5zr5ZeK359S3G5.jpg" className="card-img-top rounded-circle" alt="foto de juan perez" />
 
                             <section className="calificaciones d-flex mx-3">
@@ -48,19 +48,20 @@ function TeacherView() {
                     <span className="teacher-name">Calendario</span>
                     <p>10:00am - matemática Joaquín</p>
                     <div className="calendar-preview">[Calendario Aquí]</div>
+                    <button className="btn btn-primary">Agendar</button>
                 </div>
 
                 <header className="view-header-coments">
                     <span className="teacher-name">Comentarios</span>
 
-                    <section className="dashboard-stats">
-                        <div className="stat-box">Un genio, me re ayudó</div>
-                        <div className="stat-box">Super guay</div>
-                        <div className="stat-box">Capo total, lo recomiendo</div>
-                        <div className="stat-box">En matemáticas, el mejor</div>
+                    <section className="coments">
+                        <div className="container-coment">Un genio, me re ayudó</div>
+                        <div className="container-coment">Super guay</div>
+                        <div className="container-coment">Capo total, lo recomiendo</div>
+                        <div className="container-coment">En matemáticas, el mejor</div>
                        
                     </section>
-                    <button className="btn btn-primary">Agregar comentario</button>
+                    
                 </header>
             </div>
         </div >
