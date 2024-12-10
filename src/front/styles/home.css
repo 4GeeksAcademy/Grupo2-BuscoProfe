@@ -28,7 +28,7 @@
 
 
 .hero-content p {
-  font-size: 1.2rem;
+  font-size: rem;
   margin-bottom: 1.5rem;
   color: #003049;
 }
@@ -55,7 +55,7 @@
 /* About Us */
 .about-us {
   font-family: 'Poppins', sans-serif;
-  background-color: #f8f7f2;
+  background-color: #cfe0dc;
   padding: 2rem;
   text-align: center;
 }
@@ -133,18 +133,18 @@
 
 /* acordeon */
 .accordion-button {
-  background-color: #7E9781;
+  background-color: #b0c9c2;
   color: #ffffff;
   padding: 16px;
   font-size: 15px;
 }
 
 .accordion-button:hover {
-  background-color: #a2c3a6;
+  background-color: #a2adab;
 }
 
 .accordion-body {
-  background-color: #f8f7f2;
+  background-color: #e7f0f7;
   color: #415e66;
   padding: 16px;
   margin-bottom: 16px;

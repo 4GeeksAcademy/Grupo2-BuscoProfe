@@ -1,7 +1,7 @@
 /* Estilos para el Navbar */
 .navbar {
   width: 100%;
-  background-color: #f8f7f2; 
+  background-color: #F5F5F5; 
   padding: 0.8rem 2rem;
   position: fixed;
   top: 0;
@@ -24,11 +24,12 @@
 }
 
 .navbar-logo {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: #677f67; /* Color inicial */
+  color: #6abaa4; /* Color inicial */
   text-decoration: none;
   transition: color 0.3s ease-in-out; /* Si necesitas animación */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7), 0px 0px 10px rgba(106, 186, 164, 0.5);
 }
 
 .navbar-logo:hover {
@@ -44,8 +45,9 @@
 }
 
 .navbar-link {
-  font-size: 1.1rem;
-  color: #677f67; 
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #789195; 
   text-decoration: none;
   padding: 0.6rem 1.2rem;
   border-radius: 25px;
