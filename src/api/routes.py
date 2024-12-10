@@ -194,3 +194,13 @@ def get_user_interests(user_id):
 
     except Exception as err:
         return jsonify({"message": f"An error occurred: {str(err)}"}), 500
+    
+# @api.route('/teacher/<int:id>', methods=['GET'])
+# def get_teacher_by_id(id):
+#     try:
+#         teacher=Teacher.query.filter_by(id=id).first()
+#         if teacher is None: 
+#             return jsonify({"message":"teacher not found"}), 404
+#         return jsonify(teacher.serialize()), 200    
+#     except Exception as err:
+#         return jsonify({"message": f"An error occurred: {str(err)}"}), 500

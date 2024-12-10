@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css"
 
 
@@ -12,6 +12,7 @@ export const Navbar = () => {
 	const [allResults, setAllResults] = useState ([])
 	
 	const {store, actions}= useContext(Context)
+	const navigate = useNavigate ()
 	
 	const handleChange = (event)=>{
 		setSearch(event.target.value)
@@ -19,7 +20,10 @@ export const Navbar = () => {
 
 	const busqueda=async(e)=>{
 		e.preventDefault()
-		await actions.getTeachers(search)
+		let resp = await actions.getTeachers(search) 
+		if (resp){
+			navigate ("/selectclass")
+		}
 	}
 
 	return (

@@ -115,7 +115,8 @@ class Teacher(db.Model):
         return {
             "id": self.id,
             "level": self.level.value,
-            "subjects": self.subjects,
+            # "subjects": self.subjects,
+            "subjects": [subject.serialize() for subject in self.subjects],
             "time_preferences": self.time_preferences,
         }
 

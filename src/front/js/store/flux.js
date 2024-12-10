@@ -126,9 +126,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const data = await response.json();
 						console.log (data)
 						setStore({ teachers: data });
-						return data;
+						return true;
 					} else {
 						console.error("Error fetching teachers:", response.statusText);
+						return false;
 					}
 				} catch (error) {
 					console.error("Error while fetching teachers:", error);
