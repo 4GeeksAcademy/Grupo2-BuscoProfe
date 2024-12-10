@@ -146,11 +146,15 @@ def get_all_subjects():
 @api.route('/teachers_subjects', methods=['GET'])
 def get_teachers_and_subjects():
     try:
-        # Obtenemos la lista de profesores y sus materias utilizando una consulta explícita
+        searchQuery= request.args.get('search', '').lower()
+
+                # Obtenemos la lista de profesores y sus materias utilizando una consulta explícita
         teacher_subjects = db.session.query(Teacher, Subject).join(
             teacher_subject, Teacher.id == teacher_subject.c.teacher_id
         ).join(
             Subject, Subject.id == teacher_subject.c.subject_id
+        ).filter(
+            Subject.name.ilike(f"%{searchQuery}%")
         ).all()
 
         # Diccionario para almacenar la información de los profesores y sus materias

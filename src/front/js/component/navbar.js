@@ -11,10 +11,15 @@ export const Navbar = () => {
 	const [search, setSearch] = useState("")
 	const [allResults, setAllResults] = useState ([])
 	
-	const {store}= useContext(Context)
+	const {store, actions}= useContext(Context)
 	
 	const handleChange = (event)=>{
 		setSearch(event.target.value)
+	}
+
+	const busqueda=async(e)=>{
+		e.preventDefault()
+		await actions.getTeachers(search)
 	}
 
 	return (
@@ -33,7 +38,7 @@ export const Navbar = () => {
 							aria-label="Search"
 						/>
 						<Link to="/selectclass">
-							<button className="btn btn-outline-success" type="submit">
+							<button className="btn btn-outline-success" type="button" onClick={(e)=>busqueda(e)}>
 								<i className="fa-solid fa-magnifying-glass"></i>
 							</button>
 						</Link>

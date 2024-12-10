@@ -61,7 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify(formData)
 					});
-					
+
 					const data = await response.json();
 					if (response.ok) {
 						console.log("User registered successfully", data);
@@ -85,7 +85,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify(formData)
 					});
-					
+
 					const data = await response.json();
 					if (response.ok) {
 						console.log("User logged in successfully", data);
@@ -116,6 +116,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				} catch (error) {
 					console.error("Error while fetching subjects:", error);
+				}
+			},
+
+			getTeachers: async (searchQuery) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/teachers_subjects?search="+searchQuery);
+					if (response.ok) {
+						const data = await response.json();
+						console.log (data)
+						setStore({ teachers: data });
+						return data;
+					} else {
+						console.error("Error fetching teachers:", response.statusText);
+					}
+				} catch (error) {
+					console.error("Error while fetching teachers:", error);
+					return false
 				}
 			}
 		}
