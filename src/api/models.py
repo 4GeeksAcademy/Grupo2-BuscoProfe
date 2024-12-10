@@ -112,12 +112,12 @@ class Teacher(db.Model):
         return f'<Teacher {self.id}>'
 
     def serialize(self):
-        return {
+        return {   
             "id": self.id,
+            "name": self.user.fullName,
             "level": self.level.value,
-            # "subjects": self.subjects,
-            "subjects": [subject.serialize() for subject in self.subjects],
-            "time_preferences": self.time_preferences,
+            "subjects": [subject.serialize() for subject in self.subjects] if self.subjects else [],
+            "time_preferences": self.time_preferences or [],  # Mantener JSON como está
         }
 
 # Tabla para las materias

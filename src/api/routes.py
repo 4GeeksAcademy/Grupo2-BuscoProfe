@@ -176,7 +176,6 @@ def get_teachers_and_subjects():
     except Exception as e:
         return jsonify({"message": f"An error occurred: {str(e)}"}), 500
 
-
 @api.route('/user/<int:user_id>/interests', methods=['GET'])
 def get_user_interests(user_id):
     try:
@@ -194,13 +193,19 @@ def get_user_interests(user_id):
 
     except Exception as err:
         return jsonify({"message": f"An error occurred: {str(err)}"}), 500
-    
-# @api.route('/teacher/<int:id>', methods=['GET'])
-# def get_teacher_by_id(id):
-#     try:
-#         teacher=Teacher.query.filter_by(id=id).first()
-#         if teacher is None: 
-#             return jsonify({"message":"teacher not found"}), 404
-#         return jsonify(teacher.serialize()), 200    
-#     except Exception as err:
-#         return jsonify({"message": f"An error occurred: {str(err)}"}), 500
+
+
+@api.route('/teacher/<int:teacher_id>', methods=['GET'])
+def getTeacher_Info(teacher_id):
+    try:
+        # Buscar el profesor por ID
+        teacher = Teacher.query.get(teacher_id)
+        if not teacher:
+            return jsonify({"message": "Teacher not found"}), 404
+
+        # Devolver toda la información del profesor
+        return jsonify(teacher.serialize()), 200
+
+    except Exception as err:
+        return jsonify({"message": f"An error occurred: {str(err)}"}), 500
+
