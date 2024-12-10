@@ -182,3 +182,16 @@
 .card-select h5 {
   margin: 5px;
 }
+
+.rating {
+  margin-left: 15px;
+  display: flex;
+  align-items: center; 
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+
+  
+

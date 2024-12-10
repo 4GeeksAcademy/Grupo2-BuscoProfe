@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Context } from "../store/appContext"; // Asegúrate de importar el contexto adecuado
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 
 const ROLES = {
   STUDENT: "student",
@@ -19,14 +19,13 @@ const TEACHER_LEVELS = {
 };
 
 const SignIn = () => {
-  const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-  // Datos del Usuario para luego pasarlo al endpoint
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: "",
-    role: "", // Esto estaría bueno cambiarlo a un enum en algún momento, por seguridad.
+    role: "",
     level: "",
     subjects: "",
     timePreferences: [],
@@ -34,22 +33,26 @@ const SignIn = () => {
     educationLevel: "",
   });
 
-  // Maneja los cambios de los campos de texto del formulario
+  const [subjectSuggestions, setSubjectSuggestions] = useState([]);
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  useEffect(() => {
+    actions.getSubjects();
+  }, []);
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
 
-  // Maneja los cambios en los checkboxes de las preferencias horarias
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     setFormData((prevState) => {
       const { timePreferences } = prevState;
       if (checked) {
-        // Si está marcado agrega
         return { ...prevState, timePreferences: [...timePreferences, value] };
       } else {
-        // Si no está marcado lo quita.
         return {
           ...prevState,
           timePreferences: timePreferences.filter((time) => time !== value),
@@ -58,11 +61,14 @@ const SignIn = () => {
     });
   };
 
-  // Envia la información del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Mapeamos los valores de los enums al formato esperado por el backend
+    if (formData.role === ROLES.TEACHER && selectedSubjects.length === 0) {
+      alert("Por favor selecciona al menos una materia que das.");
+      return;
+    }
+
     const payload = {
       fullName: formData.fullName,
       email: formData.email,
@@ -70,15 +76,15 @@ const SignIn = () => {
       role: formData.role,
       ...(formData.role === ROLES.STUDENT
         ? {
-            level: STUDENT_LEVELS[formData.level],
-            subjects: formData.subjects.split(","),
-            timePreferences: formData.timePreferences,
-          }
+          level: STUDENT_LEVELS[formData.level],
+          subjects: selectedSubjects.map(sub => sub.id),
+          timePreferences: formData.timePreferences,
+        }
         : {
-            level: TEACHER_LEVELS[formData.educationLevel],
-            subjects: formData.subject.split(","),
-            timePreferences: formData.timePreferences,
-          }),
+          level: TEACHER_LEVELS[formData.educationLevel],
+          subjects: selectedSubjects.map(sub => sub.id),
+          timePreferences: formData.timePreferences,
+        }),
     };
 
     const result = await actions.registerUser(payload);
@@ -90,10 +96,6 @@ const SignIn = () => {
     }
   };
 
-  // Esta función maneja las preferencias horarias
-  // Lo hice como una función aparte para no repetir dos veces preferencias horarias en el código de abajo.
-  // En caso de necesitar agregar más tiempos se modifica el diccionario.
-  // Es posible hardcodearlo abajo igual, es una mejora por optimización.
   const renderTimePreferences = () => (
     <div className="row">
       <label htmlFor="timePreferences">Preferencia horaria:</label>
@@ -115,6 +117,35 @@ const SignIn = () => {
       </div>
     </div>
   );
+
+  const handleSubjectChange = (e) => {
+    const value = e.target.value;
+    setFormData({ ...formData, subject: value });
+
+    if (value.length > 0) {
+      const filteredSuggestions = store.subjects.filter(
+        (subject) =>
+          subject.name.toLowerCase().includes(value.toLowerCase()) &&
+          !selectedSubjects.some((selected) => selected.id === subject.id)
+      ).slice(0, 10); // Máximo de 10 sugerencias
+      setSubjectSuggestions(filteredSuggestions);
+      setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    if (!selectedSubjects.some((subject) => subject.id === suggestion.id)) {
+      setSelectedSubjects([...selectedSubjects, suggestion]);
+    }
+    setFormData({ ...formData, subject: '' });
+    setShowSuggestions(false);
+  };
+
+  const handleRemoveSubject = (id) => {
+    setSelectedSubjects(selectedSubjects.filter(subject => subject.id !== id));
+  };
 
   return (
     <div id="signinform">
@@ -176,7 +207,6 @@ const SignIn = () => {
           </select>
         </div>
 
-        {/* Si se elige student se muestran los campos del estudiante */}
         {formData.role === ROLES.STUDENT && (
           <>
             <div className="row">
@@ -198,43 +228,93 @@ const SignIn = () => {
               </select>
             </div>
 
-            <div className="row">
-              <label htmlFor="subjects">¿Qué deseas estudiar?</label>
+            <div className="row" style={{ position: "relative" }}>
+              <label htmlFor="subject">¿Qué intereses tienes?</label>
               <input
                 type="text"
-                id="subjects"
-                className="px-3 py-2"
-                placeholder="Ingresa una o más asignaturas, separadas por comas"
-                value={formData.subjects}
-                onChange={handleChange}
+                id="subject"
+                className="form-control"
+                value={formData.subject}
+                onChange={handleSubjectChange}
+                placeholder="Intereses"
               />
+              {showSuggestions && (
+                <ul className="list-group suggestions-list">
+                  {subjectSuggestions.map((suggestion) => (
+                    <li
+                      key={suggestion.id}
+                      className="list-group-item"
+                      onClick={() => handleSuggestionClick(suggestion)}
+                    >
+                      {suggestion.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <div className="row">
+              <div className="selected-subjects">
+                {selectedSubjects.map((subject) => (
+                  <span key={subject.id} className="chip">
+                    {subject.name}
+                    <button type="button" className="close" onClick={() => handleRemoveSubject(subject.id)}>
+                      &times;
+                    </button>
+                  </span>
+                ))}
+              </div>
             </div>
 
             {renderTimePreferences()}
           </>
         )}
 
-        {/* Si se elige teacher se muestran los campos del teacher */}
         {formData.role === ROLES.TEACHER && (
           <>
-            <div className="row">
+            <div className="row" style={{ position: "relative" }}>
               <label htmlFor="subject">Doy clases de</label>
               <input
                 type="text"
                 id="subject"
-                className="px-3 py-2"
-                placeholder="Materia que enseñas (separadas por comas)"
+                className="form-control"
                 value={formData.subject}
-                onChange={handleChange}
-                required
+                onChange={handleSubjectChange}
+                placeholder="Materia que enseñas"
               />
+              {showSuggestions && (
+                <ul className="list-group suggestions-list">
+                  {subjectSuggestions.map((suggestion) => (
+                    <li
+                      key={suggestion.id}
+                      className="list-group-item"
+                      onClick={() => handleSuggestionClick(suggestion)}
+                    >
+                      {suggestion.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <div className="row">
+              <div className="selected-subjects">
+                {selectedSubjects.map((subject) => (
+                  <span key={subject.id} className="chip">
+                    {subject.name}
+                    <button type="button" className="close" onClick={() => handleRemoveSubject(subject.id)}>
+                      &times;
+                    </button>
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div className="row">
               <label htmlFor="educationLevel">Nivel educativo</label>
               <select
                 id="educationLevel"
-                className="input-field px-3 py-2"
+                className="form-control input-field px-3 py-2"
                 value={formData.educationLevel}
                 onChange={handleChange}
                 required

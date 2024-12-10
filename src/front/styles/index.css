@@ -215,5 +215,59 @@ body {
   margin-top: 0; /* Elimina el margen superior si es necesario */
 }
 
+/* Estilos lista de sugerencias */
+.suggestions-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  position: relative;
+  background-color: white;
+  width: calc(100% - 50px); 
+  z-index: 1000; 
+  top: -1.7rem; 
+  left: 0;
+  border-radius: 0 0 10px 10px; 
+}
 
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
 
+.suggestions-list li:last-child {
+  border-bottom: none; /* Elimina el borde del último elemento */
+}
+
+.suggestions-list li:hover {
+  background-color: #f8f7f2; /* Fondo claro en hover */
+}
+
+.selected-subjects {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 elementos por fila */
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #d8e3df;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  color: #415e66;
+}
+
+.chip .close {
+  background: none;
+  border: none;
+  color: #415e66;
+  font-size: 1rem;
+  margin-left: 5px;
+  cursor: pointer;
+}

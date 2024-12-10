@@ -12,9 +12,10 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import Login from "./pages/login";
 import SignIn from "./pages/signin";
-import SearchClass from "./pages/searchclass.js"
+import SearchClass from "./pages/searchclass.js";
 import SelectClass from "./pages/selectclass";
 import TeacherDashboard from "./pages/TeacherDashboard.js";
+import TeacherView from "./pages/teacherview.js";
 
 
 
@@ -37,7 +38,8 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<SignIn />} path="/signin" />                     
                         <Route element={<SearchClass />} path="/searchclass" />
-                        <Route element={<SelectClass />} path="/selectclass" />                       
+                        <Route element={<SelectClass />} path="/selectclass" />
+                        <Route element={<TeacherView />} path="/teacherview" />                       
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<TeacherDashboard />} path="/teacherdashboard" />
                         <Route element={<h1>Not found!</h1>} />
