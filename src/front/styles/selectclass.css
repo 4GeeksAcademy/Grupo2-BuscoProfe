@@ -118,6 +118,31 @@
     background-color: #607848;
 }
 
+.about h4 {
+    color: #415e66;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .about button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 1px solid #40b5ad;
+    background: #edf7ff;
+    color: #415e66;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 3px;
+  }
+  
+  .about button:hover {
+    background: #40b5ad;
+    color: #ffffff;
+
+  }
+
 @media (max-width: 1024px) {
     .teacher-grid {
         grid-template-columns: repeat(2, 1fr);

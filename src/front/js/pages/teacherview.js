@@ -5,68 +5,99 @@ import '../../styles/teacherView.css';
 function TeacherView() {
     return (
         <div className="view-container">
-            <div className="header-teacher">
-                <header className="view-header-info">
-                    <section className="dashboard-stats">
-                        <div className="stat-box">
-                            <span className="teacher-name">Juan Pérez</span>
-                            <h4>Ing. en sistemas</h4>
-                            <img src="https://t4.ftcdn.net/jpg/00/85/77/75/360_F_85777561_m6EMdjM6Knkz7OLJmN5zr5ZeK359S3G5.jpg" className="card-img-top rounded-circle" alt="foto de juan perez" />
-
-                            <section className="calificaciones d-flex mx-3">
-                                <span className="teacher-name">Calificación</span>
-                                  <div class="rating m-2">
-                                    <span className="star">★</span>
-                                    <span className="star">★</span>
-                                    <span className="star">★</span>
-                                    <span className="star">★</span>
-                                    <span className="star text-secondary">★</span>
-                                </div>
-                            </section>
-                        </div>
-                        <div className="stat-box">
-                            <span className="teacher-name">Info</span>
-                            <p> Soy un apasionado de la ingeniería en sistemas, soy estudiante avanzado
-                                de la carrera y quisiera aportar con mis conocimientos a que más chicos y chicas
-                                se contagien y puedan avanzar en sus metas</p></div>
-                        <div className="stat-box">
-                            <span className="teacher-name">Materias</span>
-                            <p>
-                                <li>Matemática</li>
-                                <li>Física</li></p>
-                            <span className="teacher-name">Palabras Clave</span>
-                            <p>
-                                <li>Derivadas</li>
-                                <li>Funciones de tercer grado</li></p>
-                        </div>
-
-                    </section>
-                </header>
-            </div>
-            <div className= "container-footer">
-                <div className="calendar">
-                    <span className="teacher-name">Calendario</span>
-                    <p>10:00am - matemática Joaquín</p>
-                    <div className="calendar-preview">[Calendario Aquí]</div>
-                    <button className="btn btn-primary">Agendar</button>
+            <div className="profile-card">
+                <div className="profile-pic">
+                    <img src="https://t4.ftcdn.net/jpg/00/85/77/75/360_F_85777561_m6EMdjM6Knkz7OLJmN5zr5ZeK359S3G5.jpg" className="card-img-top rounded-circle" alt="foto de juan perez" />
                 </div>
 
-                <header className="view-header-coments">
-                    <span className="teacher-name">Comentarios</span>
+                <div className="profile-info">
+                    <div className="user-info">
+                        <h2>Samuel Carmona</h2>
+                        <h4>Ingeniero en Sistemas</h4>
+                    </div>
+                </div>
 
-                    <section className="coments">
-                        <div className="container-coment">Un genio, me re ayudó</div>
-                        <div className="container-coment">Super guay</div>
-                        <div className="container-coment">Capo total, lo recomiendo</div>
-                        <div className="container-coment">En matemáticas, el mejor</div>
-                       
-                    </section>
-                    
-                </header>
+                <section className="calificaciones">
+                    <span className="teacher-name">Calificación</span>
+                    <div class="rating m-2">
+                        <span className="star">★</span>
+                        <span className="star">★</span>
+                        <span className="star">★</span>
+                        <span className="star">★</span>
+                        <span className="star text-secondary">★</span>
+                    </div>
+                </section>
+
+                <div className="contact-info">
+                    <div className="row">
+                        <div className="icon">
+                            <i className="fa fa-phone" />
+                        </div>
+                        <div className="content">
+                            <span>Phone</span>
+                            <h5>+123 456 789</h5>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="icon">
+                            <i className="fa fa-envelope-open" />
+                        </div>
+                        <div className="content">
+                            <span>Email</span>
+                            <h5>Samuelamaellol@gmail.com</h5>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div >
+
+
+            <div className="about">
+                <h1>About Me</h1>
+                <p>
+                    Soy un estudiante de la facultad de ingenieria actualmente cursando la carrera de Ingeniero en Sistemas
+                    y mi objetivo es poder ayudar a otros estudiantes con mi conocimiento.
+                </p>
+                <div>
+                    <h4>Especializaciones</h4>
+                    <button type="button" class="btn btn-light">Integrales</button>
+                    <button type="button" class="btn btn-light">Programacion 2</button>
+                    <button type="button" class="btn btn-light">Conjunto y Ecuaciones</button>
+                </div>
+
+            </div>
+
+            <div>
+                <div className="comments-card">
+                    <h3>Comentarios</h3>
+                    <div className="comments-list">
+                        <div className="comment-item">Muy buen profe 😀</div>
+                        <div className="comment-item">Un capo</div>
+                        <div className="comment-item">No me gusta cuando canta👌</div>
+                        <div className="comment-item">Excelente</div>
+                        <div className="comment-item">Muy útil, gracias.🤩</div>
+                        <div className="comment-item">✅</div>
+                        <div className="comment-item">Muy buen profe 😀</div>
+                        <div className="comment-item">Un capo</div>
+                        <div className="comment-item">No me gusta cuando canta👌</div>
+                        <div className="comment-item">Excelente</div>
+                        <div className="comment-item">Muy útil, gracias.🤩</div>
+                        <div className="comment-item">✅</div>
+                    </div>
+                </div>
+                <div className="price-card">
+                    <div className="card-body">
+                        <h5 className="card-title">Precio de las Clases</h5>
+                        <p className="card-text">
+                            Info
+                        </p>
+                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
     );
 }
 
 export default TeacherView;
-
