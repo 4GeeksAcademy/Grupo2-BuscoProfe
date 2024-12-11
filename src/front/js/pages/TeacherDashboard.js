@@ -3,7 +3,7 @@ import '../../styles/TeacherDashboard.css';
 
 function TeacherDashboard() {
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container" style={{ marginTop: "90px" }}>
       {/* Header */}
       <header className="dashboard-header">
         <span className="teacher-name">NOMBRE</span>
