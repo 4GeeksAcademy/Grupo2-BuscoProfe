@@ -100,15 +100,15 @@ export const TeacherProfiles = () => {
     return (
         <div className="teacher-profiles-container">
             <h1 className="page-title">Resultado de tu búsqueda</h1>
-            {store.teachers.length > 0 ?
+            {store.teachers && store.teachers.length > 0 ? (
                 <div className="teacher-grid">
                     {store.teachers.map((teacher, index) => (
                         <TeacherCard key={index} teacher={teacher} />
                     ))}
                 </div>
-                :
+            ) : (
                 <p>No existen resultados para la búsqueda</p>
-            }
+            )}
         </div>
     );
 };
