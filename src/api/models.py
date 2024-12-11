@@ -45,8 +45,6 @@ class User(db.Model):
     def check_password(self, password):
         return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
 
-
-
 # Tabla pivot para la relación entre Teacher y Subject
 teacher_subject = db.Table('teacher_subject',
     db.Column('teacher_id', db.Integer, db.ForeignKey('teachers.id'), primary_key=True),
@@ -136,5 +134,25 @@ class Subject(db.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
+            }
+    
+class Review(db.Model):
+    __tablename__= 'reviews'
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=False)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+    comments = db.Column(db.Text, nullable=True)
+
+    def __repr__(self):
+        return f'<Review {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "student_id": self.student_id,
+            "rating": self.rating,
+            "teacher_id": self.teacher_id,
+            "comments": self.teacher_comments,
             }
 
