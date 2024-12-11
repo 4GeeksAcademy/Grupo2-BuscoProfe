@@ -33,8 +33,7 @@ function Hero() {
                         ¡Suma Saber!
                     </h1>
                     <h3 className="hero-subtitle display-5 w-75 mx-auto" style={{ opacity: 0.75, color: "#06090a", fontWeight: 'lighter' }}>
-                        Encuentra profesores que se adapten a tus necesidades y, como profesor,
-                        comparte tus conocimientos con el mundo.
+                    Conecta con el profesor ideal para ti y, como docente, inspira al mundo compartiendo tu conocimiento y experiencia.
                     </h3>
                 </div>
             </div>
