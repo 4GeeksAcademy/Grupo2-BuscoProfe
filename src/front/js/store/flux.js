@@ -121,10 +121,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getTeachers: async (searchQuery) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + "api/teachers_subjects?search="+searchQuery);
+					/* Eliminar tildes y caracteres diacríticos
+
+					normalize("NFD"): Esto separa los caracteres base de sus marcas diacríticas. 
+					Por ejemplo, á se convierte en a + ´
+
+					replace(/[\u0300-\u036f]/g, ""): Elimina los caracteres diacríticos que resultaron de la descomposición,
+					 dejando únicamente los caracteres base. 
+
+					Guardamos el resultado en una nueva variable. (normalizedQuery) ¿Es lo más óptimo?
+
+					*/
+
+					const normalizedQuery = searchQuery.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+			
+					const response = await fetch(process.env.BACKEND_URL + "api/teachers_subjects?search=" + normalizedQuery);
 					if (response.ok) {
 						const data = await response.json();
-						console.log (data)
+						console.log(data);
 						setStore({ teachers: data });
 						return true;
 					} else {
@@ -133,9 +147,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				} catch (error) {
 					console.error("Error while fetching teachers:", error);
-					return false
+					return false;
 				}
 			}
+			
 		}
 	};
 };

@@ -30,7 +30,7 @@ function Hero() {
             <div id="hero" className="hero-container min-vh-100 mx-auto d-flex flex-column justify-content-center">
                 <div className="text-center hero-content">
                     <h1 className="hero-title display-1" style={{ color: "#6abaa4", fontWeight: "600", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7), 0px 0px 10px rgba(106, 186, 164, 0.5)"}}>
-                        Suma Saber!
+                        ¡Suma Saber!
                     </h1>
                     <h3 className="hero-subtitle display-5 w-75 mx-auto" style={{ opacity: 0.75, color: "#06090a", fontWeight: 'lighter' }}>
                         Encuentra profesores que se adapten a tus necesidades y, como profesor,
