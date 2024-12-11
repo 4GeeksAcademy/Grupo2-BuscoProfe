@@ -50,7 +50,7 @@ export const Home = () => {
 			{/* ¿Tienes dudas? */}
 
 			<div className="fqs mt-4">
-				<h2>¿Tienes dudas?</h2>
+				<h2>Preguntas frecuentes</h2>
 				<div class="accordion accordion-flush" id="accordionFlushExample">
 					<div class="accordion-item">
 						<h2 class="accordion-header">
@@ -59,7 +59,11 @@ export const Home = () => {
 							</button>
 						</h2>
 						<div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-							<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+							<div class="accordion-body">
+								En la parte superior derecha de esta página, encontrás el botón "Registrarse", allí te dará la opción 
+								de registrarte como estudiante o como profesor, y a partir de allí, verás más opciones. Si te registras como profe,
+								te dará las opciones de planes para publicar tu perfil.
+							</div>
 						</div>
 					</div>
 					<div class="accordion-item">
@@ -69,7 +73,9 @@ export const Home = () => {
 							</button>
 						</h2>
 						<div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-							<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+							<div class="accordion-body">El pago de las clases y el método para realizarlo, lo coordinas directamente con el profe que te dará las clases.
+								Si eres profe y quieres abonar un plan para publicar tu perfil y tus clases, puedes hacerlo a través de Mercado Pago.
+							</div>
 						</div>
 					</div>
 					<div class="accordion-item">
@@ -79,10 +85,25 @@ export const Home = () => {
 							</button>
 						</h2>
 						<div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-							<div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+							<div class="accordion-body">En la barra de buscador, puedes buscar la materia que estás necesitando estudiar,
+								allí verás un listado de profes que te pueden ayudar con esa materia. Tu elijes el que quieras,
+								y dentro de su vista podrás coordinar para agendar una clase.
+							</div>
 						</div>
 					</div>
-
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree">
+								¿Mi suscripción como profe tiene un costo?
+							</button>
+						</h2>
+						<div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+							<div class="accordion-body">Si, tenemos varios planes que se adaptan a tus 
+								distintas necesidades: planes mensuales, semestrales y anuales para 
+								asegurar tu visibilidad en nuestro portal. Comunícate con nosotros para recibir más info, haciendo <a href="mailto:info@sumasaber.com "target="_blank">click aquí</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

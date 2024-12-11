@@ -8,7 +8,7 @@
   left: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-
+  margin-bottom: 20px;
 }
 
 .navbar-container {
@@ -20,7 +20,7 @@
 }
 
 .navbar-container button {
-  border: 1px solid #677f67;
+  border: 1px;
 }
 
 .navbar-logo {
@@ -35,7 +35,7 @@
 }
 
 .navbar-logo:hover {
-  color: #677f67;
+  color: #6abaa4;
   /* Mantiene el color al pasar el cursor */
   text-decoration: none;
   /* Asegura que no se subraye */
@@ -66,7 +66,7 @@
 
 /* Efecto hover  */
 .navbar-link:hover {
-  background-color: #789195;
+  background-color: #96c7ba;
   color: #f8f7f2;
 }
 
@@ -115,4 +115,24 @@
 
 .suggestions-list li:hover {
   background-color: #f8f7f2;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column; /* Los elementos se apilan verticalmente */
+    align-items: flex-start; /* Alinea los elementos al inicio */
+  }
+
+  .navbar-links {
+    width: 100%; /* Asegura que los enlaces ocupen todo el ancho */
+    flex-direction: column; /* Los enlaces se apilan verticalmente */
+    align-items: center; /* Centra los enlaces */
+  }
+
+  .navbar-link {
+    width: 100%; /* Cada enlace ocupa todo el ancho disponible */
+    text-align: center; /* Centra el texto */
+    padding: 1rem 0; /* Espaciado para facilitar el toque */
+  }
 }
