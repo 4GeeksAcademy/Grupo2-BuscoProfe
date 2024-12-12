@@ -102,13 +102,15 @@ class Teacher(db.Model):
     )
     time_preferences = db.Column(db.JSON)
     price = db.Column(db.Integer)
-
+    description = db.Column (db.String(1000))
+    
     def __init__(self, *args, **kwargs,):
         super(Teacher, self).__init__(*args, **kwargs)
         self.subjects = kwargs.pop('subjects', [])
         self.time_preferences = kwargs.pop('time_preferences', [])
         self.level = kwargs.pop('level', None)
         self.price = kwargs.pop('price', None)
+        self.description = kwargs.pop('description', None)
 
     def __repr__(self):
         return f'<Teacher {self.id}>'
@@ -121,7 +123,9 @@ class Teacher(db.Model):
             "subjects": [subject.serialize() for subject in self.subjects] if self.subjects else [],
             "time_preferences": self.time_preferences or [],  # Mantener JSON como está
             "price": self.price,
-            "image": self.user.photo 
+            "image": self.user.photo,
+            "email": self.user.email, 
+            "description": self.description
         }
 
 # Tabla para las materias
