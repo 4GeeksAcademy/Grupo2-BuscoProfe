@@ -222,7 +222,7 @@ def add_review():
         review.teacher_id = data.get('teacher_id')
         review.rating = data.get('rating')
         review.comments = data.get('comments')
-        review.student_id = 1
+        review.student_id = data.get("student_id")
         
         db.session.add(review)
         db.session.commit()    
