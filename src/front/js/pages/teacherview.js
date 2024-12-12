@@ -89,9 +89,14 @@ function TeacherView() {
                     <div className="card-body">
                         <h5 className="card-title">Precio de las Clases</h5>
                         <p className="card-text">
+
                             Info
                         </p>
-                    
+                        <div>
+                            <a href="https://calendly.com/jparatge/15min" target="_blank">
+                                <button>Book a Meeting</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
