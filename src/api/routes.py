@@ -166,6 +166,9 @@ def get_teachers_and_subjects():
                 teachers_dict[teacher.id] = {
                     "teacher_id": teacher.id,
                     "teacher_name": teacher.user.fullName,
+                    "profession": teacher.level.value,
+                    "price": teacher.price,
+                    "image": teacher.user.photo,
                     "subjects": []
                 }
             teachers_dict[teacher.id]["subjects"].append(subject.serialize())

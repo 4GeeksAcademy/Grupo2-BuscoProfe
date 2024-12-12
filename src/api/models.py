@@ -24,6 +24,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     is_active = db.Column(db.Boolean(), default=True)
+    photo = db.Column(db.String(1000))
 
     student = db.relationship('Student', backref='user', uselist=False)
     teacher = db.relationship('Teacher', backref='user', uselist=False)
@@ -37,6 +38,7 @@ class User(db.Model):
             "name": self.fullName,
             "email": self.email,
             "isActive": self.is_active,
+            "photo": self.photo
         }
 
     def set_password(self, password):
@@ -99,12 +101,14 @@ class Teacher(db.Model):
         lazy='dynamic'
     )
     time_preferences = db.Column(db.JSON)
+    price = db.Column(db.Integer)
 
     def __init__(self, *args, **kwargs,):
         super(Teacher, self).__init__(*args, **kwargs)
         self.subjects = kwargs.pop('subjects', [])
         self.time_preferences = kwargs.pop('time_preferences', [])
         self.level = kwargs.pop('level', None)
+        self.price = kwargs.pop('price', None)
 
     def __repr__(self):
         return f'<Teacher {self.id}>'
@@ -116,6 +120,8 @@ class Teacher(db.Model):
             "level": self.level.value,
             "subjects": [subject.serialize() for subject in self.subjects] if self.subjects else [],
             "time_preferences": self.time_preferences or [],  # Mantener JSON como está
+            "price": self.price,
+            "image": self.user.photo 
         }
 
 # Tabla para las materias
