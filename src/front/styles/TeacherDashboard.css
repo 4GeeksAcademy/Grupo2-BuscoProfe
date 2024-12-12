@@ -1,48 +1,273 @@
-body {
-    font-family: "Arial", sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #faf4e1;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin-top: 0px;
+  text-decoration: none;
+  font-family: poppins, sans-serif;
 }
 
 .dashboard-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-    border: 2px dashed #c0c0c0;
-    background-color: #fefae0;
-}
-j
-/* Header */
-.dashboard-header {
+    margin-top: 20px;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    padding: 60px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px dashed #c0c0c0;
-    padding: 10px 0;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
-.teacher-name {
-    font-size: 1.5rem;
-    font-weight: bold;
+/* tarjetas */
+
+.tarjetas .card li {
+    list-style: none;
 }
 
-.profile-link {
-    text-decoration: none;
-    font-size: 1rem;
-    color: #677f67;
-    border: 1px solid #677f67;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: 0.3s;
+.tarjetas .card h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #2c3e50;
 }
 
-.profile-link:hover {
-    background-color: #677f67;
+.vermas {
+    background: #40b5ad;
     color: white;
+    padding: 5px 10px;
+    text-align: center;
+    margin-bottom: 4px;
+    text-decoration: none;
 }
 
-/* Stats Section */
+.vermas:hover {
+    background: #369e93;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.tarjetas .cards .card:hover {
+    background: linear-gradient(90deg, #7ec8b7, #b8e5d6);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 10px;
+    border-bottom: 2px solid #999;
+}
+
+table {
+    padding: 10px;
+}
+
+.tarjetas {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.tarjetas .cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tarjetas .cards .card {
+    width: 200px;
+    height: 120px;
+    background: linear-gradient(90deg, #9dd9d2, #d5f5e3);
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.tarjetas .cards .card h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+}
+
+.tarjetas .cards .card h3 {
+    font-size: 1rem;
+    color: #34495e;
+}
+
+/* contenidos 2 y 3 */
+
+.content-2 {
+    background-color: #f9f9f9;
+    flex: 1 1 100%;
+    max-width: 1000px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.content-3 {
+    border: 1px solid #ccc;
+    position: relative;
+    width: 100%; 
+    height: auto; 
+    background-color: #fff; 
+    padding: 20px;
+    border-radius: 10px; 
+    display: flex;
+    flex-direction: column;
+    float: right;
+}
+
+.content-3 {
+    flex: 1;
+    align-self: flex-start; 
+}
+
+.content-2, .content-3 {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.content-2 .recent-payments, .content-3 .new-students {
+    flex: 1;
+    min-width: 300px;
+}
+
+.content-2 .recent-payments {
+    flex: 2;
+}
+
+.tarjetas .content-2 {
+    min-height: 60vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.tarjetas .content-2 .recent-payments {
+    min-height: 50vh;
+    flex: 5;
+    background: white;
+    margin: 0 25px 25px 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjetas .content-2 .new-students {
+    flex: 2;
+    background: white;
+    min-height: 50vh;
+    margin: 0 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+}
+
+/* tablas */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table th {
+    text-align: left;
+    padding: 10px;
+    background-color: #f2f2f2;
+    font-size: 1,9rem;
+    color: #415e66;
+}
+
+table td {
+    padding: 10px;
+    font-size: 1,6rem;
+    color: #415e66;
+    border-bottom: 1px solid #ddd;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* agenda */
+
+
+@media screen and (max-width: 1050px) {
+    .side-menu li {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .side-menu li span {
+        display: none;
+    }
+    .side-menu {
+        align-items: center;
+    }
+    .side-menu li img {
+        width: 40px;
+        height: 40px;
+    }
+    .side-menu li:hover {
+        background: #f05462;
+        padding: 8px 38px;
+        border: 2px solid white;
+    }
+}
+
+@media screen and (max-width:536px) {
+    .brand-name h1 {
+        font-size: 16px;
+    }
+    .container .content .cards {
+        justify-content: center;
+    }
+    .side-menu li img {
+        width: 30px;
+        height: 30px;
+    }
+    .container .content .content-2 .recent-payments table th:nth-child(2),
+    .container .content .content-2 .recent-payments table td:nth-child(2) {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-container {
+        grid-template-areas:
+            "tarjetas"
+            "content-2"
+            "content-3";
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Stats Section
 .dashboard-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -62,9 +287,9 @@ j
 .stat-box.calendar {
     grid-column: span 2;
     /* Calendar spans more space */
-}
 
-.calendar-preview {
+
+/* .calendar-preview {
     margin-top: 10px;
     padding: 10px;
     border: 1px dashed #c0c0c0;
@@ -73,7 +298,7 @@ j
 }
 
 /* Classes Section */
-.dashboard-classes {
+/* .dashboard-classes {
     margin-top: 30px;
 }
 
@@ -89,4 +314,4 @@ j
     margin: 10px 0;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */ 

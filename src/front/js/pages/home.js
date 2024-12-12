@@ -22,7 +22,7 @@ export const Home = () => {
 							<h5 className="card-title">¿Eres profesor o quieres serlo?</h5>
 							<Link to="/teacherSignin">
 								<p className="card-text">
-									Crea tu perfil, comparte lo que sabes y enseña desde cualquier lugar. Gana dinero a tu ritmo con flexibilidad y herramientas para gestionar tus clases.
+									Crea tu perfil, comparte lo que sabes y enseña desde cualquier lugar. Gana dinero a tu ritmo con flexibilidad y herramientas para gestionar tus clases. Viví de lo que te apasiona.
 								</p></Link>
 						</div>
 					</div>
@@ -60,9 +60,9 @@ export const Home = () => {
 						</h2>
 						<div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
 							<div class="accordion-body">
-								En la parte superior derecha de esta página, encontrás el botón "Registrarse", allí te dará la opción 
-								de registrarte como estudiante o como profesor, y a partir de allí, verás más opciones. Si te registras como profe,
-								te dará las opciones de planes para publicar tu perfil.
+							En la parte superior derecha de esta página, encontrarás el botón 'Registrarse'. 
+							Al hacer clic, podrás elegir registrarte como estudiante o profesor, y a partir de ahí, tendrás acceso a más opciones. 
+							Si eliges registrarte como profesor, se te mostrarán los planes disponibles para publicar tu perfil.
 							</div>
 						</div>
 					</div>
@@ -73,8 +73,8 @@ export const Home = () => {
 							</button>
 						</h2>
 						<div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-							<div class="accordion-body">El pago de las clases y el método para realizarlo, lo coordinas directamente con el profe que te dará las clases.
-								Si eres profe y quieres abonar un plan para publicar tu perfil y tus clases, puedes hacerlo a través de Mercado Pago.
+							<div class="accordion-body">El pago de las clases y el método para realizarlo se coordinan directamente con tu profesor. 
+								Si eres profesor y deseas pagar un plan para publicar tu perfil y tus clases, puedes hacerlo a través de Mercado Pago.
 							</div>
 						</div>
 					</div>
@@ -86,8 +86,8 @@ export const Home = () => {
 						</h2>
 						<div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
 							<div class="accordion-body">En la barra de buscador, puedes buscar la materia que estás necesitando estudiar,
-								allí verás un listado de profes que te pueden ayudar con esa materia. Tu elijes el que quieras,
-								y dentro de su vista podrás coordinar para agendar una clase.
+								allí verás un listado de profesores que pueden ayudarte con esa asignatura. 
+								Tú eliges al que prefieras, y dentro de su perfil podrás coordinar y agendar una clase.
 							</div>
 						</div>
 					</div>
@@ -98,9 +98,9 @@ export const Home = () => {
 							</button>
 						</h2>
 						<div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-							<div class="accordion-body">Si, tenemos varios planes que se adaptan a tus 
-								distintas necesidades: planes mensuales, semestrales y anuales para 
-								asegurar tu visibilidad en nuestro portal. Comunícate con nosotros para recibir más info, haciendo <a href="mailto:info@sumasaber.com "target="_blank">click aquí</a>
+							<div class="accordion-body">Contamos con varios planes diseñados para adaptarse a tus necesidades: 
+								mensuales, semestrales y anuales, asegurando tu visibilidad en nuestro portal.  
+								Para más información, no dudes en comunicarte con nosotros haciendo <a href="mailto:info@sumasaber.com "target="_blank">click aquí</a>
 							</div>
 						</div>
 					</div>

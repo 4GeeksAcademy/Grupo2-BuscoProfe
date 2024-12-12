@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -10,7 +9,7 @@
 }
 
 .view-container {
-  margin-top: 120px;
+  margin-top: 10px;
   background-color: #FFFFFF;
   border-radius: 25px;
   padding: 3rem;
