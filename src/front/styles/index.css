@@ -99,10 +99,10 @@ body {
   min-width: 450px;
   width: 100%;
   height: auto;
-  margin: 10px auto;
+  margin: 5px auto;
   background-color: #FFFFFF;
   border-radius: 25px;
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin-top: 120px;
 }
@@ -121,9 +121,9 @@ body {
   width: 90%;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
-  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
   font-size: 1.1rem;
   border: none;
   border-radius: 10px;
@@ -164,13 +164,13 @@ body {
 }
 
 #button {
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
 }
 
 /* Estilos del checkbox */
 .row input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-left: 10px;
   appearance: none;
   background-color: #d8e3df;

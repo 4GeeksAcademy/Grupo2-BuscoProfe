@@ -7,14 +7,15 @@ function TeacherDashboard() {
       {/* Header */}
       <header className="dashboard-header">
         <span className="teacher-name">NOMBRE</span>
-        <a href="/perfil" className="profile-link">
+        <span className="agregar-foto">Agregar foto</span>
+        <a href="/teacherview/[id]" className="profile-link">
           ir al perfil
         </a>
       </header>
 
       {/* Stats */}
       <section className="dashboard-stats">
-        <div className="stat-box">rating</div>
+        <div className="stat-box">Info</div>
         <div className="stat-box">clases agendadas para la semana</div>
         <div className="stat-box">ver chats(?)</div>
         <div className="stat-box calendar">

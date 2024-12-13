@@ -20,20 +20,18 @@ export const Home = () => {
 					<div className="card">
 						<div className="card-body">
 							<h5 className="card-title">¿Eres profesor o quieres serlo?</h5>
-							<Link to="/teacherSignin">
-								<p className="card-text">
-									Crea tu perfil, comparte lo que sabes y enseña desde cualquier lugar. Gana dinero a tu ritmo con flexibilidad y herramientas para gestionar tus clases.
-								</p></Link>
+							<p className="card-text">
+								Crea tu perfil, comparte lo que sabes y enseña desde cualquier lugar. Gana dinero a tu ritmo con flexibilidad y herramientas para gestionar tus clases.
+							</p>
 						</div>
 					</div>
 					<div className="card">
 						<div className="card-body">
 							<h5 className="card-title">Encuentra al profesor ideal para ti</h5>
-
-							<Link to="/studentSignin"><p className="card-text">
+							<p className="card-text">
 								Descubre profesores especializados y clases personalizadas a tu ritmo. Accede a contenido exclusivo, tutorías y recomendaciones para avanzar rápido.
 								¡Todo lo que necesitas para aprender de manera fácil y divertida!
-							</p></Link>
+							</p>
 						</div>
 					</div>
 					<div className="card">
@@ -60,7 +58,7 @@ export const Home = () => {
 						</h2>
 						<div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
 							<div class="accordion-body">
-								En la parte superior derecha de esta página, encontrás el botón "Registrarse", allí te dará la opción 
+								En la parte superior derecha de esta página, encontrás el botón "Registrarse", allí te dará la opción
 								de registrarte como estudiante o como profesor, y a partir de allí, verás más opciones. Si te registras como profe,
 								te dará las opciones de planes para publicar tu perfil.
 							</div>
@@ -98,9 +96,9 @@ export const Home = () => {
 							</button>
 						</h2>
 						<div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-							<div class="accordion-body">Si, tenemos varios planes que se adaptan a tus 
-								distintas necesidades: planes mensuales, semestrales y anuales para 
-								asegurar tu visibilidad en nuestro portal. Comunícate con nosotros para recibir más info, haciendo <a href="mailto:info@sumasaber.com "target="_blank">click aquí</a>
+							<div class="accordion-body">Si, tenemos varios planes que se adaptan a tus
+								distintas necesidades: planes mensuales, semestrales y anuales para
+								asegurar tu visibilidad en nuestro portal. Comunícate con nosotros para recibir más info, haciendo <a href="mailto:info@sumasaber.com " target="_blank">click aquí</a>
 							</div>
 						</div>
 					</div>

@@ -135,9 +135,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					*/
 
-					const normalizedQuery = searchQuery.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+					// const normalizedQuery = searchQuery.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 			
-					const response = await fetch(process.env.BACKEND_URL + "api/teachers_subjects?search=" + normalizedQuery);
+					const response = await fetch(process.env.BACKEND_URL + "api/teachers_subjects?search=" + searchQuery);
 					if (response.ok) {
 						const data = await response.json();
 						console.log(data);
