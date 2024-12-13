@@ -24,6 +24,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     is_active = db.Column(db.Boolean(), default=True)
+    photo = db.Column(db.String(1000))
 
     student = db.relationship('Student', backref='user', uselist=False)
     teacher = db.relationship('Teacher', backref='user', uselist=False)
@@ -37,6 +38,7 @@ class User(db.Model):
             "name": self.fullName,
             "email": self.email,
             "isActive": self.is_active,
+            "photo": self.photo
         }
 
     def set_password(self, password):
@@ -44,8 +46,6 @@ class User(db.Model):
 
     def check_password(self, password):
         return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
-
-
 
 # Tabla pivot para la relación entre Teacher y Subject
 teacher_subject = db.Table('teacher_subject',
@@ -101,12 +101,16 @@ class Teacher(db.Model):
         lazy='dynamic'
     )
     time_preferences = db.Column(db.JSON)
-
+    price = db.Column(db.Integer)
+    description = db.Column (db.String(1000))
+    
     def __init__(self, *args, **kwargs,):
         super(Teacher, self).__init__(*args, **kwargs)
         self.subjects = kwargs.pop('subjects', [])
         self.time_preferences = kwargs.pop('time_preferences', [])
         self.level = kwargs.pop('level', None)
+        self.price = kwargs.pop('price', None)
+        self.description = kwargs.pop('description', None)
 
     def __repr__(self):
         return f'<Teacher {self.id}>'
@@ -118,6 +122,10 @@ class Teacher(db.Model):
             "level": self.level.value,
             "subjects": [subject.serialize() for subject in self.subjects] if self.subjects else [],
             "time_preferences": self.time_preferences or [],  # Mantener JSON como está
+            "price": self.price,
+            "image": self.user.photo,
+            "email": self.user.email, 
+            "description": self.description
         }
 
 # Tabla para las materias
@@ -136,5 +144,25 @@ class Subject(db.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
+            }
+    
+class Review(db.Model):
+    __tablename__= 'reviews'
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=False)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+    comments = db.Column(db.Text, nullable=True)
+
+    def __repr__(self):
+        return f'<Review {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "student_id": self.student_id,
+            "rating": self.rating,
+            "teacher_id": self.teacher_id,
+            "comments": self.teacher_comments,
             }
 

@@ -1,7 +1,7 @@
 /* Estilos para el Navbar */
 .navbar {
   width: 100%;
-  background-color: #F5F5F5; 
+  background-color: #F5F5F5;
   padding: 0.8rem 2rem;
   position: fixed;
   top: 0;
@@ -26,15 +26,19 @@
 .navbar-logo {
   font-size: 2rem;
   font-weight: 700;
-  color: #6abaa4; /* Color inicial */
+  color: #6abaa4;
+  /* Color inicial */
   text-decoration: none;
-  transition: color 0.3s ease-in-out; /* Si necesitas animación */
+  transition: color 0.3s ease-in-out;
+  /* Si necesitas animación */
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7), 0px 0px 10px rgba(106, 186, 164, 0.5);
 }
 
 .navbar-logo:hover {
-  color: #6abaa4; /* Mantiene el color al pasar el cursor */
-  text-decoration: none; /* Asegura que no se subraye */
+  color: #6abaa4;
+  /* Mantiene el color al pasar el cursor */
+  text-decoration: none;
+  /* Asegura que no se subraye */
 }
 
 .navbar-links {
@@ -47,13 +51,13 @@
 .navbar-link {
   font-size: 1.3rem;
   font-weight: 400;
-  color: #789195; 
+  color: #789195;
   text-decoration: none;
   padding: 0.6rem 1.2rem;
   border-radius: 25px;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   display: inline-block;
-  margin-right: 1rem; 
+  margin-right: 1rem;
 }
 
 .navbar-link:last-child {
@@ -62,13 +66,15 @@
 
 /* Efecto hover  */
 .navbar-link:hover {
-  background-color: #96c7ba; 
-  color: #f8f7f2; 
+  background-color: #96c7ba;
+  color: #f8f7f2;
 }
 
 .navbar-link:hover {
-  color: inherit; /* Mantiene el color actual en lugar de cambiarlo */
-  text-decoration: none; /* Elimina el subrayado (si se aplica) */
+  color: inherit;
+  /* Mantiene el color actual en lugar de cambiarlo */
+  text-decoration: none;
+  /* Elimina el subrayado (si se aplica) */
 }
 
 .navbar-link:focus {
@@ -85,16 +91,16 @@
   margin: 0;
   padding: 0;
   max-height: 200px;
-  overflow-y: auto; 
+  overflow-y: auto;
   border: 1px solid #ccc;
-  position: absolute; 
+  position: absolute;
   background-color: white;
-  width: auto; 
-  z-index: 1000; 
-  top: calc(100% + 3px); 
+  width: auto;
+  z-index: 1000;
+  top: calc(100% + 3px);
   left: 12px;
-  border-radius: 0 0 10px 10px; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .suggestions-list li {
@@ -104,11 +110,11 @@
 }
 
 .suggestions-list li:last-child {
-  border-bottom: none; 
+  border-bottom: none;
 }
 
 .suggestions-list li:hover {
-  background-color: #f8f7f2; 
+  background-color: #f8f7f2;
 }
 
 /* Estilos responsivos */

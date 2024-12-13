@@ -5,19 +5,21 @@ import { Link } from "react-router-dom";
 
 // Componente de cada tarjeta de profesor
 const TeacherCard = ({ teacher }) => {
+    console.log (teacher?.subjects[0].name)
     return (
         <div className="teacher-card">
-            {/* <img
+            <img
                 src={teacher.image}
-                alt={`Foto de ${teacher.name}`}
+                alt={`Foto de ${teacher.teacher_name}`}
                 className="teacher-image"
-            /> */}
+            />
             <div className="teacher-info">
                 <h3 className="teacher-name">{teacher.teacher_name}</h3>
-                {/* <p className="teacher-profession">{teacher.profession}</p>
-                <p className="teacher-subjects"><strong>Materias:</strong> {teacher.subjects}</p>
-                <p className="teacher-rating"><strong>Calificación:</strong> {teacher.rating}</p>
-                <p className="teacher-price"><strong>Precio por hora:</strong> {teacher.price}</p> */}
+                <p className="teacher-profession">{teacher.profession}</p> 
+                <p className="teacher-subjects"><strong>Materias:</strong> {teacher?.subjects[0].name}</p> 
+                { /*
+                <p className="teacher-rating"><strong>Calificación:</strong> {teacher.rating}</p> */}
+                <p className="teacher-price"><strong>Precio por hora: $ </strong> {teacher.price}</p> 
                 <Link to= {"/teacherview/"+ teacher.teacher_id}>
                 <button className="availability-button">Ver disponibilidad</button>
                 </Link>

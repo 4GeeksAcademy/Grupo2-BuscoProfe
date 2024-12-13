@@ -29,11 +29,10 @@ export const Home = () => {
 					<div className="card">
 						<div className="card-body">
 							<h5 className="card-title">Encuentra al profesor ideal para ti</h5>
-
-							<Link to="/studentSignin"><p className="card-text">
+							<p className="card-text">
 								Descubre profesores especializados y clases personalizadas a tu ritmo. Accede a contenido exclusivo, tutorías y recomendaciones para avanzar rápido.
 								¡Todo lo que necesitas para aprender de manera fácil y divertida!
-							</p></Link>
+							</p>
 						</div>
 					</div>
 					<div className="card">

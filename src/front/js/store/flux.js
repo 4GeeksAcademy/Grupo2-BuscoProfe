@@ -16,7 +16,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			user: null, // Guardar el usuario autenticado
 			token: null, // Guardar el token JWT
-			subjects: [] // Guardar las materias obtenidas desde el backend
+			subjects: [], // Guardar las materias obtenidas desde el backend
+			teacher: {}
+
 		},
 		actions: {
 			// Use getActions to call a function within a function
@@ -133,9 +135,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					*/
 
-					const normalizedQuery = searchQuery.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+					// const normalizedQuery = searchQuery.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 			
-					const response = await fetch(process.env.BACKEND_URL + "api/teachers_subjects?search=" + normalizedQuery);
+					const response = await fetch(process.env.BACKEND_URL + "api/teachers_subjects?search=" + searchQuery);
 					if (response.ok) {
 						const data = await response.json();
 						console.log(data);
@@ -149,7 +151,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error while fetching teachers:", error);
 					return false;
 				}
-			}
+			},
+
+			getTeacherById: async (id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/teacher/"+id);
+					if (response.ok) {
+						const data = await response.json();
+						console.log (data)
+						setStore({ teacher: data });
+						return true;
+					} else {
+						console.error("Error fetching teacher:", response.statusText);
+						return false
+					}
+				} catch (error) {
+					console.error("Error while fetching teacher:", error);
+					return false
+				}
+			},	
+
 			
 		}
 	};

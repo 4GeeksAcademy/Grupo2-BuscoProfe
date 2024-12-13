@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const { actions } = useContext(Context);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -21,7 +21,7 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true); // Deshabilitar el botón cuando se envía el formulario
-    
+
     // Llamar a una acción de Flux para autenticar al usuario
     const result = await actions.login(formData);
     if (result.error) {
@@ -40,25 +40,25 @@ export const Login = () => {
       <form onSubmit={handleSubmit}>
         <div className="row">
           <label htmlFor="email">Email</label>
-          <input 
-            id="email" 
-            type="email" 
-            placeholder="Ingresa tu email" 
+          <input
+            id="email"
+            type="email"
+            placeholder="Ingresa tu email"
             value={formData.email}
             onChange={handleChange}
-            required 
+            required
           />
         </div>
 
         <div className="row">
           <label htmlFor="password">Contraseña</label>
-          <input 
-            id="password" 
-            type="password" 
-            placeholder="Ingresa tu contraseña" 
+          <input
+            id="password"
+            type="password"
+            placeholder="Ingresa tu contraseña"
             value={formData.password}
             onChange={handleChange}
-            required 
+            required
           />
         </div>
 
@@ -67,6 +67,8 @@ export const Login = () => {
             {isSubmitting ? "Enviando..." : "Iniciar Sesión"}
           </button>
         </div>
+        <p></p>
+        <p>Si no tienes una cuenta <a href="../signin">regístrate aquí</a></p>
       </form>
     </div>
   );

@@ -229,14 +229,14 @@ const SignIn = () => {
             </div>
 
             <div className="row" style={{ position: "relative" }}>
-              <label htmlFor="subject">¿Qué intereses tienes?</label>
+              <label htmlFor="subject">¿De qué materias quisieras recibir clases?</label>
               <input
                 type="text"
                 id="subject"
                 className="form-control"
                 value={formData.subject}
                 onChange={handleSubjectChange}
-                placeholder="Intereses"
+                placeholder="Materias"
               />
               {showSuggestions && (
                 <ul className="list-group suggestions-list">

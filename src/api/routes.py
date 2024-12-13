@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, Blueprint
-from flask_jwt_extended import create_access_token
-from api.models import db, User, Student, Teacher, Subject, teacher_subject
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+from api.models import db, User, Student, Teacher, Subject, teacher_subject, Review
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from datetime import timedelta
@@ -103,7 +103,8 @@ def register_user():
             # Respond with a success message
         return jsonify({"message": "User registered successfully"}), 201
     except Exception as err:
-        return jsonify({"message": f"An error occurred: {str(err)}"}), 500
+        print("error register: ", str(err))
+        return jsonify({"message": f"{str(err)}"}), 500
 
 
 @api.route('/login', methods=['POST'])
@@ -165,6 +166,9 @@ def get_teachers_and_subjects():
                 teachers_dict[teacher.id] = {
                     "teacher_id": teacher.id,
                     "teacher_name": teacher.user.fullName,
+                    "profession": teacher.level.value,
+                    "price": teacher.price,
+                    "image": teacher.user.photo,
                     "subjects": []
                 }
             teachers_dict[teacher.id]["subjects"].append(subject.serialize())
@@ -209,3 +213,34 @@ def getTeacher_Info(teacher_id):
     except Exception as err:
         return jsonify({"message": f"An error occurred: {str(err)}"}), 500
 
+@api.route('/review', methods=['POST'])
+#@jwt_required()
+def add_review():
+    try:
+        data = request.get_json()
+        review = Review()
+        review.teacher_id = data.get('teacher_id')
+        review.rating = data.get('rating')
+        review.comments = data.get('comments')
+        review.student_id = data.get("student_id")
+        
+        db.session.add(review)
+        db.session.commit()    
+
+        return jsonify({"message": f"Review registered succesfully"}), 201
+    
+    except Exception as err:
+        return jsonify({"message": f"An error occurred: {str(err.args)}"}), 500
+
+
+@api.route('/users', methods=['GET'])
+def get_users():
+    try:
+        user = User.query.all()
+
+        print ("users", len(user))
+
+        return jsonify(user[0].id), 200
+
+    except Exception as err:
+        return jsonify({"message": f"An error occurred: {str(err.args)}"}), 500

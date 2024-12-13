@@ -9,7 +9,7 @@ export const Footer = () => {
           Grupo 2 - LATAM #4 bootcamp Uruguay - 4Geeks Academy
         </p>
         <div className="footer-names">
-          <p>Jimena, Julieta Olivera, Nahuel Silvera, Manuel Barreto y Joaquín Gutiérrez.</p>
+          <p>Jimena Paratge, Julieta Olivera, Nahuel Silvera, Manuel Barreto y Joaquín Gutiérrez.</p>
         </div>
         <p className="footer-info">
           Creado con pasión y dedicación durante nuestro bootcamp en 4Geeks Academy. 🩷

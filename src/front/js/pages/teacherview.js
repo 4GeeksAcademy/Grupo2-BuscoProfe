@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import '../../styles/teacherView.css';
+import { Context } from "../store/appContext";
+import { useParams } from "react-router-dom";
 // import '../../styles/home.css';
 
 function TeacherView() {
+    const { actions, store } = useContext(Context)
+    const { id } = useParams()
+
+    useEffect(() => {
+        actions.getTeacherById(id)
+    }, [])
+
     return (
         <div className="view-container">
             <div className="profile-card">
                 <div className="profile-pic">
-                    <img src="https://t4.ftcdn.net/jpg/00/85/77/75/360_F_85777561_m6EMdjM6Knkz7OLJmN5zr5ZeK359S3G5.jpg" className="card-img-top rounded-circle" alt="foto de juan perez" />
+                    <img src={store.teacher.image}
+                        className="card-img-top rounded-circle"
+                        alt={store.teacher.name}
+                        style={{ width: "50%" }}
+                    />
                 </div>
 
                 <div className="profile-info">
                     <div className="user-info">
-                        <h2>Samuel Carmona</h2>
-                        <h4>Ingeniero en Sistemas</h4>
+
+                        <h2>{store.teacher.name}</h2>
+                        <h4>{store.teacher.level}</h4>
                     </div>
                 </div>
 
@@ -29,7 +43,7 @@ function TeacherView() {
                 </section>
 
                 <div className="contact-info">
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="icon">
                             <i className="fa fa-phone" />
                         </div>
@@ -37,7 +51,7 @@ function TeacherView() {
                             <span>Phone</span>
                             <h5>+123 456 789</h5>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="row">
                         <div className="icon">
@@ -45,24 +59,26 @@ function TeacherView() {
                         </div>
                         <div className="content">
                             <span>Email</span>
-                            <h5>Samuelamaellol@gmail.com</h5>
+                            <h5>{store.teacher.email}</h5>
                         </div>
                     </div>
                 </div>
             </div>
 
-
             <div className="about">
                 <h1>About Me</h1>
-                <p>
-                    Soy un estudiante de la facultad de ingenieria actualmente cursando la carrera de Ingeniero en Sistemas
-                    y mi objetivo es poder ayudar a otros estudiantes con mi conocimiento.
-                </p>
+                <p>{store.teacher.description}</p>
                 <div>
                     <h4>Especializaciones</h4>
-                    <button type="button" class="btn btn-light">Integrales</button>
-                    <button type="button" class="btn btn-light">Programacion 2</button>
-                    <button type="button" class="btn btn-light">Conjunto y Ecuaciones</button>
+                    {store?.teacher?.subjects?.length > 0 ? (
+                        store.teacher.subjects.map((item, index) => (
+                            <>
+                                <button type="button" key={index} className="btn btn-light">{item.name}</button>
+                            </>
+                        ))
+                    ) : (
+                        <p>Sin especializaciones</p>
+                    )}
                 </div>
 
             </div>
@@ -88,10 +104,12 @@ function TeacherView() {
                 <div className="price-card">
                     <div className="card-body">
                         <h5 className="card-title">Precio de las Clases</h5>
-                        <p className="card-text">
-                            Info
-                        </p>
-                    
+                        <p className="card-text">$ {store.teacher.price} x hr. </p>
+                        <div>
+                            <a href="https://calendly.com/jparatge/15min" target="_blank">
+                                <button>Book a Meeting</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
