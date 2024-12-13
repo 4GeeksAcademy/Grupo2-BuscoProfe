@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
+import Main from "./pages/main.js";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -14,8 +15,6 @@ import Login from "./pages/login";
 import SignIn from "./pages/signin";
 import SearchClass from "./pages/searchclass.js";
 import SelectClass from "./pages/selectclass";
-import TeacherDashboard from "./pages/TeacherDashboard.js";
-import StudentDashboard from "./pages/StudentDashboard.js";
 import TeacherView from "./pages/teacherview.js";
 
 
@@ -36,14 +35,13 @@ const Layout = () => {
                     {/* <Login /> */}
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<Main />} path="/main" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<SignIn />} path="/signin" />
                         <Route element={<SearchClass />} path="/searchclass" />
                         <Route element={<SelectClass />} path="/selectclass" />
                         <Route element={<TeacherView />} path="/teacherview/:id" />
                         <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<TeacherDashboard />} path="/teacherdashboard" />
-                        <Route element={<StudentDashboard />} path="/studentdashboard" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

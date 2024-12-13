@@ -29,8 +29,8 @@ export const Login = () => {
       setIsSubmitting(false); // Habilitar el botón si hay un error
     } else {
       alert("Inicio de sesión exitoso");
-      // Redirigir a /home
-      navigate("/home");
+      // Redirigir a /
+      navigate("/main");
     }
   };
 

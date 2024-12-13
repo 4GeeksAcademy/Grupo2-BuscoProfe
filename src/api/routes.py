@@ -33,7 +33,8 @@ def register_user():
             email=data['email'],
             password_hash='',  # This will be set after hashing the password
             photo= "https://i.pinimg.com/736x/c7/7c/6b/c77c6b5677ce4f32cb651b32c0c4363c.jpg",
-            is_active=True  
+            is_active=True,
+            type_user = data['role']
         )
 
         # Encriptamos la contraseña

@@ -24,6 +24,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     is_active = db.Column(db.Boolean(), default=True)
+    type_user = db.Column(db.String(7), nullable=False)
     photo = db.Column(db.String(1000))
 
     student = db.relationship('Student', backref='user', uselist=False)
@@ -38,6 +39,7 @@ class User(db.Model):
             "name": self.fullName,
             "email": self.email,
             "isActive": self.is_active,
+            "typeUser": self.type_user,
             "photo": self.photo
         }
 
