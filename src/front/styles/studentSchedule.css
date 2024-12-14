@@ -1,0 +1,20 @@
+.rbc-day-bg.highlighted-date {
+    background-color: lightgreen !important;
+    color: white;
+}
+
+.rbc-event {
+    background-color: lightgreen !important;
+    border: none;
+}
+
+.rbc-calendar {
+    margin: 30px !important;
+}
+.reference {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: lightgreen;
+    margin-right: 5px;
+  }
