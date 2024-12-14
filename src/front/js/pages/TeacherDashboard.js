@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../../styles/TeacherDashboard.css';
 
 function TeacherDashboard() {
+  // Estado para la imagen de perfil
+  const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
+
+  // Función para cambiar la imagen aleatoria
+  const changeProfileImage = () => {
+    const randomGender = Math.random() > 0.5 ? 'male' : 'female'; // Aleatoriza entre masculino o femenino
+    setProfileImage(`https://xsgames.co/randomusers/avatar.php?g=${randomGender}`);
+  };
+
+  useEffect(() => {
+    // Cambia la imagen cuando el componente se monta
+    changeProfileImage();
+  }, []); 
+
   return (
     <div className="dashboard-container">
+
+      <div className="container-perfil">
+        <img
+          src={profileImage} 
+          alt="Profesor"
+          className="profe-image"
+        />
+        <h2 className="profile-name">Nombre del Usuario</h2>
+      </div>
 
       <div className="tarjetas">
         <div className="cards">

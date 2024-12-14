@@ -3,24 +3,50 @@
 * {
   box-sizing: border-box;
   padding: 0;
-  margin-top: 0px;
   text-decoration: none;
   font-family: poppins, sans-serif;
 }
 
 .dashboard-container {
-    margin-top: 20px;
-    margin: 0 auto;
-    margin-top: 20px;
+    margin: 100px;
     background-color: #FFFFFF;
     border-radius: 25px;
-    padding: 60px;
+    padding: 40px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-}
-
+    width: 100%;
+    position: relative;
+    width: 2000px;
+    height: 1050px;
+  }
+  
+  .container-perfil {
+    margin-top: 50px;
+    display: flex;
+    gap: 10px; 
+    position: absolute;
+    left: 20px; /* Ajusta la distancia desde la parte izquierda */
+    z-index: 10; /* Asegura que este elemento esté encima de otros */
+  }
+  
+  .profe-image {
+    margin-left: 20px;
+    width: 250px; /* Tamaño de la imagen */
+    height: 250px; /* Tamaño de la imagen */
+    border-radius: 50%; /* Para que la imagen sea redonda */
+    border: 4px solid #40b5ad; /* Borde que resalta la imagen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
+  }
+  
+  .container-perfil h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #415e66;
+    margin: 0;
+  }
+  
 /* tarjetas */
 
 .tarjetas .card li {
@@ -70,14 +96,13 @@ table {
 }
 
 .tarjetas {
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
     padding: 20px;
     border-radius: 10px;
-    align-items: center;
+    margin-left: auto;
 }
 
 .tarjetas .cards {
@@ -85,6 +110,7 @@ table {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-left: auto;
 }
 
 .tarjetas .cards .card {
@@ -93,7 +119,6 @@ table {
     background: linear-gradient(90deg, #9dd9d2, #d5f5e3);
     margin: 15px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
@@ -167,7 +192,7 @@ table {
 }
 
 .tarjetas .content-2 .recent-payments {
-    min-height: 50vh;
+    min-height: 40vh;
     flex: 5;
     background: white;
     margin: 0 25px 25px 25px;
