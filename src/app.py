@@ -19,10 +19,10 @@ ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'passworddebug'
 app.url_map.strict_slashes = False
 
 jwt = JWTManager(app)
+app.config['JWT_SECRET_KEY'] = 'passworddebug'
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")

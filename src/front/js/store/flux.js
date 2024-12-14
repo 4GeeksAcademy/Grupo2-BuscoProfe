@@ -18,42 +18,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null, // Guardar el token JWT
 			subjects: [], // Guardar las materias obtenidas desde el backend
 			teacher: {}
-
 		},
 		actions: {
-			// Use getActions to call a function within a function
+			// Ejemplo de una función de cambio de color en el demo
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
 
-			getMessage: async () => {
-				try {
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
-					const data = await resp.json();
-					setStore({ message: data.message });
-					// don't forget to return something, that is how the async resolves
-					return data;
-				} catch (error) {
-					console.log("Error loading message from backend", error);
-				}
-			},
-
-			changeColor: (index, color) => {
-				// get the store
-				const store = getStore();
-
-				// we have to loop the entire demo array to look for the respective index
-				// and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				// reset the global store
-				setStore({ demo: demo });
-			},
-
+			// Función para registrar un nuevo usuario
 			registerUser: async (formData) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "api/register", {
@@ -78,6 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			// Función de login
 			login: async (formData) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "api/login", {
@@ -89,12 +62,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 
 					const data = await response.json();
+
 					if (response.ok) {
 						console.log("User logged in successfully", data);
+
 						// Guardar el token en localStorage
 						localStorage.setItem("IdToken", data.access_token);
-						// Actualizar el estado del store
-						setStore({ user: data.user, token: data.access_token });
+
 						return data;
 					} else {
 						console.error("Error logging in user:", data.message);
@@ -106,6 +80,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			// Función para obtener las materias
 			getSubjects: async () => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "api/subjects");
@@ -121,22 +96,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			// Función para obtener los profesores
 			getTeachers: async (searchQuery) => {
 				try {
-					/* Eliminar tildes y caracteres diacríticos
-
-					normalize("NFD"): Esto separa los caracteres base de sus marcas diacríticas. 
-					Por ejemplo, á se convierte en a + ´
-
-					replace(/[\u0300-\u036f]/g, ""): Elimina los caracteres diacríticos que resultaron de la descomposición,
-					 dejando únicamente los caracteres base. 
-
-					Guardamos el resultado en una nueva variable. (normalizedQuery) ¿Es lo más óptimo?
-
-					*/
-
-					// const normalizedQuery = searchQuery.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-			
+					const normalizedQuery = searchQuery.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 					const response = await fetch(process.env.BACKEND_URL + "api/teachers_subjects?search=" + searchQuery);
 					if (response.ok) {
 						const data = await response.json();
@@ -153,25 +116,123 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			// Función para obtener el profesor por ID
 			getTeacherById: async (id) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + "api/teacher/"+id);
+					const response = await fetch(process.env.BACKEND_URL + "api/teacher/" + id);
 					if (response.ok) {
 						const data = await response.json();
-						console.log (data)
+						console.log(data);
 						setStore({ teacher: data });
 						return true;
 					} else {
 						console.error("Error fetching teacher:", response.statusText);
-						return false
+						return false;
 					}
 				} catch (error) {
 					console.error("Error while fetching teacher:", error);
-					return false
+					return false;
 				}
-			},	
+			},
 
-			
+
+// Función para obtener el profesor por ID
+			getTeacherById: async (id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/teacher/" + id);
+					if (response.ok) {
+						const data = await response.json();
+						console.log(data);
+						setStore({ teacher: data });
+						return true;
+					} else {
+						console.error("Error fetching teacher:", response.statusText);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error while fetching teacher:", error);
+					return false;
+				}
+			},
+
+
+			// Función para obtener el profesor por ID
+			getTeacherId: async (user_id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/" + user_id + "/teacher");
+					if (response.ok) {
+						const data = await response.json();
+						return data;
+					} else {
+						console.error("Error fetching teacher:", response.statusText);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error while fetching teacher:", error);
+					return false;
+				}
+			},
+
+
+			// Función para actualizar el precio de un profesor
+			updateTeacherPrice: async (teacherId, newPrice) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/update_price", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							teacher_id: teacherId,
+							price: parseFloat(newPrice),
+						}),
+					});
+
+					if (response.ok) {
+						const data = await response.json();
+						console.log("Precio actualizado:", data);
+						return true;
+					} else {
+						const errorData = await response.json();
+						console.error("Error al actualizar el precio:", errorData.message);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error en updateTeacherPrice:", error);
+					return false;
+				}
+			},
+
+			// Función para validar el token JWT
+			validateToken: async () => {
+				try {
+					const token = localStorage.getItem("IdToken");
+					if (!token) return false;
+
+					const response = await fetch(process.env.BACKEND_URL + "api/verify_token", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${token}`,
+						},
+					});
+
+					if (response.ok) {
+						const data = await response.json();
+
+						// Destokenizamos la información (user_id y roles) y la retornamos
+						return {
+							user_id: data.user_id,
+							roles: data.role,
+						};
+					} else {
+						return false;
+					}
+				} catch (error) {
+					console.error("Error validating token:", error);
+					return false;
+				}
+			}
 		}
 	};
 };

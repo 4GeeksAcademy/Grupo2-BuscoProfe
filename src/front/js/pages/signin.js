@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom"; 
+
 
 const ROLES = {
   STUDENT: "student",
@@ -20,6 +22,7 @@ const TEACHER_LEVELS = {
 
 const SignIn = () => {
   const { store, actions } = useContext(Context);
+  const [loading, setLoading] = useState(true); 
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -36,10 +39,38 @@ const SignIn = () => {
   const [subjectSuggestions, setSubjectSuggestions] = useState([]);
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    actions.getSubjects();
+          const token = localStorage.getItem("IdToken");
+          if (token) {
+            validateToken(token); 
+          } else {
+            setLoading(false); 
+            actions.getSubjects();
+          }
   }, []);
+
+  const validateToken = async (token) => {
+    try {
+      const tokenValidInfo = await actions.validateToken(token); 
+      
+      if (tokenValidInfo) {
+        const roles = tokenValidInfo.roles;
+        if (roles.includes('teacher')) {
+          navigate("/teacherDashboard");
+        } else if (roles.includes('student')) {
+          navigate("/studentDashboard");
+        } else {
+          console.error("No valid role found");
+          setLoading(false);
+        }
+      }
+    } catch (error) {
+      console.error("Error al validar el token: ", error);
+      setLoading(false); 
+    }
+  };
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -63,12 +94,12 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (formData.role === ROLES.TEACHER && selectedSubjects.length === 0) {
       alert("Por favor selecciona al menos una materia que das.");
       return;
     }
-
+  
     const payload = {
       fullName: formData.fullName,
       email: formData.email,
@@ -76,25 +107,27 @@ const SignIn = () => {
       role: formData.role,
       ...(formData.role === ROLES.STUDENT
         ? {
-          level: STUDENT_LEVELS[formData.level],
-          subjects: selectedSubjects.map(sub => sub.id),
-          timePreferences: formData.timePreferences,
-        }
+            level: STUDENT_LEVELS[formData.level],
+            subjects: selectedSubjects.map(sub => sub.id),
+            timePreferences: formData.timePreferences,
+          }
         : {
-          level: TEACHER_LEVELS[formData.educationLevel],
-          subjects: selectedSubjects.map(sub => sub.id),
-          timePreferences: formData.timePreferences,
-        }),
+            level: TEACHER_LEVELS[formData.educationLevel],
+            subjects: selectedSubjects.map(sub => sub.id),
+            timePreferences: formData.timePreferences,
+          }),
     };
-
+  
     const result = await actions.registerUser(payload);
-
+  
     if (result.error) {
       alert(`Error: ${result.error}`);
     } else {
-      alert("User registered successfully");
+      alert("Usuario registrado con éxito");
+      navigate("/login");
     }
   };
+  
 
   const renderTimePreferences = () => (
     <div className="row">
@@ -147,6 +180,17 @@ const SignIn = () => {
     setSelectedSubjects(selectedSubjects.filter(subject => subject.id !== id));
   };
 
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div id="signinform">
       <h2 id="headerTitle">Registrarse</h2>

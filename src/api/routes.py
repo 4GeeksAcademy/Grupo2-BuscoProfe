@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, Blueprint
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, decode_token
 from api.models import db, User, Student, Teacher, Subject, teacher_subject, Review
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -111,31 +111,49 @@ def register_user():
 
 @api.route('/login', methods=['POST'])
 def login():
-        """
-        Endpoint to log in a user. Receives email and password, validates them,
-        and returns a JWT token if the credentials are correct.
-        """
-        data = request.get_json()
+    """
+    Endpoint to log in a user. Receives email and password, validates them,
+    and returns a JWT token if the credentials are correct.
+    """
+    data = request.get_json()
 
-        # Comprobamos que los campos obligatorios están completos.
-        required_fields = ['email', 'password']
-        for field in required_fields:
-            if field not in data:
-                return jsonify({"message": f"Missing field: {field}"}), 400
+    # Comprobamos que los campos obligatorios están completos.
+    required_fields = ['email', 'password']
+    for field in required_fields:
+        if field not in data:
+            return jsonify({"message": f"Missing field: {field}"}), 400
 
-        # Buscar el usuario por email
-        user = User.query.filter_by(email=data['email']).first()
-        if user is None or not user.check_password(data['password']):
-            return jsonify({"message": "Invalid email or password"}), 401
+    # Buscar el usuario por email
+    user = User.query.filter_by(email=data['email']).first()
+    if user is None or not user.check_password(data['password']):
+        return jsonify({"message": "Invalid email or password"}), 401
 
-        # Crear un token de acceso que expira en 5 horas
-        access_token = create_access_token(identity=user.id, expires_delta=timedelta(hours=5))
+    # Determinar el rol (si es estudiante, profesor, o ambos)
+    roles = []
+    if user.student:  # Si existe la relación con Student
+        roles.append('student')
+    if user.teacher:  # Si existe la relación con Teacher
+        roles.append('teacher')
 
-        return jsonify({
-            "message": "Login successful",
-            "access_token": access_token,
-            "user": user.serialize()
-        }), 200
+    # Si no hay roles, significa que hay un problema con los datos del usuario.
+    if not roles:
+        return jsonify({"message": "No roles assigned to the user"}), 400
+
+    # Crear un único token que incluya tanto el user_id como los roles
+    access_token = create_access_token(
+        identity=str(user.id),  # Usamos el user_id como identity
+        expires_delta=timedelta(hours=5),
+        additional_claims={"roles": roles}  # Añadimos los roles como parte del payload
+    )
+
+    # Devuelves el token, los roles y la información del usuario
+    return jsonify({
+        "message": "Login successful",
+        "access_token": access_token,
+        "roles": roles,  # Aquí agregamos una lista de roles
+        "user": user.serialize()  # Información del usuario
+    }), 200
+
 
 
 @api.route('/subjects', methods=['GET'])
@@ -201,6 +219,25 @@ def get_user_interests(user_id):
         return jsonify({"message": f"An error occurred: {str(err)}"}), 500
 
 
+@api.route('/user/<int:user_id>/teacher', methods=['GET'])
+def get_user_teacher(user_id):
+    try:
+        # Buscar el usuario por ID
+        user = User.query.get(user_id)
+        if not user:
+            return jsonify({"message": "User not found"}), 404
+
+        # Verificar si el usuario es un docente
+        if user.teacher:
+            teacher_id = user.teacher.id  # Obtener el ID del teacher
+            return jsonify({"teacher_id": teacher_id}), 200
+        else:
+            return jsonify({"message": "User is not a teacher"}), 400
+
+    except Exception as err:
+        return jsonify({"message": f"An error occurred: {str(err)}"}), 500
+
+
 @api.route('/teacher/<int:teacher_id>', methods=['GET'])
 def getTeacher_Info(teacher_id):
     try:
@@ -246,3 +283,65 @@ def get_users():
 
     except Exception as err:
         return jsonify({"message": f"An error occurred: {str(err.args)}"}), 500
+    
+
+@api.route('/update_price', methods=['POST'])
+def update_price():
+    try:
+        data = request.get_json()  # Obtiene los datos enviados en la solicitud
+        teacher_id = data.get('teacher_id')
+        new_price = data.get('price')
+
+        # Validación de los datos
+        if not teacher_id or not new_price:
+            return jsonify({"message": "Faltan datos obligatorios."}), 400
+
+        if not isinstance(new_price, (int, float)) or float(new_price) <= 0:
+            return jsonify({"message": "El precio debe ser un número positivo."}), 400
+
+        # Buscar el profesor en la base de datos
+        teacher = Teacher.query.get(teacher_id)
+        if not teacher:
+            return jsonify({"message": "El profesor no existe."}), 404
+
+        # Actualizar el precio
+        teacher.price = new_price
+        db.session.commit()
+
+        return jsonify({"message": "Precio actualizado exitosamente."}), 200
+
+    except Exception as err:
+        return jsonify({"message": f"Se produjo un error: {str(err)}"}), 500
+
+@api.route('/verify_token', methods=['POST'])
+def verify_token():
+    """
+    Endpoint para verificar la validez de un idToken.
+    """
+    token = request.headers.get('Authorization', None)
+
+    if not token:
+        return jsonify({"message": "Token missing"}), 400
+
+    token = token.replace("Bearer ", "")  # Elimina el prefijo 'Bearer ' si está presente
+
+    try:
+        # Decodificar el token
+        decoded_token = decode_token(token)
+
+        # Obtener el 'sub' (ID del usuario) y 'roles' (rol del usuario)
+        user_id = decoded_token.get('sub')  # El ID del usuario está en 'sub'
+        roles = decoded_token.get('roles')  # Los roles del usuario están en 'roles'
+
+        # Verificar si 'user_id' y 'roles' están presentes en el token
+        if not user_id or not roles:
+            return jsonify({"message": "Invalid token"}), 401
+
+        # Devolver solo el 'user_id' y los 'roles' (nada más)
+        return jsonify({
+            "user_id": user_id,
+            "role": roles
+        }), 200
+
+    except Exception as e:
+        return jsonify({"message": f"Invalid token: {str(e)}"}), 401

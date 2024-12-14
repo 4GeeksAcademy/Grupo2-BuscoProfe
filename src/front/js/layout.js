@@ -16,6 +16,8 @@ import SignIn from "./pages/signin";
 import SearchClass from "./pages/searchclass.js";
 import SelectClass from "./pages/selectclass";
 import TeacherView from "./pages/teacherview.js";
+import StudentDashboard from "./pages/StudentDashboard.js";
+import TeacherDashboard from "./pages/TeacherDashboard.js";
 
 
 
@@ -41,6 +43,8 @@ const Layout = () => {
                         <Route element={<SearchClass />} path="/searchclass" />
                         <Route element={<SelectClass />} path="/selectclass" />
                         <Route element={<TeacherView />} path="/teacherview/:id" />
+                        <Route element={<StudentDashboard />} path="/studentDashboard" />
+                        <Route element={<TeacherDashboard />} path="/teacherDashboard" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

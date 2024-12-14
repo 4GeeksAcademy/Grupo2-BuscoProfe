@@ -1,7 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext"; // Asegúrate de importar Context
+import { useNavigate } from "react-router-dom";
 import '../../styles/TeacherDashboard.css';
 
 function TeacherDashboard() {
+  const { actions } = useContext(Context);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("IdToken");
+
+    if (token) {
+      validateToken(token);
+    } else {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const validateToken = async (token) => {
+    try {
+      const tokenValidInfo = await actions.validateToken(token); 
+
+      if (!tokenValidInfo) {
+        navigate("/");
+      } else {
+        const roles = tokenValidInfo.roles; 
+
+        if (roles && roles.includes("teacher")) {
+        } else if (roles && roles.includes("student")) {
+          navigate("/studentDashboard");
+        } else {
+          navigate("/");
+        }
+      }
+    } catch (error) {
+      console.error("Error al validar el token: ", error);
+      navigate("/"); // En caso de error también redirigimos al home
+    }
+  };
+
   // Estado para la imagen de perfil
   const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
 
@@ -18,7 +55,6 @@ function TeacherDashboard() {
 
   return (
     <div className="dashboard-container">
-
       <div className="container-perfil">
         <img
           src={profileImage} 
@@ -49,16 +85,13 @@ function TeacherDashboard() {
             <h1>7</h1>
             <h3>Clases Agendadas</h3>
           </div>
-
         </div>
       </div>
-
 
       <div className="content-2">
         <div className="recent-payments">
           <div className="title">
             <h2>Clases Agendadas</h2>
-
           </div>
           <table>
             <tr>
@@ -66,24 +99,6 @@ function TeacherDashboard() {
               <th>Fecha y hora</th>
               <th>Precio/hs</th>
               <th></th>
-            </tr>
-            <tr>
-              <td>John Doe</td>
-              <td>13/04/12 14:40</td>
-              <td>$120</td>
-              <td><a href="#" className="vermas">Ver mas</a></td>
-            </tr>
-            <tr>
-              <td>John Doe</td>
-              <td>13/04/12 14:40</td>
-              <td>$120</td>
-              <td><a href="#" className="vermas">Ver mas</a></td>
-            </tr>
-            <tr>
-              <td>John Doe</td>
-              <td>13/04/12 14:40</td>
-              <td>$120</td>
-              <td><a href="#" className="vermas">Ver mas</a></td>
             </tr>
             <tr>
               <td>John Doe</td>
@@ -120,25 +135,10 @@ function TeacherDashboard() {
             <tr>
               <td>John Steve Doe</td>
             </tr>
-            <tr>
-              <td>John Steve Doe</td>
-            </tr>
-            <tr>
-              <td>John Steve Doe</td>
-            </tr>
-            <tr>
-              <td>John Steve Doe</td>
-            </tr>
-            <tr>
-              <td>John Steve Doe</td>
-            </tr>
           </table>
-
         </div>
       </div>
-
     </div>
-
   );
 }
 

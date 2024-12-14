@@ -7,27 +7,31 @@ function TeacherView() {
     const { actions, store } = useContext(Context);
     const { id } = useParams();
 
-    const [price, setPrice] = useState(store.teacher.price); // Estado del precio actual
+    const [price, setPrice] = useState(null); // Estado del precio actual
     const [isEditing, setIsEditing] = useState(false); // Estado para alternar entre vista y edición
-    const [newPrice, setNewPrice] = useState(price); // Estado para el nuevo precio
+    const [newPrice, setNewPrice] = useState(""); // Estado para el nuevo precio
 
     useEffect(() => {
         actions.getTeacherById(id);
-        setPrice(store.teacher.price); // Sincroniza el estado con el precio del store
-    }, [id, store.teacher.price]);
+    }, [id, actions]);
+
+    useEffect(() => {
+        if (store.teacher.price !== undefined) {
+            setPrice(store.teacher.price); 
+            setNewPrice(store.teacher.price); // Establece el precio actual como nuevo precio por defecto
+        }
+    }, [store.teacher.price]);
 
     const handleSave = () => {
-        setPrice(newPrice); // Guardar el nuevo precio
-        setIsEditing(false); // Salir del modo edición
-        // Aquí puedes agregar una acción para actualizar el precio en el store o backend
-        actions.updateTeacherPrice(id, newPrice);
-    };
-
-    const handleKeyPress = (event) => {
-        if (event.key === "Enter") {
-            handleSave(); // Guardar al presionar Enter
+        if (newPrice === "" || isNaN(newPrice) || Number(newPrice) <= 0) {
+            alert("Por favor, ingresa un precio válido.");
+            return;
         }
+        setPrice(newPrice); 
+        setIsEditing(false); 
+        actions.updateTeacherPrice(id, newPrice); 
     };
+    
 
     return (
         <div className="view-container">
@@ -116,19 +120,16 @@ function TeacherView() {
                                     className="input-field"
                                     value={newPrice}
                                     onChange={(e) => setNewPrice(e.target.value)}
-                                    onKeyPress={handleKeyPress}
                                 />
-                                <button onClick={handleSave}>Save Data</button>
+                                <button onClick={handleSave}>Guardar</button>
+                                <button onClick={() => setIsEditing(false)}>Cancelar</button>
                             </div>
                         ) : (
-                            <p
-                                className="card-text"
-                                onDoubleClick={() => setIsEditing(true)}
-                            >
-                                $ {price} x hr.
-                            </p>
+                            <div>
+                                <p className="card-text">$ {price} x hr.</p>
+                                <button onClick={() => setIsEditing(true)}>Modificar</button>
+                            </div>
                         )}
-                       
                     </div>
                 </div>
             </div>
