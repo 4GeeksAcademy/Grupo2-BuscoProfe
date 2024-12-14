@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import '../../styles/StudentDashboard.css';
+import { TeacherProfiles} from "./selectclass" 
 
 function StudentDashboard() {
   // Estado para la imagen de perfil
   const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
+  const {actions, store}=useContext(Context)
 
   // Función para cambiar la imagen aleatoria
   const changeProfileImage = () => {
@@ -14,6 +17,7 @@ function StudentDashboard() {
   useEffect(() => {
     // Cambia la imagen cuando el componente se monta
     changeProfileImage();
+    actions.getTeachers("matematica")
   }, []); 
 
   return (
@@ -25,7 +29,7 @@ function StudentDashboard() {
           alt="Profesor"
           className="profe-image"
         />
-        <h2 className="profile-name">Nombre del Usuario</h2>
+        <h2 className="profile-name">{store.user?.name}</h2>
       </div>
 
       {/* Stats */}
@@ -85,7 +89,7 @@ function StudentDashboard() {
           </div>
         </div>
 
-        <section className="student-recomend">
+        {/* <section className="student-recomend">
           <h2>Recomendados para ti</h2>
           <div className="teacher-grid">
             {Array(7).fill(null).map((_, index) => (
@@ -106,7 +110,8 @@ function StudentDashboard() {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
+        <TeacherProfiles title="Recomendados para ti"/>
       </div>
     </div>
   );

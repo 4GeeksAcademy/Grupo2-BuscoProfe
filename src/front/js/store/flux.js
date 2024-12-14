@@ -68,6 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						// Guardar el token en localStorage
 						localStorage.setItem("IdToken", data.access_token);
+						setStore({user:data.user})
 
 						return data;
 					} else {

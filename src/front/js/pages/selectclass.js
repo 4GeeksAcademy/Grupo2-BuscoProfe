@@ -30,7 +30,7 @@ const TeacherCard = ({ teacher }) => {
 };
 
 // Componente principal
-export const TeacherProfiles = () => {
+export const TeacherProfiles = (props) => {
     const { store, actions } = useContext(Context)
     // const teachers = [
     //     {
@@ -101,7 +101,7 @@ export const TeacherProfiles = () => {
 
     return (
         <div className="teacher-profiles-container">
-            <h1 className="page-title">Resultado de tu búsqueda</h1>
+            <h1 className="page-title">{props.title? props.title : "Resultado de tu búsqueda"}</h1>
             {store.teachers && store.teachers.length > 0 ? (
                 <div className="teacher-grid">
                     {store.teachers.map((teacher, index) => (
