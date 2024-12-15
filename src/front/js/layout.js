@@ -10,7 +10,6 @@ import Login from "./pages/login";
 import SignIn from "./pages/signin";
 import SearchClass from "./pages/searchclass.js";
 import SelectClass from "./pages/selectclass";
-import ClassDetails from "./pages/classDetails.js"; 
 import TeacherView from "./pages/teacherview.js";
 import StudentDashboard from "./pages/StudentDashboard.js";
 import TeacherDashboard from "./pages/TeacherDashboard.js";
