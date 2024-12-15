@@ -9,38 +9,52 @@
 }
 
 .view-container {
-  margin-top: 10px;
+  margin-top: 110px;
   background-color: #FFFFFF;
   border-radius: 25px;
   padding: 3rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 2rem;
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  gap: 2rem; 
+  width: 1900px;
+  height: 1050px;
+  text-align: center; 
 }
 
 .profile-card {
-  flex: 1 1 300px;
-  max-width: 400px;
-  padding: 2rem;
-  border-radius: 10px;
+  align-self: flex-start; 
+  flex-shrink: 0; 
+  position: sticky; 
+  top: 20px; 
+  max-width: 400px; 
+  height: auto;
+  z-index: 10; 
+  height: 950px;
+  width: 400px;
   border: 1px solid #ccc;
-  color: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f6f6f6, #8eb4be5d);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex-direction: column; 
+  justify-content: space-between; 
+  gap: 1rem; 
+  border-radius: 10px;
 }
 
 .profile-card {
   background: linear-gradient(135deg, #f6f6f6, #8eb4be5d);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profile-card img-container {
+  width: 150px; 
+  height: 150px; 
+  margin: 0 auto; 
+  overflow: hidden; 
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd; 
 }
 
 .profile-card .profile-pic {
@@ -97,53 +111,48 @@
 }
 
 .contact-info {
-  background-color: #ffffff;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 1.5rem;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  margin: 0 auto; 
+  padding: 1rem; 
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+  max-width: 90%; 
+  text-align: left; 
+  margin-top: 5px;
 }
 
-.contact-info .row i {
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
-  border-radius: 5px;
-  background-color: #a2c3a6;
-  text-align: center;
-  color: #fff;
-  font-size: 18px;
-  margin-right: 10px;
-
+.contact-info p {
+  margin: 0.5rem 0; 
 }
 
-.contact-info .content span {
-  font-size: 14px;
-  color: #607848;
-  font-weight: 600;
+.contact-info a {
+  color: #607848; 
+  text-decoration: none; 
 }
 
-.contact-info .content h5 {
-  font-size: 16px;
-  color: #333;
-}
-
-.row .content span {
-  font-size: 12px;
+.contact-info a:hover {
+  text-decoration: underline; 
 }
 
 /* about section */
 
+.about, .comments-card, .price-card {
+  flex: 1; 
+  max-width: 1000px; 
+  width: 100%;
+}
+
 .about {
-  background-color: #f9f9f9;
+  margin: 0 auto; 
+  padding: 1rem;
+  background-color: #fff; 
+  border-radius: 8px; 
+  max-width: 90%; 
+  text-align: left; 
+  font-size: 1rem; 
+  color: #333; 
   flex: 1 1 100%;
   max-width: 1000px;
-  padding: 3rem;
   border-radius: 10px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -174,11 +183,6 @@
   line-height: 1.6;
 }
 
-.profile-card {
-  max-width: 90%;
-  /* Ajusta en pantallas pequeñas */
-}
-
 /* comentarios */
 
 .comments-card {
@@ -188,6 +192,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   width: 100%;
+  height: 100%;
   max-width: 800px;
   display: flex;
   flex-direction: column;
@@ -276,10 +281,11 @@
 }
 
 /* Ajustes de texto dentro de la card */
-.card-body .card-text {
-  font-size: 14px;
+.price-card .card-body p {
+  font-size: 20px;
   color: #000000;
   line-height: 1.5;
+  font-weight: 300;
 }
 
 /* Ajustes de la card */
@@ -289,14 +295,14 @@
 }
 
 .card-body {
-  padding: 1.5rem;
+  padding: 10px;
 }
 
 /* Título de la card */
 .price-card .card-title {
   font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
 }
 
 /* Subtítulo de la card */
@@ -315,22 +321,90 @@
   font-size: 1.2rem;
 }
 
+/* Estilo para el botón Modificar */
+button {
+  margin: 5px;
+  background: linear-gradient(45deg, #40b5ad, #a2c3a6); /* Degradado brillante */
+  border: 2px solid #40b5ad; /* Borde del botón */
+  color: #fff; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de la fuente */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+/* Efecto hover */
+button:hover {
+  background: linear-gradient(145deg, #405fb5, #a2b4c3); 
+  border-color: #2512f3; 
+}
 
 
 
-/* Ajuste de las cartas al tamaño pequeño de la vista */
 @media (max-width: 768px) {
-  .price-card .card-body {
-    padding: 1rem;
+  .view-container {
+    flex-direction: column;
+    padding: 1.5rem;
   }
 
-  .rating .star {
-    font-size: 1rem;
+  .profile-card {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .about, .comments-card, .price-card {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .view-container {
-    padding: 2rem;
+    margin-top: 200px;
+    flex-direction: column; /* Solo cambia la dirección de los elementos en pantallas pequeñas */
+    padding: 1.5rem; /* Se ajusta el padding en pantallas pequeñas */
+    width: auto; /* Asegura que el contenedor no se desborde */
+    height: auto; /* Ajusta la altura en pantallas pequeñas */
+  }
+
+  .profile-card {
+    width: 100%; /* Asegura que la tarjeta de perfil ocupe todo el ancho en pantallas pequeñas */
+    margin-bottom: 2rem; /* Añade espacio entre las tarjetas */
+    height: auto; /* Permite que la tarjeta de perfil se ajuste a su contenido */
+    position: relative; /* Se quita el sticky para evitar que se desborde */
+    top: 0; /* Remueve el sticky */
+  }
+
+  .about, .comments-card, .price-card {
+    width: 100%; /* Asegura que las cards ocupen todo el ancho */
+    max-width: none; /* Evita que se limite el ancho máximo */
+    margin-top: 1rem; /* Añade espacio entre las cards */
+  }
+
+  /* Ajuste del tamaño de las estrellas para pantallas pequeñas */
+  .star {
+    font-size: 1.5rem; /* Ajusta el tamaño de las estrellas para pantallas pequeñas */
+  }
+
+  /* Ajuste de la imagen del perfil */
+  .profile-card img-container {
+    width: 120px; /* Ajusta el tamaño de la imagen */
+    height: 120px; /* Ajusta el tamaño de la imagen */
+  }
+
+  /* Ajuste de los textos */
+  .about h1 {
+    font-size: 2.5rem; /* Ajusta el tamaño del título */
+  }
+
+  .about p {
+    font-size: 1rem; /* Ajusta el tamaño del texto */
+  }
+
+  /* Ajusta los márgenes y paddings en las cards */
+  .contact-info {
+    max-width: 100%; /* Hace que la card ocupe todo el ancho */
+    padding: 1rem; /* Ajusta el padding */
   }
 }
