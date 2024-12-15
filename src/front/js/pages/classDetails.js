@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "../../styles/classDetails.css";
-
 function ClassDetails() {
     // Estado para almacenar la imagen del perfil
     const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=male");
@@ -52,5 +51,4 @@ function ClassDetails() {
         </div>
     );
 }
-
 export default ClassDetails;

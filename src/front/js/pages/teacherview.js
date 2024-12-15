@@ -13,12 +13,13 @@ function TeacherView() {
 
     useEffect(() => {
         actions.getTeacherById(id);
-    }, [id, actions]);
+    }, [id, actions]); // Solo depende de `id` y `actions`
+    
 
     useEffect(() => {
-        if (store.teacher.price !== undefined) {
-            setPrice(store.teacher.price); 
-            setNewPrice(store.teacher.price); // Establece el precio actual como nuevo precio por defecto
+        if (store.teacher?.price !== undefined) {
+            setPrice(store.teacher.price);
+            setNewPrice(store.teacher.price);
         }
     }, [store.teacher.price]);
 

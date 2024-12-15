@@ -1,23 +1,13 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
-			user: null, // Guardar el usuario autenticado
+			user_id: null, // Guardar el usuario autenticado
 			token: null, // Guardar el token JWT
+			role: null,
 			subjects: [], // Guardar las materias obtenidas desde el backend
-			teacher: {}
+			teacher_id: null,
+			teacher: {},
+			teachers: []
 		},
 		actions: {
 			// Ejemplo de una función de cambio de color en el demo
@@ -81,6 +71,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			logout: () => {
+                localStorage.removeItem("IdToken");
+                setStore({ user_id: null, token: null, role: null, subjects: [], teacher_id:null, isTokenValidated: false });
+            },
+
+
 			// Función para obtener las materias
 			getSubjects: async () => {
 				try {
@@ -123,27 +119,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(process.env.BACKEND_URL + "api/teacher/" + id);
 					if (response.ok) {
 						const data = await response.json();
-						console.log(data);
-						setStore({ teacher: data });
-						return true;
-					} else {
-						console.error("Error fetching teacher:", response.statusText);
-						return false;
-					}
-				} catch (error) {
-					console.error("Error while fetching teacher:", error);
-					return false;
-				}
-			},
-
-
-// Función para obtener el profesor por ID
-			getTeacherById: async (id) => {
-				try {
-					const response = await fetch(process.env.BACKEND_URL + "api/teacher/" + id);
-					if (response.ok) {
-						const data = await response.json();
-						console.log(data);
 						setStore({ teacher: data });
 						return true;
 					} else {
@@ -204,11 +179,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			// Función para validar el token JWT
 			validateToken: async () => {
+
+				
+				const store = getStore();
+				console.log("En validate token el store es:", JSON.stringify(store, null, 2));
+				const actions = getActions();
+			
+				// Si ya se validó el token, retorna el usuario almacenado
+				if (store.isTokenValidated && store.user_id) {
+					console.log("[VALIDATE TOKEN] Token ya validado.");
+					return store.user_id;
+				}
+
 				try {
 					const token = localStorage.getItem("IdToken");
-					if (!token) return false;
+
+					console.log("[VALIDATE TOKEN] Obtenemos el token:"+token);
+
+					if (!token) {
+						console.log("[VALIDATE TOKEN] - No existe el token, se deja la validación.");
+						return null;
+					}
+			
+					console.log("[VALIDATE TOKEN] entiendo que el token no era null obtengo la respuesta");
 
 					const response = await fetch(process.env.BACKEND_URL + "api/verify_token", {
 						method: "POST",
@@ -217,23 +211,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 							Authorization: `Bearer ${token}`,
 						},
 					});
+			
+
+					console.log("[VALIDATE TOKEN] Estado de la respuesta:", response.status);
 
 					if (response.ok) {
+
+						console.log("[VALIDATE TOKEN] Respuesta okey entonces agrego a data la respuesta.");
+
 						const data = await response.json();
 
-						// Destokenizamos la información (user_id y roles) y la retornamos
-						return {
-							user_id: data.user_id,
-							roles: data.role,
-						};
+						console.log("[Validate Token] La data es:", JSON.stringify(data, null, 2));
+
+						if (data.roles.includes("teacher")) {
+
+							console.log("Entre al if del data role");
+							
+							setStore({ user_id: data.user_id, role : data.roles, teacher_id: data.teacher_id, isTokenValidated: true }); // Almacena usuario y marca el token como validado
+
+						}else{
+							setStore({ user_id: data.user_id, role : data.roles, isTokenValidated: true }); // Almacena usuario y marca el token como validado
+
+						}
+
+						console.log("[Validate Token] El nuevo store es:", JSON.stringify(store, null, 2));
+
+						return data.user; // Devuelve el usuario si el token es válido
 					} else {
-						return false;
+						console.log("[VALIDATE TOKEN] El token no era valido deslogueamos");
+
+						actions.logout(); // Cierra sesión si el token no es válido
+						return null;
 					}
 				} catch (error) {
 					console.error("Error validating token:", error);
-					return false;
+					actions.logout(); // Cierra sesión en caso de error
+					return null;
 				}
-			}
+			},
 		}
 	};
 };

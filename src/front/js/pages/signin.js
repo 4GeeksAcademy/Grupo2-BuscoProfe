@@ -1,29 +1,26 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { useNavigate } from "react-router-dom"; 
-
+import { useNavigate } from "react-router-dom";
 
 const ROLES = {
   STUDENT: "student",
-  TEACHER: "teacher"
+  TEACHER: "teacher",
 };
 
 const STUDENT_LEVELS = {
-  "Bachillerato": "StudentLevel_Bachillerato",
-  "Universitario": "StudentLevel_Universitario"
+  Bachillerato: "StudentLevel_Bachillerato",
+  Universitario: "StudentLevel_Universitario",
 };
 
 const TEACHER_LEVELS = {
   "Técnico terciario": "TeacherLevel_TecnicoTerciario",
-  "Licenciatura": "TeacherLevel_Licenciatura",
-  "Maestría": "TeacherLevel_Maestria",
-  "Doctorado": "TeacherLevel_Doctorado"
+  Licenciatura: "TeacherLevel_Licenciatura",
+  Maestría: "TeacherLevel_Maestria",
+  Doctorado: "TeacherLevel_Doctorado",
 };
 
 const SignIn = () => {
   const { store, actions } = useContext(Context);
-  const [loading, setLoading] = useState(true); 
-
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -41,36 +38,12 @@ const SignIn = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
 
+  // Llama a getSubjects al montar el componente
   useEffect(() => {
-          const token = localStorage.getItem("IdToken");
-          if (token) {
-            validateToken(token); 
-          } else {
-            setLoading(false); 
-            actions.getSubjects();
-          }
-  }, []);
-
-  const validateToken = async (token) => {
-    try {
-      const tokenValidInfo = await actions.validateToken(token); 
-      
-      if (tokenValidInfo) {
-        const roles = tokenValidInfo.roles;
-        if (roles.includes('teacher')) {
-          navigate("/teacherDashboard");
-        } else if (roles.includes('student')) {
-          navigate("/studentDashboard");
-        } else {
-          console.error("No valid role found");
-          setLoading(false);
-        }
-      }
-    } catch (error) {
-      console.error("Error al validar el token: ", error);
-      setLoading(false); 
+    if (store.subjects.length === 0) {
+      actions.getSubjects(); // Llama a la función para obtener las materias
     }
-  };
+  }, [actions, store.subjects]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -92,14 +65,45 @@ const SignIn = () => {
     });
   };
 
+  const handleSubjectChange = (e) => {
+    const value = e.target.value;
+    setFormData({ ...formData, subject: value });
+
+    if (value.length > 0) {
+      const filteredSuggestions = store.subjects
+        .filter(
+          (subject) =>
+            subject.name.toLowerCase().includes(value.toLowerCase()) &&
+            !selectedSubjects.some((selected) => selected.id === subject.id)
+        )
+        .slice(0, 10); // Máximo de 10 sugerencias
+      setSubjectSuggestions(filteredSuggestions);
+      setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    if (!selectedSubjects.some((subject) => subject.id === suggestion.id)) {
+      setSelectedSubjects([...selectedSubjects, suggestion]);
+    }
+    setFormData({ ...formData, subject: "" });
+    setShowSuggestions(false);
+  };
+
+  const handleRemoveSubject = (id) => {
+    setSelectedSubjects(selectedSubjects.filter((subject) => subject.id !== id));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (formData.role === ROLES.TEACHER && selectedSubjects.length === 0) {
       alert("Por favor selecciona al menos una materia que das.");
       return;
     }
-  
+
     const payload = {
       fullName: formData.fullName,
       email: formData.email,
@@ -108,18 +112,18 @@ const SignIn = () => {
       ...(formData.role === ROLES.STUDENT
         ? {
             level: STUDENT_LEVELS[formData.level],
-            subjects: selectedSubjects.map(sub => sub.id),
+            subjects: selectedSubjects.map((sub) => sub.id),
             timePreferences: formData.timePreferences,
           }
         : {
             level: TEACHER_LEVELS[formData.educationLevel],
-            subjects: selectedSubjects.map(sub => sub.id),
+            subjects: selectedSubjects.map((sub) => sub.id),
             timePreferences: formData.timePreferences,
           }),
     };
-  
+
     const result = await actions.registerUser(payload);
-  
+
     if (result.error) {
       alert(`Error: ${result.error}`);
     } else {
@@ -127,7 +131,6 @@ const SignIn = () => {
       navigate("/login");
     }
   };
-  
 
   const renderTimePreferences = () => (
     <div className="row">
@@ -151,46 +154,6 @@ const SignIn = () => {
     </div>
   );
 
-  const handleSubjectChange = (e) => {
-    const value = e.target.value;
-    setFormData({ ...formData, subject: value });
-
-    if (value.length > 0) {
-      const filteredSuggestions = store.subjects.filter(
-        (subject) =>
-          subject.name.toLowerCase().includes(value.toLowerCase()) &&
-          !selectedSubjects.some((selected) => selected.id === subject.id)
-      ).slice(0, 10); // Máximo de 10 sugerencias
-      setSubjectSuggestions(filteredSuggestions);
-      setShowSuggestions(true);
-    } else {
-      setShowSuggestions(false);
-    }
-  };
-
-  const handleSuggestionClick = (suggestion) => {
-    if (!selectedSubjects.some((subject) => subject.id === suggestion.id)) {
-      setSelectedSubjects([...selectedSubjects, suggestion]);
-    }
-    setFormData({ ...formData, subject: '' });
-    setShowSuggestions(false);
-  };
-
-  const handleRemoveSubject = (id) => {
-    setSelectedSubjects(selectedSubjects.filter(subject => subject.id !== id));
-  };
-
-
-  if (loading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
-  }
-  
   return (
     <div id="signinform">
       <h2 id="headerTitle">Registrarse</h2>
@@ -302,7 +265,11 @@ const SignIn = () => {
                 {selectedSubjects.map((subject) => (
                   <span key={subject.id} className="chip">
                     {subject.name}
-                    <button type="button" className="close" onClick={() => handleRemoveSubject(subject.id)}>
+                    <button
+                      type="button"
+                      className="close"
+                      onClick={() => handleRemoveSubject(subject.id)}
+                    >
                       &times;
                     </button>
                   </span>
@@ -346,7 +313,11 @@ const SignIn = () => {
                 {selectedSubjects.map((subject) => (
                   <span key={subject.id} className="chip">
                     {subject.name}
-                    <button type="button" className="close" onClick={() => handleRemoveSubject(subject.id)}>
+                    <button
+                      type="button"
+                      className="close"
+                      onClick={() => handleRemoveSubject(subject.id)}
+                    >
                       &times;
                     </button>
                   </span>

@@ -2,15 +2,10 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
+import ProtectedRoute from "./component/protectedRoute"; // Importa el componente de rutas protegidas
 
 import { Home } from "./pages/home";
 import Main from "./pages/main.js";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
-import injectContext from "./store/appContext";
-
-import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
 import Login from "./pages/login";
 import SignIn from "./pages/signin";
 import SearchClass from "./pages/searchclass.js";
@@ -21,36 +16,78 @@ import TeacherDashboard from "./pages/TeacherDashboard.js";
 import StudentSchedule from "./pages/studentSchedule.js";
 import ClassDetails from "./pages/classDetails.js"; 
 
+import { Navbar } from "./component/navbar";
+import { Footer } from "./component/footer";
+import injectContext from "./store/appContext";
 
-
-//create your first component
 const Layout = () => {
-    //the basename is used when your project is published in a subdirectory and not in the root of the domain
-    // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
 
     return (
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
-                    {/* <Login /> */}
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Main />} path="/main" />
-                        <Route element={<Login />} path="/login" />
-                        <Route element={<SignIn />} path="/signin" />
+                        {/* Rutas públicas */}
+                        <Route
+                            path="/"
+                            element={
+                                <ProtectedRoute publicRoutes={["/", "/login", "/signin"]}>
+                                    <Home />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/login"
+                            element={
+                                <ProtectedRoute publicRoutes={["/", "/login", "/signin"]}>
+                                    <Login />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/signin"
+                            element={
+                                <ProtectedRoute publicRoutes={["/", "/login", "/signin"]}>
+                                    <SignIn />
+                                </ProtectedRoute>
+                            }
+                        />
+
+                        {/* Rutas protegidas */}
+                        <Route
+                            path="/teacherview/:id"
+                            element={
+                                <ProtectedRoute rolesAllowed={["teacher", "student"]}>
+                                    <TeacherView />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/studentDashboard"
+                            element={
+                                <ProtectedRoute rolesAllowed={["student"]}>
+                                    <StudentDashboard />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/teacherDashboard"
+                            element={
+                                <ProtectedRoute rolesAllowed={["teacher"]}>
+                                    <TeacherDashboard />
+                                </ProtectedRoute>
+                            }
+                        />
+
+                        {/* Ruta por defecto */}
+                        <Route element={<h1>Not found!</h1>} path="*" />
+                        <Route element={<ClassDetails />} path="/classDetails" />
                         <Route element={<SearchClass />} path="/searchclass" />
                         <Route element={<SelectClass />} path="/selectclass" />
-                        <Route element={<TeacherView />} path="/teacherview/:id" />
-                        <Route element={<StudentDashboard />} path="/studentDashboard" />
-                        <Route element={<TeacherDashboard />} path="/teacherDashboard" />
-                        <Route element={<StudentSchedule />} path="/studentSchedule" />
-                        <Route element={<ClassDetails />} path="/classDetails" />
-                        <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
