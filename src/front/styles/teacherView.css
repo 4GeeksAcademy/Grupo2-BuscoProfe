@@ -325,7 +325,7 @@
 button {
   margin: 5px;
   background: linear-gradient(45deg, #40b5ad, #a2c3a6); /* Degradado brillante */
-  border: 2px solid #40b5ad; /* Borde del botón */
+  border: 2px solid #4efff3; /* Borde del botón */
   color: #fff; /* Color del texto */
   padding: 10px 20px; /* Espaciado interno */
   font-size: 16px; /* Tamaño de la fuente */
@@ -336,8 +336,8 @@ button {
 
 /* Efecto hover */
 button:hover {
-  background: linear-gradient(145deg, #405fb5, #a2b4c3); 
-  border-color: #2512f3; 
+  background: linear-gradient(145deg, #61e9e9, #8feaa6); 
+  border-color: #ffffff; 
 }
 
 
