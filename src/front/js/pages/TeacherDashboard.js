@@ -7,38 +7,6 @@ function TeacherDashboard() {
   const { actions } = useContext(Context);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("IdToken");
-
-    if (token) {
-      validateToken(token);
-    } else {
-      navigate("/");
-    }
-  }, [navigate]);
-
-  const validateToken = async (token) => {
-    try {
-      const tokenValidInfo = await actions.validateToken(token); 
-
-      if (!tokenValidInfo) {
-        navigate("/");
-      } else {
-        const roles = tokenValidInfo.roles; 
-
-        if (roles && roles.includes("teacher")) {
-        } else if (roles && roles.includes("student")) {
-          navigate("/studentDashboard");
-        } else {
-          navigate("/");
-        }
-      }
-    } catch (error) {
-      console.error("Error al validar el token: ", error);
-      navigate("/"); // En caso de error también redirigimos al home
-    }
-  };
-
   // Estado para la imagen de perfil
   const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
 

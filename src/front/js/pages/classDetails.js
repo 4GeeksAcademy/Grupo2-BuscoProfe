@@ -1,6 +1,5 @@
 import React from 'react';
 import "../../styles/classDetails.css";
-
 function ClassDetails() {
     return (
         <div className="class-container">
@@ -10,5 +9,4 @@ function ClassDetails() {
         </div>
     );
 }
-
 export default ClassDetails;

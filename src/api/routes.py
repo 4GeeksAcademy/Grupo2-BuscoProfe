@@ -128,32 +128,35 @@ def login():
     if user is None or not user.check_password(data['password']):
         return jsonify({"message": "Invalid email or password"}), 401
 
-    # Determinar el rol (si es estudiante, profesor, o ambos)
+    # Determinar los roles (si es estudiante, profesor o ambos)
     roles = []
+    additional_claims = {}
     if user.student:  # Si existe la relación con Student
         roles.append('student')
     if user.teacher:  # Si existe la relación con Teacher
         roles.append('teacher')
+        additional_claims["teacher_id"] = user.teacher.id  # Añadir teacher_id a los claims
 
     # Si no hay roles, significa que hay un problema con los datos del usuario.
     if not roles:
         return jsonify({"message": "No roles assigned to the user"}), 400
 
-    # Crear un único token que incluya tanto el user_id como los roles
+    # Agregar roles a los claims adicionales
+    additional_claims["roles"] = roles
+
+    # Crear el token JWT con los claims adicionales
     access_token = create_access_token(
         identity=str(user.id),  # Usamos el user_id como identity
         expires_delta=timedelta(hours=5),
-        additional_claims={"roles": roles}  # Añadimos los roles como parte del payload
+        additional_claims=additional_claims  # Añadimos los claims
     )
 
-    # Devuelves el token, los roles y la información del usuario
+    # Devuelves el token y la información del usuario
     return jsonify({
         "message": "Login successful",
         "access_token": access_token,
-        "roles": roles,  # Aquí agregamos una lista de roles
         "user": user.serialize()  # Información del usuario
     }), 200
-
 
 
 @api.route('/subjects', methods=['GET'])
@@ -333,14 +336,18 @@ def verify_token():
         user_id = decoded_token.get('sub')  # El ID del usuario está en 'sub'
         roles = decoded_token.get('roles')  # Los roles del usuario están en 'roles'
 
+        # Validar 'teacher_id' basado en el rol
+        teacher_id = decoded_token.get('teacher_id', None) if 'teacher' in roles else None
+
         # Verificar si 'user_id' y 'roles' están presentes en el token
         if not user_id or not roles:
             return jsonify({"message": "Invalid token"}), 401
 
-        # Devolver solo el 'user_id' y los 'roles' (nada más)
+        # Devolver 'user_id', 'roles' y opcionalmente 'teacher_id'
         return jsonify({
             "user_id": user_id,
-            "role": roles
+            "roles": roles,
+            "teacher_id": teacher_id
         }), 200
 
     except Exception as e:
