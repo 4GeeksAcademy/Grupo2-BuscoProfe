@@ -19,6 +19,7 @@ import TeacherView from "./pages/teacherview.js";
 import StudentDashboard from "./pages/StudentDashboard.js";
 import TeacherDashboard from "./pages/TeacherDashboard.js";
 import StudentSchedule from "./pages/studentSchedule.js";
+import ClassDetails from "./pages/classDetails.js"; 
 
 
 
@@ -47,6 +48,7 @@ const Layout = () => {
                         <Route element={<StudentDashboard />} path="/studentDashboard" />
                         <Route element={<TeacherDashboard />} path="/teacherDashboard" />
                         <Route element={<StudentSchedule />} path="/studentSchedule" />
+                        <Route element={<ClassDetails />} path="/classDetails" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
