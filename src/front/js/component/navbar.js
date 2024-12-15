@@ -73,53 +73,52 @@ export const Navbar = () => {
         <a href="#" className="navbar-logo" onClick={handleLogo}>
           SumaSaber
         </a>
-
-        {/* Barra de búsqueda (siempre visible) */}
-        <div
-          className="container-fluid w-50"
-          style={{ position: "relative" }}
-        >
-          <form
-            className="d-flex"
-            role="search"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (search.trim() !== "") {
-                searchClass(search);
-              }
-            }}
-          >
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Buscar clases por materia"
-              name="search"
-              value={search}
-              onChange={handleChange}
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </button>
-
-            {showSearchSuggestions && (
-              <ul className="list-group suggestions-list">
-                {searchSuggestions.map((suggestion) => (
-                  <li
-                    key={suggestion.id}
-                    className="list-group-item"
-                    onClick={() =>
-                      handleSearchSuggestionClick(suggestion)
-                    }
-                  >
-                    {suggestion.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </form>
-        </div>
-
+  
+        {/* Barra de búsqueda (visible para estudiantes y usuarios no autenticados) */}
+        {(!localStorage.getItem("IdToken") || store.role?.includes("student")) && (
+          <div className="container-fluid w-50" style={{ position: "relative" }}>
+            <form
+              className="d-flex"
+              role="search"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (search.trim() !== "") {
+                  searchClass(search);
+                }
+              }}
+            >
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Buscar clases por materia"
+                name="search"
+                value={search}
+                onChange={handleChange}
+                aria-label="Search"
+              />
+              <button className="btn btn-outline-success" type="submit">
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </button>
+  
+              {showSearchSuggestions && (
+                <ul className="list-group suggestions-list">
+                  {searchSuggestions.map((suggestion) => (
+                    <li
+                      key={suggestion.id}
+                      className="list-group-item"
+                      onClick={() =>
+                        handleSearchSuggestionClick(suggestion)
+                      }
+                    >
+                      {suggestion.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </form>
+          </div>
+        )}
+  
         {/* Links dependiendo del estado de autenticación */}
         {store.user_id ? (
           <>
@@ -137,7 +136,7 @@ export const Navbar = () => {
                 </a>
               </div>
             )}
-
+  
             {store.role?.includes("student") && (
               <div className="navbar-links">
                 <a href="#" className="navbar-link" onClick={handleLogout}>
@@ -163,6 +162,6 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
