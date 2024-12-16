@@ -10,6 +10,8 @@ export const Navbar = () => {
 
   const isSignInPage = location.pathname === "/signin";
   const isLoginPage = location.pathname === "/login";
+  const isTeacherViewPage = location.pathname.startsWith("/teacherview/");
+  const isStudentDashboardPage = location.pathname === "/studentDashboard";
 
   const [search, setSearch] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
@@ -66,6 +68,14 @@ export const Navbar = () => {
     }
   };
 
+  const handleDashboardRedirect = () => {
+    if (store.role?.includes("teacher")) {
+      navigate("/teacherDashboard");
+    } else if (store.role?.includes("student")) {
+      navigate("/studentDashboard");
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -73,7 +83,7 @@ export const Navbar = () => {
         <a href="#" className="navbar-logo" onClick={handleLogo}>
           SumaSaber
         </a>
-  
+
         {/* Barra de búsqueda (visible para estudiantes y usuarios no autenticados) */}
         {(!localStorage.getItem("IdToken") || store.role?.includes("student")) && (
           <div className="container-fluid w-50" style={{ position: "relative" }}>
@@ -99,7 +109,7 @@ export const Navbar = () => {
               <button className="btn btn-outline-success" type="submit">
                 <i className="fa-solid fa-magnifying-glass"></i>
               </button>
-  
+
               {showSearchSuggestions && (
                 <ul className="list-group suggestions-list">
                   {searchSuggestions.map((suggestion) => (
@@ -118,27 +128,46 @@ export const Navbar = () => {
             </form>
           </div>
         )}
-  
+
         {/* Links dependiendo del estado de autenticación */}
         {store.user_id ? (
           <>
             {store.role?.includes("teacher") && (
               <div className="navbar-links">
-                <a
-                  href="#"
-                  className="navbar-link"
-                  onClick={() => navigate(`/teacherview/${store.teacher_id}`)}
-                >
-                  Mi perfil
-                </a>
+                {isTeacherViewPage ? (
+                  <a
+                    href="#"
+                    className="navbar-link"
+                    onClick={handleDashboardRedirect}
+                  >
+                    Dashboard
+                  </a>
+                ) : (
+                  <a
+                    href="#"
+                    className="navbar-link"
+                    onClick={() => navigate(`/teacherview/${store.teacher_id}`)}
+                  >
+                    Mi perfil
+                  </a>
+                )}
                 <a href="#" className="navbar-link" onClick={handleLogout}>
                   Cerrar sesión
                 </a>
               </div>
             )}
-  
+
             {store.role?.includes("student") && (
               <div className="navbar-links">
+                {!isStudentDashboardPage && (
+                  <a
+                    href="#"
+                    className="navbar-link"
+                    onClick={handleDashboardRedirect}
+                  >
+                    Dashboard
+                  </a>
+                )}
                 <a href="#" className="navbar-link" onClick={handleLogout}>
                   Cerrar sesión
                 </a>
@@ -162,6 +191,6 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

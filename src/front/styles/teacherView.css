@@ -15,29 +15,29 @@
   padding: 3rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: flex-start; 
-  align-items: flex-start; 
-  gap: 2rem; 
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
   width: 1900px;
   height: 1050px;
-  text-align: center; 
+  text-align: center;
 }
 
 .profile-card {
-  align-self: flex-start; 
-  flex-shrink: 0; 
-  position: sticky; 
-  top: 20px; 
-  max-width: 400px; 
+  align-self: flex-start;
+  flex-shrink: 0;
+  position: sticky;
+  top: 20px;
+  max-width: 400px;
   height: auto;
-  z-index: 10; 
+  z-index: 10;
   height: 950px;
   width: 400px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  flex-direction: column; 
-  justify-content: space-between; 
-  gap: 1rem; 
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
   border-radius: 10px;
 }
 
@@ -46,15 +46,15 @@
 }
 
 .profile-card img-container {
-  width: 150px; 
-  height: 150px; 
-  margin: 0 auto; 
-  overflow: hidden; 
-  border-radius: 50%; 
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ddd; 
+  background-color: #ddd;
 }
 
 .profile-card .profile-pic {
@@ -99,58 +99,62 @@
 }
 
 /* Estilo para las estrellas llenas */
-.star {
+.starFilled {
   font-size: 20px;
-  color: #40b5ad; 
+  color: #40b5ad;
   cursor: pointer;
 }
 
-/* Estilo para las estrellas vacías */
-.empty-star {
+.starEmpty {
+  font-size: 20px;
   color: #D3D3D3; 
+  cursor: pointer;
 }
 
+
 .contact-info {
-  margin: 0 auto; 
-  padding: 1rem; 
-  background-color: #ffffff; 
-  border-radius: 8px; 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
-  max-width: 90%; 
-  text-align: left; 
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  text-align: left;
   margin-top: 5px;
 }
 
 .contact-info p {
-  margin: 0.5rem 0; 
+  margin: 0.5rem 0;
 }
 
 .contact-info a {
-  color: #607848; 
-  text-decoration: none; 
+  color: #607848;
+  text-decoration: none;
 }
 
 .contact-info a:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
 
 /* about section */
 
-.about, .comments-card, .price-card {
-  flex: 1; 
-  max-width: 1000px; 
+.about,
+.comments-card,
+.price-card {
+  flex: 1;
+  max-width: 1000px;
   width: 100%;
 }
 
 .about {
-  margin: 0 auto; 
+  margin: 0 auto;
   padding: 1rem;
-  background-color: #fff; 
-  border-radius: 8px; 
-  max-width: 90%; 
-  text-align: left; 
-  font-size: 1rem; 
-  color: #333; 
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 90%;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
   flex: 1 1 100%;
   max-width: 1000px;
   border-radius: 10px;
@@ -317,27 +321,36 @@
 }
 
 /* Ajustes de tamaño de las estrellas para pantallas pequeñas */
-.rating .star {
+.rating .starFilled {
   font-size: 1.2rem;
 }
 
 /* Estilo para el botón Modificar */
-button {
+button,
+.volver {
   margin: 5px;
-  background: linear-gradient(45deg, #40b5ad, #a2c3a6); /* Degradado brillante */
-  border: 2px solid #4efff3; /* Borde del botón */
-  color: #fff; /* Color del texto */
-  padding: 10px 20px; /* Espaciado interno */
-  font-size: 16px; /* Tamaño de la fuente */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  transition: all 0.3s ease; /* Transición suave */
+  background: linear-gradient(45deg, #40b5ad, #a2c3a6);
+  /* Degradado brillante */
+  border: 2px solid #4efff3;
+  /* Borde del botón */
+  color: #fff;
+  /* Color del texto */
+  padding: 10px 20px;
+  /* Espaciado interno */
+  font-size: 16px;
+  /* Tamaño de la fuente */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  cursor: pointer;
+  /* Cambia el cursor al pasar por encima */
+  transition: all 0.3s ease;
+  /* Transición suave */
 }
 
 /* Efecto hover */
 button:hover {
-  background: linear-gradient(145deg, #61e9e9, #8feaa6); 
-  border-color: #ffffff; 
+  background: linear-gradient(145deg, #61e9e9, #8feaa6);
+  border-color: #ffffff;
 }
 
 
@@ -353,7 +366,9 @@ button:hover {
     margin-bottom: 2rem;
   }
 
-  .about, .comments-card, .price-card {
+  .about,
+  .comments-card,
+  .price-card {
     width: 100%;
     max-width: 100%;
   }
@@ -362,50 +377,70 @@ button:hover {
 @media (max-width: 768px) {
   .view-container {
     margin-top: 200px;
-    flex-direction: column; /* Solo cambia la dirección de los elementos en pantallas pequeñas */
-    padding: 1.5rem; /* Se ajusta el padding en pantallas pequeñas */
-    width: auto; /* Asegura que el contenedor no se desborde */
-    height: auto; /* Ajusta la altura en pantallas pequeñas */
+    flex-direction: column;
+    /* Solo cambia la dirección de los elementos en pantallas pequeñas */
+    padding: 1.5rem;
+    /* Se ajusta el padding en pantallas pequeñas */
+    width: auto;
+    /* Asegura que el contenedor no se desborde */
+    height: auto;
+    /* Ajusta la altura en pantallas pequeñas */
   }
 
   .profile-card {
-    width: 100%; /* Asegura que la tarjeta de perfil ocupe todo el ancho en pantallas pequeñas */
-    margin-bottom: 2rem; /* Añade espacio entre las tarjetas */
-    height: auto; /* Permite que la tarjeta de perfil se ajuste a su contenido */
-    position: relative; /* Se quita el sticky para evitar que se desborde */
-    top: 0; /* Remueve el sticky */
+    width: 100%;
+    /* Asegura que la tarjeta de perfil ocupe todo el ancho en pantallas pequeñas */
+    margin-bottom: 2rem;
+    /* Añade espacio entre las tarjetas */
+    height: auto;
+    /* Permite que la tarjeta de perfil se ajuste a su contenido */
+    position: relative;
+    /* Se quita el sticky para evitar que se desborde */
+    top: 0;
+    /* Remueve el sticky */
   }
 
-  .about, .comments-card, .price-card {
-    width: 100%; /* Asegura que las cards ocupen todo el ancho */
-    max-width: none; /* Evita que se limite el ancho máximo */
-    margin-top: 1rem; /* Añade espacio entre las cards */
+  .about,
+  .comments-card,
+  .price-card {
+    width: 100%;
+    /* Asegura que las cards ocupen todo el ancho */
+    max-width: none;
+    /* Evita que se limite el ancho máximo */
+    margin-top: 1rem;
+    /* Añade espacio entre las cards */
   }
 
   /* Ajuste del tamaño de las estrellas para pantallas pequeñas */
-  .star {
+  .starFilled {
     font-size: 1.5rem; /* Ajusta el tamaño de las estrellas para pantallas pequeñas */
   }
 
   /* Ajuste de la imagen del perfil */
   .profile-card img-container {
-    width: 120px; /* Ajusta el tamaño de la imagen */
-    height: 120px; /* Ajusta el tamaño de la imagen */
+    width: 120px;
+    /* Ajusta el tamaño de la imagen */
+    height: 120px;
+    /* Ajusta el tamaño de la imagen */
   }
 
   /* Ajuste de los textos */
   .about h1 {
-    font-size: 2.5rem; /* Ajusta el tamaño del título */
+    font-size: 2.5rem;
+    /* Ajusta el tamaño del título */
   }
 
   .about p {
-    font-size: 1rem; /* Ajusta el tamaño del texto */
+    font-size: 1rem;
+    /* Ajusta el tamaño del texto */
   }
 
   /* Ajusta los márgenes y paddings en las cards */
   .contact-info {
-    max-width: 100%; /* Hace que la card ocupe todo el ancho */
-    padding: 1rem; /* Ajusta el padding */
+    max-width: 100%;
+    /* Hace que la card ocupe todo el ancho */
+    padding: 1rem;
+    /* Ajusta el padding */
   }
 }
 

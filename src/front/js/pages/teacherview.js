@@ -2,27 +2,41 @@ import React, { useEffect, useContext, useState } from "react";
 import '../../styles/teacherView.css';
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
+import RatingModal from '../component/ratingModal';
 
 function TeacherView() {
     const { actions, store } = useContext(Context);
     const { id } = useParams();
 
-    const [price, setPrice] = useState(null); // Estado del precio actual
-    const [isEditing, setIsEditing] = useState(false); // Estado para alternar entre vista y edición
-    const [newPrice, setNewPrice] = useState(""); // Estado para el nuevo precio
+    const [price, setPrice] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [newPrice, setNewPrice] = useState("");
     const [newDescription, setNewDescription] = useState(""); // estado para la descripcion
     const [description, setDescription] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Estado para la ventana emergente
+    const [averageRating, setAverageRating] = useState(0); // Estado para la calificación promedio
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         actions.getTeacherById(id);
-    }, [id, actions]); // Solo depende de `id` y `actions`
+        actions.getTeacherReviews(id)
+            .then(data => {
+                if (data) {
+                    setAverageRating(data.average_rating);
+                    setComments(data.reviews.map(review => review.comments));
+                } else {
+                    setAverageRating(0);
+                    setComments([]);
 
+                }
+            });
+
+    }, [id, actions]);
 
     useEffect(() => {
         if (store.teacher?.price !== undefined) {
             setPrice(store.teacher.price);
             setNewPrice(store.teacher.price);
-
         }
     }, [store.teacher.price]);
 
@@ -30,7 +44,6 @@ function TeacherView() {
         if (store.teacher?.description !== undefined) {
             setDescription(store.teacher.description);
             setNewDescription(store.teacher.description);
-
         }
     }, [store.teacher.description]);
 
@@ -54,8 +67,16 @@ function TeacherView() {
         actions.updateTeacherDescription(id, newDescription);
     };
 
+    const openRatingModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeRatingModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
-        <div className="view-container">
+        <div className="view-container" style={{ width: "100%" }}>
             <div className="profile-card">
                 <div className="profile-pic">
                     <img
@@ -75,14 +96,31 @@ function TeacherView() {
 
                 <section className="calificaciones">
                     <span className="teacher-name">Calificación</span>
-                    <div className="rating m-2">
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star text-secondary">★</span>
+                    <div className="rating m-2" onClick={openRatingModal}>
+                        {[...Array(5)].map((_, index) => {
+                            const currentRating = parseFloat(averageRating);
+
+                            return (
+                                <span
+                                    key={index}
+                                    className={index < Math.floor(currentRating) ? "starFilled" : "starEmpty"}
+                                >
+                                    ★
+                                </span>
+                            );
+                        })}
                     </div>
                 </section>
+
+
+
+                {/* Ventana emergente de calificación */}
+                {isModalOpen && (
+                    <RatingModal
+                        onClose={closeRatingModal}
+                        teacherId={id}
+                    />
+                )}
 
                 <div className="contact-info">
                     <div className="row">
@@ -91,19 +129,20 @@ function TeacherView() {
                         </div>
                         <div className="content">
                             <span>Email</span>
-                            <h5>{store.teacher.email}</h5>
+                            <h5>{store.teacher.email || "Correo no disponible"}</h5>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className="about">
-                <h1>Sobre mí</h1>
+                <h1>About me</h1>
                 {isEditing ? (
                     <div>
-                        <input
+                        <textarea
+                            style={{ resize: "none" }}
                             type="text"
-                            className="input-field"
+                            className="form-control"
                             value={newDescription}
                             onChange={(e) => setNewDescription(e.target.value)}
                         />
@@ -113,9 +152,14 @@ function TeacherView() {
                 ) : (
                     <div>
                         <p className="card-text">{description}</p>
-                        {store.user.typeUser != "student" ?
-                            <button onClick={() => setIsEditing(true)}>Modificar</button>
-                            : null}
+                        {store.user?.typeUser !== "student" ? (
+                            <button
+                                onClick={() => setIsEditing(true)}
+                                className="edit-icon-button"
+                            >
+                                <i className="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        ) : null}
                     </div>
                 )}
                 <div>
@@ -137,45 +181,48 @@ function TeacherView() {
             </div>
 
             <div>
-                <div className="comments-card">
-                    <h3>Comentarios</h3>
-                    <div className="comments-list">
-                        <div className="comment-item">Muy buen profe 😀</div>
-                        <div className="comment-item">Un capo</div>
-                        <div className="comment-item">No me gusta cuando canta👌</div>
-                        <div className="comment-item">Excelente</div>
-                        <div className="comment-item">Muy útil, gracias.🤩</div>
-                        <div className="comment-item">✅</div>
-                    </div>
-                </div>
-
-                <div className="price-card">
-                    <div className="card-body">
-                        <h5 className="card-title">Precio de las Clases</h5>
-                        {isEditing ? (
-                            <div>
-                                <input
-                                    type="number"
-                                    className="input-field"
-                                    value={newPrice}
-                                    onChange={(e) => setNewPrice(e.target.value)}
-                                />
-                                <button onClick={handleSave}>Guardar</button>
-                                <button onClick={() => setIsEditing(false)}>Cancelar</button>
-                            </div>
-                        ) : (
-                            <div>
-                                <p className="card-text">$ {price} x hr.</p>
-                                {store.user.typeUser != "student" ?
-                                    <button onClick={() => setIsEditing(true)}>Modificar</button>
-                                    : null}
-                            </div>
-                        )}
+                <div>
+                    <div className="comments-card">
+                        <h3>Comentarios</h3>
+                        <div className="comments-list">
+                            {comments.length > 0 ? (
+                                comments.map((comment, index) => (
+                                    <div key={index} className="comment-item">
+                                        {comment}
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="comment-item">No hay comentarios disponibles</div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="volver">
-                <a href="../studentDashboard">Volver</a>
+
+
+            <div className="price-card">
+                <div className="card-body">
+                    <h5 className="card-title">Precio de las Clases</h5>
+                    {isEditing ? (
+                        <div>
+                            <input
+                                type="number"
+                                className="input-field"
+                                value={newPrice}
+                                onChange={(e) => setNewPrice(e.target.value)}
+                            />
+                            <button onClick={handleSave}>Guardar</button>
+                            <button onClick={() => setIsEditing(false)}>Cancelar</button>
+                        </div>
+                    ) : (
+                        <div>
+                            <p className="card-text">$ {price} x hr.</p>
+                            {!store.role?.includes("student") && (
+                                <button onClick={() => setIsEditing(true)}>Modificar</button>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

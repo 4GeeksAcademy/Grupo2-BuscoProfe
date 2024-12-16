@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			role: null,
 			subjects: [], // Guardar las materias obtenidas desde el backend
 			teacher_id: null,
+			student_id: null,
 			teacher: {},
 			teachers: []
 		},
@@ -73,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			logout: () => {
                 localStorage.removeItem("IdToken");
-                setStore({ user_id: null, token: null, role: null, subjects: [], teacher_id:null, isTokenValidated: false });
+                setStore({ user_id: null, token: null, role: null, subjects: [], teacher_id:null, student_id:null, isTokenValidated: false });
             },
 
 
@@ -179,6 +180,60 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			addReview: async (reviewData) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/review", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							teacher_id: reviewData.teacher_id,
+							rating: reviewData.rating,
+							comments: reviewData.comments,
+							student_id: reviewData.student_id,
+						}),
+					});
+			
+					if (response.ok) {
+						const data = await response.json();
+						console.log("Comentario registrado:", data);
+						return true;
+					} else {
+						const errorData = await response.json();
+						console.error("Error al registrar el comentario:", errorData.message);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error en addReview:", error);
+					return false;
+				}
+			},
+
+			getTeacherReviews : async (teacherId) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + `api/teacher/${teacherId}/reviews`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+						},
+					});
+			
+					if (response.ok) {
+						const data = await response.json();
+			
+						return data
+					} else {
+						const errorData = await response.json();
+						console.error("Error al obtener las reseñas:", errorData.message);
+						return 0;  // Retornar 0 si hay error
+					}
+				} catch (error) {
+					console.error("Error en getTeacherReviews:", error);
+					return 0;  // Retornar 0 si hay un error inesperado
+				}
+			},
+			
 			validateToken: async () => {
 
 				
@@ -221,7 +276,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						const data = await response.json();
 
-						// console.log("[Validate Token] La data es:", JSON.stringify(data, null, 2));
+						console.log("[Validate Token] La data es:", JSON.stringify(data, null, 2));
 
 						if (data.roles.includes("teacher")) {
 
@@ -230,11 +285,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({ user_id: data.user_id, role : data.roles, teacher_id: data.teacher_id, isTokenValidated: true }); // Almacena usuario y marca el token como validado
 
 						}else{
-							setStore({ user_id: data.user_id, role : data.roles, isTokenValidated: true }); // Almacena usuario y marca el token como validado
+							setStore({ user_id: data.user_id, role : data.roles, student_id: data.student_id, isTokenValidated: true }); // Almacena usuario y marca el token como validado
 
 						}
 
-						// console.log("[Validate Token] El nuevo store es:", JSON.stringify(store, null, 2));
+						console.log("[Validate Token] El nuevo store es:", JSON.stringify(store, null, 2));
 
 						return data.user; // Devuelve el usuario si el token es válido
 					} else {

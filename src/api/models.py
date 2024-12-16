@@ -165,6 +165,6 @@ class Review(db.Model):
             "student_id": self.student_id,
             "rating": self.rating,
             "teacher_id": self.teacher_id,
-            "comments": self.teacher_comments,
+            "comments": self.comments,
             }
 

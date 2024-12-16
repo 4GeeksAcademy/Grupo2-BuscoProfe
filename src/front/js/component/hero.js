@@ -37,7 +37,7 @@ function Hero() {
                         color: "#6abaa4",
                         fontWeight: "600",
                         textShadow:
-                            "2px 2px 4px rgba(0, 0, 0, 0.7), 0px 0px 10px rgba(106, 186, 164, 0.5)",
+                            "2px 2px 3px rgba(0, 0, 0, 0.7), 2px 2px 10px rgba(255, 255, 255, 0.5)",
                     }}
                 >
                     ¡Suma Saber!

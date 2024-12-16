@@ -133,6 +133,7 @@ def login():
     additional_claims = {}
     if user.student:  # Si existe la relación con Student
         roles.append('student')
+        additional_claims["student_id"] = user.student.id  # Añadir student_id a los claims
     if user.teacher:  # Si existe la relación con Teacher
         roles.append('teacher')
         additional_claims["teacher_id"] = user.teacher.id  # Añadir teacher_id a los claims
@@ -275,6 +276,30 @@ def add_review():
         return jsonify({"message": f"An error occurred: {str(err.args)}"}), 500
 
 
+@api.route('/teacher/<int:teacher_id>/reviews', methods=['GET'])
+def get_teacher_reviews(teacher_id):
+    try:
+        teacher = Teacher.query.get(teacher_id)
+        if not teacher:
+            return jsonify({"message": "Teacher not found"}), 404
+
+        reviews = Review.query.filter_by(teacher_id=teacher_id).all()
+
+        # Calcular el promedio de las calificaciones
+        if reviews:
+            average_rating = sum([review.rating for review in reviews]) / len(reviews)
+        else:
+            average_rating = 0
+
+        return jsonify({
+            "reviews": [review.serialize() for review in reviews],
+            "average_rating": average_rating
+        }), 200
+    except Exception as err:
+        return jsonify({"message": f"An error occurred: {str(err)}"}), 500
+
+
+
 @api.route('/users', methods=['GET'])
 def get_users():
     try:
@@ -339,6 +364,8 @@ def verify_token():
         # Validar 'teacher_id' basado en el rol
         teacher_id = decoded_token.get('teacher_id', None) if 'teacher' in roles else None
 
+        student_id = decoded_token.get('student_id', None) if 'student' in roles else None
+
         # Verificar si 'user_id' y 'roles' están presentes en el token
         if not user_id or not roles:
             return jsonify({"message": "Invalid token"}), 401
@@ -347,7 +374,8 @@ def verify_token():
         return jsonify({
             "user_id": user_id,
             "roles": roles,
-            "teacher_id": teacher_id
+            "teacher_id": teacher_id,
+            "student_id": student_id
         }), 200
 
     except Exception as e:

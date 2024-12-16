@@ -1,0 +1,122 @@
+/* Asegurarse de que el modal esté centrado en la página */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  /* Estilos de la tarjeta de calificación */
+  .rating-teacher-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px 0;
+    width: 100%;
+  }
+  
+  .rating-teacher-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 15px;
+  }
+  
+  .rating-teacher-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .rating-teacher-comments {
+    font-size: 1rem;
+    color: #6c757d;
+    max-width: 75%;
+    line-height: 1.5;
+  }
+  
+  .rating-teacher-score {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #28a745;
+    text-align: center;
+    border: 2px solid #28a745;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .rating-stars .starRating {
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .rating-stars .starRating.selected {
+    color: #40b5ad; /* Verde para las estrellas seleccionadas */
+  }
+  
+  /* Estilo para la parte de los botones */
+  .rating-teacher-footer {
+    margin-top: 15px;
+    text-align: right;
+  }
+  
+  .rating-teacher-footer button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .rating-teacher-footer button:hover {
+    background-color: #0056b3;
+  }
+
+  .starRating {
+    font-size: 20px;
+    color: #343a40;; 
+    cursor: pointer;
+  }
+  
+  /* Ajustes responsivos */
+  @media (max-width: 768px) {
+    .rating-teacher-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+  
+    .rating-teacher-comments {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+  
+    .rating-teacher-score {
+        margin: 10px 0;
+    }
+  }
+  

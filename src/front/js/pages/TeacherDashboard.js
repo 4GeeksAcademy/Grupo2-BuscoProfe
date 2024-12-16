@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import '../../styles/TeacherDashboard.css';
 
 function TeacherDashboard() {
-  const { actions,store } = useContext(Context);
+  const { actions, store } = useContext(Context);
   const navigate = useNavigate();
 
   // Estado para la imagen de perfil
@@ -20,13 +20,13 @@ function TeacherDashboard() {
     // Cambia la imagen cuando el componente se monta
     // changeProfileImage();
     actions.getTeacherPerfil()
-  }, []); 
+  }, []);
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container" style={{ width: "100%" }}>
       <div className="container-perfil">
         <img
-          src={store.teacher.image} 
+          src={store.teacher.image}
           alt="Profesor"
           className="profe-image"
         />
@@ -108,6 +108,7 @@ function TeacherDashboard() {
         </div>
       </div>
     </div>
+    
   );
 }
 
