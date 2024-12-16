@@ -354,6 +354,8 @@ const SignIn = () => {
             Registrarse
           </button>
         </div>
+        <p></p>
+        <p>Si ya tienes una cuenta <a href="../login">inicia sesión</a></p>
       </form>
     </div>
   );

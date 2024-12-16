@@ -134,6 +134,9 @@ function TeacherView() {
                     </div>
                 </div>
             </div>
+            <div className="volver">
+          <a href="../studentDashboard">Volver</a>
+          </div>
         </div>
     );
 }
