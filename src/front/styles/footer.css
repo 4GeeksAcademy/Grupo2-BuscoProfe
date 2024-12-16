@@ -1,18 +1,18 @@
 /* footer */
 .footer {
-  background-color: #415e66;  
-  color: #f8f7f2;  
+  color: #d8d9d9;  
   text-align: center;
   padding: 1rem 0;  
-  width: 100%;
-  position: relative;
   margin-top: 2rem;  
+  display: flex;
+  flex-direction: column;
+  min-width: max-content;
 }
 
 .footer-text {
+  margin-top: 150px;
   font-size: 1rem;
-  color: #f8f7f2; 
-  margin-bottom: 0.5rem;  
+  color: #2e4e7e; 
   font-weight: 500;
 }
 
@@ -21,7 +21,7 @@
   padding: 0;
   margin: 0.5rem 0 0 0;  
   font-size: 14px;
-  color: #f8f7f2;  
+  color: #75d1ab;  
 }
 
 .footer-names li {
@@ -30,8 +30,9 @@
 
 .footer-info {
   font-size: 0.9rem;
-  color: #d8e3df;  
+  color: #0a1627;  
   margin-top: 1rem;  
+  margin-bottom: 2rem;
 }
 
 
