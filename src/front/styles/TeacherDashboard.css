@@ -8,21 +8,17 @@
 }
 
 .dashboard-container {
-    margin: 100px;
-    margin-top: 40px;
-    margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 110px;
     background-color: #FFFFFF;
     border-radius: 25px;
-    padding: 40px;
+    padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    width: 100%;
     position: relative;
     width: 2000px;
-    height: 1050px;
+    height: 700px;
   }
   
   .container-perfil {
@@ -36,8 +32,8 @@
   
   .profe-image {
     margin-left: 20px;
-    width: 250px; /* Tamaño de la imagen */
-    height: 250px; /* Tamaño de la imagen */
+    width: 350px; /* Tamaño de la imagen */
+    height: 350px; /* Tamaño de la imagen */
     border-radius: 50%; /* Para que la imagen sea redonda */
     border: 4px solid #40b5ad; /* Borde que resalta la imagen */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
@@ -150,6 +146,12 @@ table {
     border: 1px solid #ccc;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: left;
+}
+
+.title h2 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #34495e;
 }
 
 .content-3 {
