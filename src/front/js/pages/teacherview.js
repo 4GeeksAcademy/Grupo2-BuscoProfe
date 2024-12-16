@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import '../../styles/teacherView.css';
 import { Context } from "../store/appContext";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function TeacherView() {
     const { actions, store } = useContext(Context);
@@ -55,7 +55,7 @@ function TeacherView() {
     };
 
     return (
-        <div className="view-container">
+        <div className="view-container" style={{ width: "100%" }}>
             <div className="profile-card">
                 <div className="profile-pic">
                     <img
@@ -101,9 +101,10 @@ function TeacherView() {
                 <h1>Sobre mí</h1>
                 {isEditing ? (
                     <div>
-                        <input
+                        <textarea
+                            style={{ resize: "none" }}
                             type="text"
-                            className="input-field"
+                            className="form-control"
                             value={newDescription}
                             onChange={(e) => setNewDescription(e.target.value)}
                         />
@@ -156,7 +157,7 @@ function TeacherView() {
                             <div>
                                 <input
                                     type="number"
-                                    className="input-field"
+                                    className="input-field form-control"
                                     value={newPrice}
                                     onChange={(e) => setNewPrice(e.target.value)}
                                 />
@@ -174,9 +175,11 @@ function TeacherView() {
                     </div>
                 </div>
             </div>
-            <div className="volver">
-                <a href="../studentDashboard">Volver</a>
-            </div>
+            <Link to={store.user.typeUser == "student" ? "/studentDashboard" : "/teacherDashboard"}>
+                <button className="volver">
+                    Volver
+                </button>
+            </Link>
         </div>
     );
 }
