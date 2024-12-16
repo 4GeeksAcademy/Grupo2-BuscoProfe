@@ -352,3 +352,44 @@ def verify_token():
 
     except Exception as e:
         return jsonify({"message": f"Invalid token: {str(e)}"}), 401
+
+@api.route('/update_description', methods=['POST'])
+def update_description():
+    try:
+        data = request.get_json()  # Obtiene los datos enviados en la solicitud
+        teacher_id = data.get('teacher_id')
+        new_description = data.get('description')
+
+        # Validación de los datos
+        if not teacher_id or not new_description:
+            return jsonify({"message": "Faltan datos obligatorios."}), 400
+
+               # Buscar el profesor en la base de datos
+        teacher = Teacher.query.get(teacher_id)
+        if not teacher:
+            return jsonify({"message": "El profesor no existe."}), 404
+
+        # Actualizar la descripcion
+        teacher.description = new_description
+        db.session.commit()
+
+        return jsonify({"message": "Descripción actualizada exitosamente."}), 200
+
+    except Exception as err:
+        return jsonify({"message": f"Se produjo un error: {str(err)}"}), 500
+
+@api.route('/teacher_id', methods=['GET'])
+@jwt_required()
+def getTeacher_ById():
+    try:
+        # Buscar el profesor por ID
+        teacher_id = get_jwt_identity()
+        teacher = Teacher.query.get(teacher_id)
+        if not teacher:
+            return jsonify({"message": "Teacher not found"}), 404
+
+        # Devolver toda la información del profesor
+        return jsonify(teacher.serialize()), 200
+
+    except Exception as err:
+        return jsonify({"message": f"An error occurred: {str(err)}"}), 500

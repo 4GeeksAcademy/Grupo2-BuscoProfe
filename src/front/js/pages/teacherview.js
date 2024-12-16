@@ -10,29 +10,49 @@ function TeacherView() {
     const [price, setPrice] = useState(null); // Estado del precio actual
     const [isEditing, setIsEditing] = useState(false); // Estado para alternar entre vista y edición
     const [newPrice, setNewPrice] = useState(""); // Estado para el nuevo precio
+    const [newDescription, setNewDescription] = useState(""); // estado para la descripcion
+    const [description, setDescription] = useState(null);
 
     useEffect(() => {
         actions.getTeacherById(id);
     }, [id, actions]); // Solo depende de `id` y `actions`
-    
+
 
     useEffect(() => {
         if (store.teacher?.price !== undefined) {
             setPrice(store.teacher.price);
             setNewPrice(store.teacher.price);
+
         }
     }, [store.teacher.price]);
+
+    useEffect(() => {
+        if (store.teacher?.description !== undefined) {
+            setDescription(store.teacher.description);
+            setNewDescription(store.teacher.description);
+
+        }
+    }, [store.teacher.description]);
 
     const handleSave = () => {
         if (newPrice === "" || isNaN(newPrice) || Number(newPrice) <= 0) {
             alert("Por favor, ingresa un precio válido.");
             return;
         }
-        setPrice(newPrice); 
-        setIsEditing(false); 
-        actions.updateTeacherPrice(id, newPrice); 
+        setPrice(newPrice);
+        setIsEditing(false);
+        actions.updateTeacherPrice(id, newPrice);
     };
-    
+
+    const handleSaveDescription = () => {
+        if (newDescription === "") {
+            alert("Por favor, ingresa una descripción.");
+            return;
+        }
+        setDescription(newDescription);
+        setIsEditing(false);
+        actions.updateTeacherDescription(id, newDescription);
+    };
 
     return (
         <div className="view-container">
@@ -78,8 +98,26 @@ function TeacherView() {
             </div>
 
             <div className="about">
-                <h1>About Me</h1>
-                <p>{store.teacher.description}</p>
+                <h1>Sobre mí</h1>
+                {isEditing ? (
+                    <div>
+                        <input
+                            type="text"
+                            className="input-field"
+                            value={newDescription}
+                            onChange={(e) => setNewDescription(e.target.value)}
+                        />
+                        <button onClick={handleSaveDescription}>Guardar</button>
+                        <button onClick={() => setIsEditing(false)}>Cancelar</button>
+                    </div>
+                ) : (
+                    <div>
+                        <p className="card-text">{description}</p>
+                        {store.user.typeUser != "student" ?
+                            <button onClick={() => setIsEditing(true)}>Modificar</button>
+                            : null}
+                    </div>
+                )}
                 <div>
                     <h4>Especializaciones</h4>
                     {store?.teacher?.subjects?.length > 0 ? (
@@ -128,15 +166,17 @@ function TeacherView() {
                         ) : (
                             <div>
                                 <p className="card-text">$ {price} x hr.</p>
-                                <button onClick={() => setIsEditing(true)}>Modificar</button>
+                                {store.user.typeUser != "student" ?
+                                    <button onClick={() => setIsEditing(true)}>Modificar</button>
+                                    : null}
                             </div>
                         )}
                     </div>
                 </div>
             </div>
             <div className="volver">
-          <a href="../studentDashboard">Volver</a>
-          </div>
+                <a href="../studentDashboard">Volver</a>
+            </div>
         </div>
     );
 }

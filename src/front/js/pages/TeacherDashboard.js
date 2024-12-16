@@ -4,32 +4,33 @@ import { useNavigate } from "react-router-dom";
 import '../../styles/TeacherDashboard.css';
 
 function TeacherDashboard() {
-  const { actions } = useContext(Context);
+  const { actions,store } = useContext(Context);
   const navigate = useNavigate();
 
   // Estado para la imagen de perfil
-  const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
+  // // const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
 
   // Función para cambiar la imagen aleatoria
-  const changeProfileImage = () => {
-    const randomGender = Math.random() > 0.5 ? 'male' : 'female'; // Aleatoriza entre masculino o femenino
-    setProfileImage(`https://xsgames.co/randomusers/avatar.php?g=${randomGender}`);
-  };
+  // const changeProfileImage = () => {
+  //   const randomGender = Math.random() > 0.5 ? 'male' : 'female'; // Aleatoriza entre masculino o femenino
+  //   setProfileImage(`https://xsgames.co/randomusers/avatar.php?g=${randomGender}`);
+  // };
 
   useEffect(() => {
     // Cambia la imagen cuando el componente se monta
-    changeProfileImage();
+    // changeProfileImage();
+    actions.getTeacherPerfil()
   }, []); 
 
   return (
     <div className="dashboard-container">
       <div className="container-perfil">
         <img
-          src={profileImage} 
+          src={store.teacher.image} 
           alt="Profesor"
           className="profe-image"
         />
-        <h2 className="profile-name">Nombre del Usuario</h2>
+        <h2 className="profile-name">{store.teacher.name}</h2>
       </div>
 
       <div className="tarjetas">

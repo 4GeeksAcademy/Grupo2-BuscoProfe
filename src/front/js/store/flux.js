@@ -54,7 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json();
 
 					if (response.ok) {
-						console.log("User logged in successfully", data);
+						// console.log("User logged in successfully", data);
 
 						// Guardar el token en localStorage
 						localStorage.setItem("IdToken", data.access_token);
@@ -183,26 +183,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				
 				const store = getStore();
-				console.log("En validate token el store es:", JSON.stringify(store, null, 2));
+				// console.log("En validate token el store es:", JSON.stringify(store, null, 2));
 				const actions = getActions();
 			
 				// Si ya se validó el token, retorna el usuario almacenado
 				if (store.isTokenValidated && store.user_id) {
-					console.log("[VALIDATE TOKEN] Token ya validado.");
+					// console.log("[VALIDATE TOKEN] Token ya validado.");
 					return store.user_id;
 				}
 
 				try {
 					const token = localStorage.getItem("IdToken");
 
-					console.log("[VALIDATE TOKEN] Obtenemos el token:"+token);
+					// console.log("[VALIDATE TOKEN] Obtenemos el token:"+token);
 
 					if (!token) {
-						console.log("[VALIDATE TOKEN] - No existe el token, se deja la validación.");
+						// console.log("[VALIDATE TOKEN] - No existe el token, se deja la validación.");
 						return null;
 					}
 			
-					console.log("[VALIDATE TOKEN] entiendo que el token no era null obtengo la respuesta");
+					// console.log("[VALIDATE TOKEN] entiendo que el token no era null obtengo la respuesta");
 
 					const response = await fetch(process.env.BACKEND_URL + "api/verify_token", {
 						method: "POST",
@@ -213,19 +213,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			
 
-					console.log("[VALIDATE TOKEN] Estado de la respuesta:", response.status);
+					// console.log("[VALIDATE TOKEN] Estado de la respuesta:", response.status);
 
 					if (response.ok) {
 
-						console.log("[VALIDATE TOKEN] Respuesta okey entonces agrego a data la respuesta.");
+						// console.log("[VALIDATE TOKEN] Respuesta okey entonces agrego a data la respuesta.");
 
 						const data = await response.json();
 
-						console.log("[Validate Token] La data es:", JSON.stringify(data, null, 2));
+						// console.log("[Validate Token] La data es:", JSON.stringify(data, null, 2));
 
 						if (data.roles.includes("teacher")) {
 
-							console.log("Entre al if del data role");
+							// console.log("Entre al if del data role");
 							
 							setStore({ user_id: data.user_id, role : data.roles, teacher_id: data.teacher_id, isTokenValidated: true }); // Almacena usuario y marca el token como validado
 
@@ -234,7 +234,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						}
 
-						console.log("[Validate Token] El nuevo store es:", JSON.stringify(store, null, 2));
+						// console.log("[Validate Token] El nuevo store es:", JSON.stringify(store, null, 2));
 
 						return data.user; // Devuelve el usuario si el token es válido
 					} else {
@@ -249,6 +249,61 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return null;
 				}
 			},
+
+		// Función para actualizar la descripcion de un profesor
+		updateTeacherDescription: async (teacherId, newDescription) => {
+			try {
+				const response = await fetch(process.env.BACKEND_URL + "api/update_description", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						teacher_id: teacherId,
+						description: newDescription,
+					}),
+				});
+
+				if (response.ok) {
+					const data = await response.json();
+					// console.log("Precio actualizado:", data);
+					return true;
+				} else {
+					const errorData = await response.json();
+					console.error("Error al actualizar el precio:", errorData.message);
+					return false;
+				}
+			} catch (error) {
+				console.error("Error en updateTeacherDescription:", error);
+				return false;
+			}
+		},	
+
+		getTeacherPerfil: async () => {
+			let token = localStorage.getItem("IdToken")
+		
+			try {
+				const response = await fetch(process.env.BACKEND_URL + "api/teacher_id", {
+					method: "GET",
+					headers: {"Content-Type": "application/json",
+						"Authorization": "Bearer "+ token
+					}
+				});
+				if (response.ok) {
+					const data = await response.json();
+					console.log (data)
+					setStore({ teacher: data });
+					return true;
+				} else {
+					console.error("Error fetching teacher:", response.statusText);
+					return false;
+				}
+			} catch (error) {
+				console.error("Error while fetching teacher:", error);
+				return false;
+			}
+		},
+
 		}
 	};
 };
