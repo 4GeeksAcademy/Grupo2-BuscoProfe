@@ -5,18 +5,18 @@ import { TeacherProfiles} from "./selectclass"
 
 function StudentDashboard() {
   // Estado para la imagen de perfil
-  const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
+  // const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
   const {actions, store}=useContext(Context)
 
   // Función para cambiar la imagen aleatoria
-  const changeProfileImage = () => {
-    const randomGender = Math.random() > 0.5 ? 'male' : 'female'; // Aleatoriza entre masculino o femenino
-    setProfileImage(`https://xsgames.co/randomusers/avatar.php?g=${randomGender}`);
-  };
+  // const changeProfileImage = () => {
+  //   const randomGender = Math.random() > 0.5 ? 'male' : 'female'; // Aleatoriza entre masculino o femenino
+  //   setProfileImage(`https://xsgames.co/randomusers/avatar.php?g=${randomGender}`);
+  // };
 
   useEffect(() => {
     // Cambia la imagen cuando el componente se monta
-    changeProfileImage();
+    // changeProfileImage();
     actions.getTeachers("matematica")
   }, []); 
 
@@ -25,8 +25,8 @@ function StudentDashboard() {
 
       <div className="container-perfil">
         <img
-          src={profileImage} 
-          alt="Profesor"
+          src={store.user.photo} 
+          alt="Estudiante"
           className="profe-image"
         />
         <h2 className="profile-name">{store.user?.name}</h2>

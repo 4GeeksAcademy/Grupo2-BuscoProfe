@@ -20,10 +20,10 @@ export const Home = () => {
 					<div className="card">
 						<div className="card-body">
 							<h5 className="card-title">¿Eres profesor o quieres serlo?</h5>
-							<Link to="/teacherSignin">
+							
 								<p className="card-text">
 									Crea tu perfil, comparte lo que sabes y enseña desde cualquier lugar. Gana dinero a tu ritmo con flexibilidad y herramientas para gestionar tus clases. Viví de lo que te apasiona.
-								</p></Link>
+								</p>
 						</div>
 					</div>
 					<div className="card">
