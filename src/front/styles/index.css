@@ -167,6 +167,11 @@ body {
   padding-bottom: 1rem;
 }
 
+.row p {
+  padding: 1px;
+  align-items: center;
+}
+
 /* Estilos del checkbox */
 .row input[type="checkbox"] {
   width: 15px;

@@ -408,3 +408,9 @@ button:hover {
     padding: 1rem; /* Ajusta el padding */
   }
 }
+
+.volver a {
+  display: flex;
+  justify-content: baseline;
+  font-size:large;
+}
