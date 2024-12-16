@@ -99,16 +99,18 @@
 }
 
 /* Estilo para las estrellas llenas */
-.star {
+.starFilled {
   font-size: 20px;
   color: #40b5ad;
   cursor: pointer;
 }
 
-/* Estilo para las estrellas vacías */
-.empty-star {
-  color: #D3D3D3;
+.starEmpty {
+  font-size: 20px;
+  color: #D3D3D3; 
+  cursor: pointer;
 }
+
 
 .contact-info {
   margin: 0 auto;
@@ -319,7 +321,7 @@
 }
 
 /* Ajustes de tamaño de las estrellas para pantallas pequeñas */
-.rating .star {
+.rating .starFilled {
   font-size: 1.2rem;
 }
 
@@ -410,9 +412,8 @@ button:hover {
   }
 
   /* Ajuste del tamaño de las estrellas para pantallas pequeñas */
-  .star {
-    font-size: 1.5rem;
-    /* Ajusta el tamaño de las estrellas para pantallas pequeñas */
+  .starFilled {
+    font-size: 1.5rem; /* Ajusta el tamaño de las estrellas para pantallas pequeñas */
   }
 
   /* Ajuste de la imagen del perfil */
@@ -446,5 +447,5 @@ button:hover {
 .volver a {
   display: flex;
   justify-content: baseline;
-  font-size: large;
+  font-size:large;
 }
