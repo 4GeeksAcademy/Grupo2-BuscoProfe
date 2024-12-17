@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			user_id: null, // Guardar el usuario autenticado
-			token: null, // Guardar el token JWT
+			token: localStorage.getItem("IdToken") || null, // Guardar el token JWT
 			role: null,
 			subjects: [], // Guardar las materias obtenidas desde el backend
 			teacher_id: null,
@@ -77,6 +77,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ user_id: null, token: null, role: null, subjects: [], teacher_id: null, student_id: null, isTokenValidated: false });
 			},
 
+			getUserProfile: async () => {
+				if(!localStorage.getItem("IdToken")) {
+					console.error("No token found");
+					return { error: "No token found" };
+				}
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/user/profile", {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${localStorage.getItem("IdToken")}`,
+						}
+					});
+
+					const data = await response.json();
+					setStore({ user: data.user });
+
+				} catch (error) {
+					console.error("Error while fetching user:", error);
+					return { error: "An error occurred while fetching the user." };
+				}
+			},
 
 			// Función para obtener las materias
 			getSubjects: async () => {

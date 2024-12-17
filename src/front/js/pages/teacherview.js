@@ -7,7 +7,7 @@ import RatingModal from '../component/ratingModal';
 function TeacherView() {
     const { actions, store } = useContext(Context);
     const { id } = useParams();
-
+    const [photo, setPhoto] = useState(null);
     const [price, setPrice] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [newPrice, setNewPrice] = useState("");
@@ -75,6 +75,10 @@ function TeacherView() {
         setIsModalOpen(false);
     };
 
+    const handlePhoto = () => {
+        actions.updateTeacherPhoto(id, photo);
+    }
+
     return (
         <div className="view-container" style={{ width: "100%" }}>
             <div className="profile-card">
@@ -84,8 +88,8 @@ function TeacherView() {
                         className="card-img-top rounded-circle"
                         alt={store.teacher.name}
                         style={{ width: "50%" }}
-                        // alt="Profesor"
-                        // className="profe-image"
+                    // alt="Profesor"
+                    // className="profe-image"
                     />
                     {/* <img
                         src={store.teacher.image}
@@ -93,7 +97,7 @@ function TeacherView() {
                         alt={store.teacher.name}
                         style={{ width: "50%" }}
                     /> */}
-                     <h2 className="profile-name">{store.teacher.name}</h2>
+                    <h2 className="profile-name">{store.teacher.name}</h2>
                     <input type="file" onChange={event => setPhoto(event.target.files[0])} />
                     <button className="btn btn-light" onClick={handlePhoto} >Subir foto</button>
                 </div>
