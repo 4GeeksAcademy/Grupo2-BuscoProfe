@@ -88,6 +88,7 @@ const Layout = () => {
                         <Route element={<ClassDetails />} path="/classDetails" />
                         <Route element={<SearchClass />} path="/searchclass" />
                         <Route element={<SelectClass />} path="/selectclass" />
+                        <Route element={<StudentSchedule />} path="/studentSchedule" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>

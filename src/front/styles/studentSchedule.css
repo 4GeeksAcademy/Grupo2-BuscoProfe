@@ -1,16 +1,15 @@
 .rbc-day-bg.highlighted-date {
     background-color: lightgreen !important;
-    color: white;
 }
 
 .rbc-event {
-    background-color: lightgreen !important;
-    border: none;
+    display:none;
 }
 
 .rbc-calendar {
     margin: 30px !important;
 }
+
 .reference {
     display: inline-block;
     width: 15px;
@@ -18,3 +17,31 @@
     background-color: lightgreen;
     margin-right: 5px;
   }
+
+.rbc-day-bg[style*='background-color:white'] {
+    cursor:not-allowed;
+}
+
+.rbc-event-content {
+    display: none;
+    opacity: 0;
+}
+
+.rbc-events-container {
+    display: none;
+}
+
+.rbc-time-slot:hover {
+    background-color: #e3fce6;
+    box-shadow:
+      rgba(109, 201, 120, 1) 0px 1px 2px 0px,
+      rgba(109, 201, 120, 1) 0px 1px 3px 1px;
+}
+
+.rbc-time-slot{
+    background-color: white;
+}
+
+.rbc-button-link:hover{
+    display:none;
+}
