@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify, Blueprint
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, decode_token
-from api.models import db, User, Student, Teacher, Subject, teacher_subject, Review
+from api.models import db, User, Student, Teacher, Subject, teacher_subject, Review, AvailableDate, Session
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
-from datetime import timedelta
+from datetime import datetime, timedelta
 import cloudinary
 import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
@@ -483,3 +483,93 @@ def update_photo():
 
     except Exception as err:
         return jsonify({"message": f"Se produjo un error: {str(err)}"}), 500
+
+@api.route('/available_dates', methods=['GET'])
+def get_all_available_dates():
+    try:
+        # Consultar todas las fechas disponibles
+        available_dates = AvailableDate.query.all()
+        
+        # Serializar las fechas con el formato requerido
+        response = [
+            {
+                "date": date.date.isoformat(),
+                "start": date.start.strftime("%H:%M"),
+                "end": date.end.strftime("%H:%M")
+            }
+            for date in available_dates
+        ]
+        
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"message": f"An error occurred: {str(e)}"}), 500
+
+
+@api.route('/sessions/<int:teacher_id>', methods=['GET'])
+def get_teacher_sessions(teacher_id):
+    try:
+        # Obtener todas las sesiones agendadas para un profesor específico
+        sessions = Session.query.filter_by(teacher_id=teacher_id).all()
+
+        # Serializar las sesiones en el formato requerido
+        response = [
+            {
+                "id": session.id,
+                "date": session.date.isoformat(),
+                "start": session.start.strftime("%H:%M"),
+                "end": session.end.strftime("%H:%M"),
+                "subject": session.subject,
+                "comments": session.comments,
+                "state": session.state,
+                "student": {
+                    "id": session.student.id,
+                    "name": f"{session.student.first_name} {session.student.last_name}",
+                    "email": session.student.email
+                }
+            }
+            for session in sessions
+        ]
+
+        return jsonify(response), 200
+
+    except Exception as e:
+        return jsonify({"message": f"An error occurred: {str(e)}"}), 500
+
+
+@api.route('/sessions', methods=['POST'])
+def create_session():
+    try:
+        # Obtener datos enviados en el cuerpo de la solicitud
+        data = request.get_json()
+
+        # Validar campos requeridos
+        required_fields = ["student_id", "teacher_id", "date", "start", "end", "subject"]
+        for field in required_fields:
+            if field not in data:
+                return jsonify({"message": f"'{field}' is required"}), 400
+
+        # Crear una nueva instancia de Session con state predeterminado
+        new_session = Session(
+            student_id=data['student_id'],
+            teacher_id=data['teacher_id'],
+            date=datetime.strptime(data['date'], "%Y-%m-%d").date(),
+            start=datetime.strptime(data['start'], "%H:%M").time(),
+            end=datetime.strptime(data['end'], "%H:%M").time(),
+            subject=data['subject'],
+            comments=data.get('comments', None),  # Opcional
+            state="Solicitada"  # Estado generado automáticamente
+        )
+
+        # Agregar y guardar la sesión en la base de datos
+        db.session.add(new_session)
+        db.session.commit()
+
+        # Responder con la sesión creada
+        return jsonify({
+            "message": "Session created successfully",
+            "session": new_session.serialize()
+        }), 201
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": f"An error occurred: {str(e)}"}), 500

@@ -68,7 +68,7 @@ function RatingModal({ onClose, teacherId }) {
                     }}
                     rows="3"
                     cols="25"
-                    className="rating-teacher-comments"
+                    className="rating-teacher-comments form-control"
                 />
                 <div className="rating-teacher-footer">
                     <div className="button-container">

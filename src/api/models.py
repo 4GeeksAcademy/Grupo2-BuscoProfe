@@ -168,3 +168,57 @@ class Review(db.Model):
             "comments": self.comments,
             }
 
+
+class AvailableDate(db.Model):
+    __tablename__ = 'available_dates'
+    id = db.Column(db.Integer, primary_key=True)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    start = db.Column(db.Time, nullable=False)
+    end = db.Column(db.Time, nullable=False)
+
+    teacher = db.relationship('Teacher', backref='available_dates')
+
+    def __repr__(self):
+        return f'<AvailableDate {self.date} - {self.teacher_id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "teacher_id": self.teacher_id,
+            "date": self.date.isoformat(),
+            "start": self.start.isoformat(),
+            "end": self.end.isoformat(),
+        }
+
+class Session(db.Model):
+    __tablename__ = 'sessions'
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=False)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'), nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    start = db.Column(db.Time, nullable=False)
+    end = db.Column(db.Time, nullable=False)
+    subject = db.Column(db.String(120), nullable=False)
+    comments = db.Column(db.Text, nullable=True)
+    state = db.Column(db.String(50), nullable=False)
+
+    student = db.relationship('Student', backref='sessions')
+    teacher = db.relationship('Teacher', backref='sessions')
+
+    def __repr__(self):
+        return f'<Session {self.date} {self.start} - {self.end}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "student_id": self.student_id,
+            "teacher_id": self.teacher_id,
+            "date": self.date.isoformat(),
+            "start": self.start.isoformat(),
+            "end": self.end.isoformat(),
+            "subject": self.subject,
+            "comments": self.comments,
+            "state": self.state,
+        }
+
