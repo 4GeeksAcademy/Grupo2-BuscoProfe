@@ -6,14 +6,14 @@ import '../../styles/TeacherDashboard.css';
 function TeacherDashboard() {
   const { actions, store } = useContext(Context);
   const navigate = useNavigate();
-  const [photo, setPhoto] = useState(); 
-  const handlePhoto = ()=>{
+  const [photo, setPhoto] = useState();
+  const handlePhoto = () => {
     actions.updateTeacherPhoto(store.user.id, photo)
   }
 
-  
+
   useEffect(() => {
-   
+
     actions.getTeacherPerfil()
   }, []);
 
@@ -21,10 +21,10 @@ function TeacherDashboard() {
     <div className="dashboard-container" style={{ width: "100%" }}>
       <div className="container-perfil">
         <img
-          src={!photo? store.teacher.image : URL.createObjectURL(photo)}
+          src={!photo ? store.teacher.image : URL.createObjectURL(photo)}
           alt="Profesor"
           className="profe-image"
-        />''
+        />
         <h2 className="profile-name">{store.teacher.name}</h2>
         {/* <input type="file" onChange = {event => setPhoto(event.target.files[0])} />
         <button className= "btn btn-light" onClick={handlePhoto} >Subir foto</button> */}
@@ -106,7 +106,7 @@ function TeacherDashboard() {
         </div>
       </div>
     </div>
-    
+
   );
 }
 

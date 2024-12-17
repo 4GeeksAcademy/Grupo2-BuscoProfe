@@ -235,6 +235,22 @@ def get_user_interests(user_id):
         return jsonify({"message": f"An error occurred: {str(err)}"}), 500
 
 
+@api.route('/user/profile', methods=['GET'])
+@jwt_required()
+def get_user_profile():
+    try:
+        user_id = get_jwt_identity()  # Obtener el ID del usuario del token
+        user = User.query.get(user_id)  # Buscar el usuario por ID
+
+        if not user:
+            return jsonify({"message": "User not found"}), 404
+
+        # Devolver la información del usuario
+        return jsonify(user.serialize()), 200
+
+    except Exception as err:
+        return jsonify({"message": f"An error occurred: {str(err)}"}), 500
+
 @api.route('/user/<int:user_id>/teacher', methods=['GET'])
 def get_user_teacher(user_id):
     try:
@@ -448,13 +464,19 @@ def update_photo():
 
                # Buscar el profesor en la base de datos
         teacher = Teacher.query.get(teacher_id)
+
         if not teacher:
             return jsonify({"message": "El profesor no existe."}), 404
+
+        user = User.query.get(teacher.user.id)
+
+        if not user:
+            return jsonify({"message": "El usuario no existe."}), 404
 
         upload_result = cloudinary.uploader.upload(new_photo)
         img_url = upload_result["secure_url"]
 
-        teacher.photo = img_url
+        user.photo = img_url
         db.session.commit()
 
         return jsonify({"message": "Foto actualizada exitosamente."}), 200
