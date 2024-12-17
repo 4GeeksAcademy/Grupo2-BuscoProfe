@@ -92,7 +92,7 @@ function TeacherDashboard() {
       <div className="content-3">
         <div className="new-students">
           <div className="title">
-            <h2>New Students</h2>
+            <h2>Nuevos estudiantes</h2>
           </div>
 
           <table>

@@ -8,6 +8,7 @@ function TeacherView() {
     const { actions, store } = useContext(Context);
     const { id } = useParams();
     const [photo, setPhoto] = useState(null);
+    const [showAlert, setShowAlert] = useState(false);
     const [price, setPrice] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [newPrice, setNewPrice] = useState("");
@@ -16,6 +17,7 @@ function TeacherView() {
     const [isModalOpen, setIsModalOpen] = useState(false); // Estado para la ventana emergente
     const [averageRating, setAverageRating] = useState(0); // Estado para la calificación promedio
     const [comments, setComments] = useState([]);
+    const userRol = 'teacher';
 
     useEffect(() => {
         actions.getTeacherById(id);
@@ -77,29 +79,36 @@ function TeacherView() {
 
     const handlePhoto = () => {
         actions.updateTeacherPhoto(id, photo);
-    }
+        setShowAlert(true);
+        // Después de un tiempo, ocultar la alerta
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 2000);
+    };
 
     return (
         <div className="view-container" style={{ width: "100%" }}>
             <div className="profile-card">
                 <div className="profile-pic">
+
                     <img
                         src={!photo ? store.teacher.image : URL.createObjectURL(photo)}
                         className="card-img-top rounded-circle"
                         alt={store.teacher.name}
                         style={{ width: "50%" }}
-                    // alt="Profesor"
-                    // className="profe-image"
+
                     />
-                    {/* <img
-                        src={store.teacher.image}
-                        className="card-img-top rounded-circle"
-                        alt={store.teacher.name}
-                        style={{ width: "50%" }}
-                    /> */}
-                    <h2 className="profile-name">{store.teacher.name}</h2>
-                    <input type="file" onChange={event => setPhoto(event.target.files[0])} />
-                    <button className="btn btn-light" onClick={handlePhoto} >Subir foto</button>
+                    {store.user?.typeUser !== "student" ? (
+                        <input type="file" onChange={event => setPhoto(event.target.files[0])} />
+                    ) : null}
+                    {store.user?.typeUser !== "student" ? (
+                        <button className="btn btn-light" onClick={handlePhoto} >Subir foto</button>
+                    ) : null}
+                    {showAlert && (
+                        <div className="alert alert-success" role="alert">
+                            ¡Foto subida correctamente!
+                        </div>
+                    )}
                 </div>
 
                 <div className="profile-info">
@@ -151,7 +160,7 @@ function TeacherView() {
             </div>
 
             <div className="about">
-                <h1>About me</h1>
+                <h1>Sobre mi</h1>
                 {isEditing ? (
                     <div>
                         <textarea
