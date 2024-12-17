@@ -4,6 +4,18 @@ from api.models import db, User, Student, Teacher, Subject, teacher_subject, Rev
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from datetime import timedelta
+import cloudinary
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
+import os
+
+# Configuration       
+cloudinary.config( 
+    cloud_name = "dcfo0wwah", 
+    api_key = "637265444996716", 
+    api_secret = os.getenv("CLOUDINARY", ""), # Click 'View API Keys' above to copy your API secret
+    secure=True
+)
 
 api = Blueprint('api', __name__)
 
@@ -421,3 +433,31 @@ def getTeacher_ById():
 
     except Exception as err:
         return jsonify({"message": f"An error occurred: {str(err)}"}), 500
+    
+    
+@api.route('/update_photo', methods=['POST'])
+def update_photo():
+    try:
+        data = request.form  
+        teacher_id = data.get('teacher_id')
+        new_photo = request.files.get('photo')
+
+        # Validación de los datos
+        if not teacher_id or not new_photo:
+            return jsonify({"message": "Faltan datos obligatorios."}), 400
+
+               # Buscar el profesor en la base de datos
+        teacher = Teacher.query.get(teacher_id)
+        if not teacher:
+            return jsonify({"message": "El profesor no existe."}), 404
+
+        upload_result = cloudinary.uploader.upload(new_photo)
+        img_url = upload_result["secure_url"]
+
+        teacher.photo = img_url
+        db.session.commit()
+
+        return jsonify({"message": "Foto actualizada exitosamente."}), 200
+
+    except Exception as err:
+        return jsonify({"message": f"Se produjo un error: {str(err)}"}), 500

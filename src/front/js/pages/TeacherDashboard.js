@@ -6,19 +6,14 @@ import '../../styles/TeacherDashboard.css';
 function TeacherDashboard() {
   const { actions, store } = useContext(Context);
   const navigate = useNavigate();
+  const [photo, setPhoto] = useState(); 
+  const handlePhoto = ()=>{
+    actions.updateTeacherPhoto(store.user.id, photo)
+  }
 
-  // Estado para la imagen de perfil
-  // // const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
-
-  // Función para cambiar la imagen aleatoria
-  // const changeProfileImage = () => {
-  //   const randomGender = Math.random() > 0.5 ? 'male' : 'female'; // Aleatoriza entre masculino o femenino
-  //   setProfileImage(`https://xsgames.co/randomusers/avatar.php?g=${randomGender}`);
-  // };
-
+  
   useEffect(() => {
-    // Cambia la imagen cuando el componente se monta
-    // changeProfileImage();
+   
     actions.getTeacherPerfil()
   }, []);
 
@@ -26,11 +21,14 @@ function TeacherDashboard() {
     <div className="dashboard-container" style={{ width: "100%" }}>
       <div className="container-perfil">
         <img
-          src={store.teacher.image}
+          src={!photo? store.teacher.image : URL.createObjectURL(photo)}
           alt="Profesor"
           className="profe-image"
-        />
+        />''
         <h2 className="profile-name">{store.teacher.name}</h2>
+        {/* <input type="file" onChange = {event => setPhoto(event.target.files[0])} />
+        <button className= "btn btn-light" onClick={handlePhoto} >Subir foto</button> */}
+
       </div>
 
       <div className="tarjetas">

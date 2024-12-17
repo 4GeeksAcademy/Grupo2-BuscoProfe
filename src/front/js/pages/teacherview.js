@@ -80,11 +80,22 @@ function TeacherView() {
             <div className="profile-card">
                 <div className="profile-pic">
                     <img
+                        src={!photo ? store.teacher.image : URL.createObjectURL(photo)}
+                        className="card-img-top rounded-circle"
+                        alt={store.teacher.name}
+                        style={{ width: "50%" }}
+                        // alt="Profesor"
+                        // className="profe-image"
+                    />
+                    {/* <img
                         src={store.teacher.image}
                         className="card-img-top rounded-circle"
                         alt={store.teacher.name}
                         style={{ width: "50%" }}
-                    />
+                    /> */}
+                     <h2 className="profile-name">{store.teacher.name}</h2>
+                    <input type="file" onChange={event => setPhoto(event.target.files[0])} />
+                    <button className="btn btn-light" onClick={handlePhoto} >Subir foto</button>
                 </div>
 
                 <div className="profile-info">

@@ -59,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						// Guardar el token en localStorage
 						localStorage.setItem("IdToken", data.access_token);
-						setStore({user:data.user})
+						setStore({ user: data.user })
 
 						return data;
 					} else {
@@ -73,9 +73,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			logout: () => {
-                localStorage.removeItem("IdToken");
-                setStore({ user_id: null, token: null, role: null, subjects: [], teacher_id:null, student_id:null, isTokenValidated: false });
-            },
+				localStorage.removeItem("IdToken");
+				setStore({ user_id: null, token: null, role: null, subjects: [], teacher_id: null, student_id: null, isTokenValidated: false });
+			},
 
 
 			// Función para obtener las materias
@@ -194,7 +194,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							student_id: reviewData.student_id,
 						}),
 					});
-			
+
 					if (response.ok) {
 						const data = await response.json();
 						console.log("Comentario registrado:", data);
@@ -210,7 +210,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getTeacherReviews : async (teacherId) => {
+			getTeacherReviews: async (teacherId) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + `api/teacher/${teacherId}/reviews`, {
 						method: "GET",
@@ -218,10 +218,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Content-Type": "application/json",
 						},
 					});
-			
+
 					if (response.ok) {
 						const data = await response.json();
-			
+
 						return data
 					} else {
 						const errorData = await response.json();
@@ -233,14 +233,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return 0;  // Retornar 0 si hay un error inesperado
 				}
 			},
-			
+
 			validateToken: async () => {
 
-				
+
 				const store = getStore();
 				// console.log("En validate token el store es:", JSON.stringify(store, null, 2));
 				const actions = getActions();
-			
+
 				// Si ya se validó el token, retorna el usuario almacenado
 				if (store.isTokenValidated && store.user_id) {
 					// console.log("[VALIDATE TOKEN] Token ya validado.");
@@ -256,7 +256,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// console.log("[VALIDATE TOKEN] - No existe el token, se deja la validación.");
 						return null;
 					}
-			
+
 					// console.log("[VALIDATE TOKEN] entiendo que el token no era null obtengo la respuesta");
 
 					const response = await fetch(process.env.BACKEND_URL + "api/verify_token", {
@@ -266,7 +266,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							Authorization: `Bearer ${token}`,
 						},
 					});
-			
+
 
 					// console.log("[VALIDATE TOKEN] Estado de la respuesta:", response.status);
 
@@ -281,11 +281,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (data.roles.includes("teacher")) {
 
 							// console.log("Entre al if del data role");
-							
-							setStore({ user_id: data.user_id, role : data.roles, teacher_id: data.teacher_id, isTokenValidated: true }); // Almacena usuario y marca el token como validado
 
-						}else{
-							setStore({ user_id: data.user_id, role : data.roles, student_id: data.student_id, isTokenValidated: true }); // Almacena usuario y marca el token como validado
+							setStore({ user_id: data.user_id, role: data.roles, teacher_id: data.teacher_id, isTokenValidated: true }); // Almacena usuario y marca el token como validado
+
+						} else {
+							setStore({ user_id: data.user_id, role: data.roles, student_id: data.student_id, isTokenValidated: true }); // Almacena usuario y marca el token como validado
 
 						}
 
@@ -305,59 +305,113 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-		// Función para actualizar la descripcion de un profesor
-		updateTeacherDescription: async (teacherId, newDescription) => {
-			try {
-				const response = await fetch(process.env.BACKEND_URL + "api/update_description", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						teacher_id: teacherId,
-						description: newDescription,
-					}),
-				});
+			// Función para actualizar la descripcion de un profesor
+			updateTeacherDescription: async (teacherId, newDescription) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/update_description", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							teacher_id: teacherId,
+							description: newDescription,
+						}),
+					});
 
-				if (response.ok) {
-					const data = await response.json();
-					// console.log("Precio actualizado:", data);
-					return true;
-				} else {
-					const errorData = await response.json();
-					console.error("Error al actualizar el precio:", errorData.message);
-					return false;
-				}
-			} catch (error) {
-				console.error("Error en updateTeacherDescription:", error);
-				return false;
-			}
-		},	
-
-		getTeacherPerfil: async () => {
-			let token = localStorage.getItem("IdToken")
-		
-			try {
-				const response = await fetch(process.env.BACKEND_URL + "api/teacher_id", {
-					method: "GET",
-					headers: {"Content-Type": "application/json",
-						"Authorization": "Bearer "+ token
+					if (response.ok) {
+						const data = await response.json();
+						// console.log("Precio actualizado:", data);
+						return true;
+					} else {
+						const errorData = await response.json();
+						console.error("Error al actualizar el precio:", errorData.message);
+						return false;
 					}
-				});
-				if (response.ok) {
-					const data = await response.json();
-					console.log (data)
-					setStore({ teacher: data });
-					return true;
-				} else {
-					console.error("Error fetching teacher:", response.statusText);
+				} catch (error) {
+					console.error("Error en updateTeacherDescription:", error);
 					return false;
 				}
-			} catch (error) {
-				console.error("Error while fetching teacher:", error);
-				return false;
-			}
-		},
+			},
+
+			getTeacherPerfil: async () => {
+				let token = localStorage.getItem("IdToken")
+
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/teacher_id", {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token
+						}
+					});
+					if (response.ok) {
+						const data = await response.json();
+						console.log(data)
+						setStore({ teacher: data });
+						return true;
+					} else {
+						console.error("Error fetching teacher:", response.statusText);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error while fetching teacher:", error);
+					return false;
+				}
+			},
+
+			updateTeacherPhoto: async (teacherId, newPhoto) => {
+				try {
+					const formData = new FormData()
+					formData.append("teacher_id", teacherId)
+					formData.append("photo", newPhoto)
+
+					const response = await fetch(process.env.BACKEND_URL + "api/update_photo", {
+						method: "POST",
+						body: formData
+					});
+
+					if (response.ok) {
+						const data = await response.json();
+						// console.log("Precio actualizado:", data);
+						return true;
+					} else {
+						const errorData = await response.json();
+						console.error("Error al actualizar la foto:", errorData.message);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error en updateTeacherDescription:", error);
+					return false;
+				}
+			},
+
+			getTeacherPerfil: async () => {
+				let token = localStorage.getItem("IdToken")
+
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/teacher_id", {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token
+						}
+					});
+					if (response.ok) {
+						const data = await response.json();
+						console.log(data)
+						setStore({ teacher: data });
+						return true;
+					} else {
+						console.error("Error fetching teacher:", response.statusText);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error while fetching teacher:", error);
+					return false;
+				}
+			},
+
 
 		}
 	};

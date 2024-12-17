@@ -25,7 +25,7 @@ function StudentDashboard() {
 
       <div className="container-perfil">
         <img
-          src={store.user.photo} 
+          src={store.user?.photo} 
           alt="Estudiante"
           className="profe-image"
         />
