@@ -395,6 +395,7 @@ button {
 
 
 button {
+  margin: 5px;
   background: linear-gradient(45deg, #40b5ad, #a2c3a6);
   border: none;
   color: #fff;
