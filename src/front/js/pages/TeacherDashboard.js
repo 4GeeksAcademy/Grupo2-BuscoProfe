@@ -40,13 +40,13 @@ function TeacherDashboard() {
       <div className="tarjetas">
         <div className="cards">
           <div className="card">
-            <h1>94</h1>
-            <h3>Estudiantes</h3>
+            <h1>23</h1>
+            <h3>Estudiantes totales</h3>
           </div>
 
           <div className="card">
             <h1>5</h1>
-            <h3>Estudiantes Nuevos</h3>
+            <h3>Estudiantes nuevos</h3>
           </div>
 
           <div className="card">
@@ -111,9 +111,7 @@ function TeacherDashboard() {
           </table>
         </div>
       </div>
-      <div className="container bg-white">
         <TeacherCalendar scheduledDates={scheduledDates} />
-      </div>
     </div>
 
   );
