@@ -16,8 +16,8 @@ body {
   align-items: center;
   gap: 1rem;
   width: 100%;
-  max-width: 2000px;
-  min-height: 1600px;
+  max-width: 1800px;
+  height: 1500px;
   position: relative; /* Cambiado de absolute a relative */
   margin-left: auto;
   margin-right: auto;
