@@ -10,7 +10,7 @@ function RatingModal({ onClose, teacherId }) {
 
     const handleSubmit = async () => {
         if (rating === 0) {
-            alert("Por favor, selecciona una calificación.");
+            toast.error("Por favor, selecciona una calificación.");
             return;
         }
 
@@ -27,14 +27,14 @@ function RatingModal({ onClose, teacherId }) {
             const result = await actions.addReview(reviewData);
 
             if (result) {
-                alert("¡Calificación registrada exitosamente!");
+                toast.sucess("¡Calificación registrada exitosamente!");
                 onClose(); // Cerrar el modal después de guardar
             } else {
-                alert("Hubo un error al registrar tu calificación. Por favor, intenta nuevamente.");
+                toast.error("Hubo un error al registrar tu calificación.");
             }
         } catch (error) {
             console.error("Error al guardar la calificación:", error);
-            alert("Hubo un error al registrar tu calificación. Por favor, intenta nuevamente.");
+            toast.error("Hubo un error al registrar tu calificación.");
         } finally {
             setLoading(false);
         }

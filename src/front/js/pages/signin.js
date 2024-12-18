@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ROLES = {
   STUDENT: "student",
@@ -100,7 +101,7 @@ const SignIn = () => {
     e.preventDefault();
 
     if (formData.role === ROLES.TEACHER && selectedSubjects.length === 0) {
-      alert("Por favor selecciona al menos una materia que das.");
+      toast.info("Por favor, selecciona al menos una materia que das.");
       return;
     }
 
@@ -125,9 +126,10 @@ const SignIn = () => {
     const result = await actions.registerUser(payload);
 
     if (result.error) {
-      alert(`Error: ${result.error}`);
+      toast.error(`Error: ${result.error}`);
+
     } else {
-      alert("Usuario registrado con éxito");
+      toast.success("Usuario registrado con éxito");
       navigate("/login");
     }
   };

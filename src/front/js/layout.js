@@ -15,9 +15,11 @@ import StudentDashboard from "./pages/StudentDashboard.js";
 import TeacherDashboard from "./pages/TeacherDashboard.js";
 import StudentSchedule from "./pages/studentSchedule.js";
 import ClassDetails from "./pages/classDetails.js"; 
+import Classdetailsteacher from "./pages/classdetailsteacher.js";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { ToastContainer } from "react-toastify";
 import injectContext from "./store/appContext";
 
 const Layout = () => {
@@ -56,7 +58,7 @@ const Layout = () => {
                                 </ProtectedRoute>
                             }
                         />
-
+    
                         {/* Rutas protegidas */}
                         <Route
                             path="/teacherview/:id"
@@ -82,10 +84,11 @@ const Layout = () => {
                                 </ProtectedRoute>
                             }
                         />
-
+    
                         {/* Ruta por defecto */}
                         <Route element={<h1>Not found!</h1>} path="*" />
                         <Route element={<ClassDetails />} path="/classDetails" />
+                        <Route element={<Classdetailsteacher />} path="/classdetailsteacher" />
                         <Route element={<SearchClass />} path="/searchclass" />
                         <Route element={<SelectClass />} path="/selectclass" />
                         <Route element={<StudentSchedule />} path="/studentSchedule" />
@@ -93,8 +96,10 @@ const Layout = () => {
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
+    
+            <ToastContainer position="top-right" autoClose={3000} />
         </div>
-    );
+    );    
 };
 
 export default injectContext(Layout);

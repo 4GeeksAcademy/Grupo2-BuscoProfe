@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../../styles/classDetails.css";
 import { TeacherProfiles} from "./selectclass" 
 
-function ClassDetails() {
+function Classdetailsteacher() {
     // Estado para almacenar la imagen del perfil
     const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=female");
 
@@ -23,11 +23,11 @@ function ClassDetails() {
                 />
 
                 <div className="informacion-usuario">
-                    <h2 className="profile-name">Laura Gómez</h2>
-                    <h6 className="profesor mb-2 text-body-secondary">Profesora particular de matemática</h6>
+                    <h2 className="profile-name">Camila Pérez</h2>
+                    <h6 className="profesor mb-2 text-body-secondary">Estudiante de Bachillerato</h6>
                     <p className="descripcion">
-                       En caso de no poder asistir a la clase, debes cancelar con anticipación. Cancelaciones con menos de 2 hrs de antelación 
-                       serán cobradas. Al profesor le llegará una notificación de la cancelación.
+                       En caso de no poder cumplir con la clase, debes cancelar con anticipación.
+                       Al estudiante le llegará una notificación de tu cancelación. 
                     </p>
                 </div>
             </div>
@@ -40,8 +40,7 @@ function ClassDetails() {
                         <li className="list-group-item">Día: 20/12/24</li>
                         <li className="list-group-item">Horario: 14:30 a 15:30 hrs</li>
                         <li className="list-group-item">Modalidad: Online</li>
-                        <li className="list-group-item">Nivel académico: Todos los niveles</li>
-                        <li className="list-group-item">Precio por hora: $400</li>
+                        <li className="list-group-item">Precio por hora: $ 300</li>
                         <li className="list-group-item">Idiomas: Español</li>
                     </ul>
                 </div>
@@ -49,15 +48,15 @@ function ClassDetails() {
                 <div className="botones d-grid gap-2 d-md-flex justify-content-md-end">
                     {/* <button className="agendar-boton" type="button">Agendar</button> */}
                     <button className="volver-boton" type="button">
-                    <a href="./studentDashboard">Ingresar a la clase</a></button>
+                    <a href="">Ingresar a la clase</a></button>
                     <button className="volver-boton" type="button">
-                    <a href="./studentDashboard">Cancelar</a></button>
+                    <a href="">Cancelar</a></button>
                     <button className="volver-boton" type="button">
-                        <a href="./studentDashboard">Volver</a></button>
+                        <a href="./teacherDashboard">Volver</a></button>
                 </div>
                 
             </div>
         </div>
     );
 }
-export default ClassDetails;
+export default Classdetailsteacher;

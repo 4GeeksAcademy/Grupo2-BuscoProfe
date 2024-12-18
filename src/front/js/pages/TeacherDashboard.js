@@ -68,21 +68,21 @@ function TeacherDashboard() {
               <th></th>
             </tr>
             <tr>
-              <td>John Doe</td>
-              <td>13/04/12 14:40</td>
-              <td>$120</td>
+              <td>Camila Pérez</td>
+              <td>20/12/24 14:30</td>
+              <td>$ 300</td>
+              <td><a href="./classdetailsteacher" className="vermas">Ver mas</a></td>
+            </tr>
+            <tr>
+              <td>Sofía Borges</td>
+              <td>22/12/24 10:00</td>
+              <td>$ 300</td>
               <td><a href="#" className="vermas">Ver mas</a></td>
             </tr>
             <tr>
-              <td>John Doe</td>
-              <td>13/04/12 14:40</td>
-              <td>$120</td>
-              <td><a href="#" className="vermas">Ver mas</a></td>
-            </tr>
-            <tr>
-              <td>John Doe</td>
-              <td>13/04/12 14:40</td>
-              <td>$120</td>
+              <td>Sebastián Martínez</td>
+              <td>28/12/24 15:0</td>
+              <td>$ 300</td>
               <td><a href="#" className="vermas">Ver mas</a></td>
             </tr>
           </table>
@@ -97,10 +97,10 @@ function TeacherDashboard() {
 
           <table>
             <tr>
-              <th>Name</th>
+              <th>Nombre</th>
             </tr>
             <tr>
-              <td>John Steve Doe</td>
+              <td>Mateo Silva</td>
             </tr>
           </table>
         </div>

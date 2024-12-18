@@ -45,72 +45,32 @@ function StudentDashboard() {
                 <th>Fecha y hora</th>
                 <th>Materia</th>
               </tr>
+                          
               <tr>
-                <td>John Doe</td>
-                <td>13/04/12 14:40</td>
+                <td>Laura Gómez</td>
+                <td>20/12/24 14:30</td>
                 <td>Matematica</td>
+                <td><a href="./classDetails" className="vermas">Ver mas</a></td>
+              </tr>
+
+              <tr>
+                <td>Pedro Canale</td>
+                <td>22/12/24 10:00</td>
+                <td>Literatura</td>
+                <td><a href="#" className="vermas">Ver mas</a></td>
+              </tr>
+              <tr>
+                <td>Carlos Olivera</td>
+                <td>28/12/24 15:00</td>
+                <td>Física</td>
                 <td><a href="#" className="vermas">Ver mas</a></td>
               </tr>
               
-              <tr>
-                <td>John Doe</td>
-                <td>13/04/12 14:40</td>
-                <td>Matematica</td>
-                <td><a href="#" className="vermas">Ver mas</a></td>
-              </tr>
-
-              <tr>
-                <td>John Doe</td>
-                <td>13/04/12 14:40</td>
-                <td>Matematica</td>
-                <td><a href="#" className="vermas">Ver mas</a></td>
-              </tr>
-
-              <tr>
-                <td>John Doe</td>
-                <td>13/04/12 14:40</td>
-                <td>Matematica</td>
-                <td><a href="#" className="vermas">Ver mas</a></td>
-              </tr>
-
-              <tr>
-                <td>John Doe</td>
-                <td>13/04/12 14:40</td>
-                <td>Matematica</td>
-                <td><a href="#" className="vermas">Ver mas</a></td>
-              </tr>
-              <tr>
-                <td>John Doe</td>
-                <td>13/04/12 14:40</td>
-                <td>Matematica</td>
-                <td><a href="#" className="vermas">Ver mas</a></td>
-              </tr>
             </table>
           </div>
         </div>
 
-        {/* <section className="student-recomend">
-          <h2>Recomendados para ti</h2>
-          <div className="teacher-grid">
-            {Array(7).fill(null).map((_, index) => (
-              <div className="teacher-card" key={index}>
-                <img
-                  src="https://xsgames.co/randomusers/avatar.php?g=pixel"
-                  alt="Profesor"
-                  className="teacher-image"
-                />
-                <div className="teacher-info">
-                  <div className="teacher-name">Nombre del Profesor</div>
-                  <div className="teacher-profession">Profesión</div>
-                  <div className="teacher-subjects">Materias: Matemáticas</div>
-                  <div className="teacher-rating">Calificación: ⭐⭐⭐⭐</div>
-                  <div className="teacher-price">Precio: $50/hora</div>
-                  <button className="availability-button">Ver Disponibilidad</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section> */}
+     
         <TeacherProfiles title="Recomendados para ti"/>
       </div>
     </div>
