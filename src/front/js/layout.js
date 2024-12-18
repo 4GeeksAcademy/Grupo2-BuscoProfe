@@ -84,11 +84,17 @@ const Layout = () => {
                                 </ProtectedRoute>
                             }
                         />
+
+                        <Route path="/classDetails"
+                               element={
+                               <ProtectedRoute rolesAllowd={["teacher", "student"]}>
+                                <ClassDetails />
+                               </ProtectedRoute>
+                            }
+                        />
     
                         {/* Ruta por defecto */}
                         <Route element={<h1>Not found!</h1>} path="*" />
-                        <Route element={<ClassDetails />} path="/classDetails" />
-                        <Route element={<Classdetailsteacher />} path="/classdetailsteacher" />
                         <Route element={<SearchClass />} path="/searchclass" />
                         <Route element={<SelectClass />} path="/selectclass" />
                         <Route element={<StudentSchedule />} path="/studentSchedule" />
