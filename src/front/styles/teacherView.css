@@ -449,3 +449,7 @@ button:hover {
   justify-content: baseline;
   font-size:large;
 }
+
+.agendar {
+  display: flex;
+}

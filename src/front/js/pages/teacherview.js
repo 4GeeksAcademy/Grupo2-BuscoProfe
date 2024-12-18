@@ -273,7 +273,13 @@ function TeacherView() {
                         </div>
                     )}
                 </div>
+                
             </div>
+            <div className="agendar">
+                <button className="volver-boton">
+                <a href="../studentSchedule">Ver calendario para agendar</a>
+                </button>
+                </div>
         </div>
     );
 }
