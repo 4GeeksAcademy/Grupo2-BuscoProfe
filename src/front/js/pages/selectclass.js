@@ -21,7 +21,7 @@ const TeacherCard = ({ teacher }) => {
                 <p className="teacher-rating"><strong>Calificación:</strong> {teacher.rating}</p> */}
                 <p className="teacher-price"><strong>Precio por hora: $ </strong> {teacher.price}</p> 
                 <Link to= {"/teacherview/"+ teacher.teacher_id}>
-                <button className="availability-button">Ver disponibilidad</button>
+                <button className="availability-button">Ver perfil</button>
                 </Link>
                 
             </div>

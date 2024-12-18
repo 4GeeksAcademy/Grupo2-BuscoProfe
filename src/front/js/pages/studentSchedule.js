@@ -125,6 +125,7 @@ const StudentSchedule = () => {
                 <p><strong>Comentarios:</strong> {formData.comments}</p>
             </div>
         </div>
+        
     );
 
     return isScheduled ? (
@@ -185,7 +186,9 @@ const StudentSchedule = () => {
                 />
             )}
         </div>
+ 
     );
+    
 };
 
 export default StudentSchedule;
