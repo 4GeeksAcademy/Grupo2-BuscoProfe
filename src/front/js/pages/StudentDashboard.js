@@ -5,7 +5,7 @@ import { TeacherProfiles} from "./selectclass"
 
 function StudentDashboard() {
   // Estado para la imagen de perfil
-  // const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=pixel");
+  const [profileImage, setProfileImage] = useState("https://img.freepik.com/fotos-premium/foto-joven-india-20-anos-estudiante-universitaria-sosteniendo-libro-contra-su-pecho_878783-7163.jpg");
   const {actions, store}=useContext(Context)
 
   // Función para cambiar la imagen aleatoria
@@ -25,7 +25,8 @@ function StudentDashboard() {
 
       <div className="student-perfil">
         <img
-          src={store.user?.photo} 
+          // src={store.user?.photo} 
+          src={profileImage} 
           alt="Estudiante"
           className="profe-image"
         />

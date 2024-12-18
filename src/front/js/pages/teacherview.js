@@ -184,9 +184,11 @@ function TeacherView() {
                 </div>
 
                 <div className="agendar" style={{padding: "10px"}}>
+                {store.role?.includes("student") && (
                     <button className="modificar-agenda">
                         <a href="../studentSchedule">Agendar con {store.teacher.name} </a>
                     </button>
+                )}
                 </div>
 
                 <div className="price-card">
