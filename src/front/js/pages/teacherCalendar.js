@@ -16,25 +16,25 @@ const colors = {
 };
 
 const availableDays = [
-    { date: "2024-12-16", start: "08:00", end: "09:00" },
-    { date: "2024-12-17", start: "15:00", end: "16:00" },
-    { date: "2024-12-18", start: "11:30", end: "13:00" },
-    { date: "2024-12-19", start: "14:00", end: "15:00" },
-    { date: "2024-12-19", start: "12:00", end: "13:00" },
-    { date: "2024-12-20", start: "10:00", end: "12:00" },
-    { date: "2024-12-21", start: "09:00", end: "11:00" },
+        { date: "2024-12-19", start: "09:00", end: "15:00" },
+        { date: "2024-12-20", start: "10:00", end: "12:00" },
+        { date: "2024-12-23", start: "15:00", end: "17:00" },
+        { date: "2024-12-26", start: "15:00", end: "18:00" },
+        { date: "2024-12-27", start: "13:00", end: "17:00" },
 ];
 
 const scheduledDates = [
     { student_name: "Jorge Gonzalez", date: "2024-12-16", start: "09:00", end: "10:00", subject: "Fisica" },
     { student_name: "Pedro Martinez", date: "2024-12-16", start: "10:30", end: "11:30", subject: "Quimica" },
-    { student_name: "Juan Lopez", date: "2024-12-16", start: "11:30", end: "13:00", subject: "Quimica" },
+    { student_name: "Juan Lopez", date: "2024-12-16", start: "11:30", end: "13:00", subject: "Matematica" },
     { student_name: "Maria Fernandez", date: "2024-12-16", start: "13:00", end: "14:00", subject: "Fisica" },
     { student_name: "Laura Sanchez", date: "2024-12-16", start: "17:00", end: "18:00", subject: "Matematica" },
     { student_name: "Camila Pérez", date: "2024-12-19", start: "08:00", end: "09:00", subject: "Matematica" },
     { student_name: "Carlos Hernandez", date: "2024-12-17", start: "09:30", end: "10:30", subject: "Fisica" },
     { student_name: "Sara Gomez", date: "2024-12-17", start: "14:00", end: "15:00", subject: "Quimica" },
-    { student_name: "Camila Pérez", date: "2024-12-20", start: "14:30", end:" 15:30", subject: "Matematica" }
+    { student_name: "Pedro Herrera", date: "2024-12-20", start: "12:00", end:" 14:00", subject: "Quimica" },
+    { student_name: "Pedro Martinez", date: "2024-12-20", start: "08:00", end:" 09:00", subject: "Fisica" },
+    { student_name: "Jorge Gonzalez", date: "2024-12-20", start: "09:00", end:" 10:00", subject: "Fisica" },
 ];
 
 const CustomToolbar = (toolbar) => {
