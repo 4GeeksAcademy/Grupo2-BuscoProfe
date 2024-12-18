@@ -19,11 +19,19 @@ body {
 /* Usuario */
 
 .pic-usuario {
-    display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 1rem;
     margin-bottom: 1.5rem;
+}
+
+.student-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
 }
 
 .profe-image {
