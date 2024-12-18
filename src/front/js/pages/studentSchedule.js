@@ -2,7 +2,6 @@ import React, { useState, useCallback, useMemo } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "moment/locale/es";
-import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../../styles/studentSchedule.css";
 
 const localizer = momentLocalizer(moment);
@@ -131,7 +130,7 @@ const StudentSchedule = () => {
     return isScheduled ? (
         <ScheduledForm />
     ) : (
-        <div className="container pt-5 mt-5 d-flex flex-column align-items-center">
+        <div className="container pt-5 mt-5 d-flex flex-column align-items-center student-calendar">
             <h2 className="mt-5">Agendar Reunión</h2>
             {showCalendar && (
                 <div style={{ marginBottom:'10px', fontWeight:'bold' }}>
@@ -168,7 +167,7 @@ const StudentSchedule = () => {
                     min={timeRange.min}
                     max={timeRange.max}
                     eventPropGetter={(event) => ({
-                        style:{ backgroundColor:'white' }, // Ensure events have a white background in hour view
+                        style:{ backgroundColor:'white' },
                     })}
                 />
             )}

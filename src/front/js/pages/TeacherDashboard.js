@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext"; // Asegúrate de importar Context
 import { useNavigate } from "react-router-dom";
 import '../../styles/TeacherDashboard.css';
+import TeacherCalendar from './teacherCalendar';
 
 function TeacherDashboard() {
   const { actions, store } = useContext(Context);
@@ -11,6 +12,11 @@ function TeacherDashboard() {
     actions.updateTeacherPhoto(store.user.id, photo)
   }
 
+  const scheduledDates = [
+    { student_name: "Jorge", date: "2024-12-02", start: "09:00", end: "10:00", subject: "Historia" },
+    { student_name: "Pedro", date: "2024-12-12", start: "14:00", end: "15:00", subject: "Quimica" },
+    { student_name: "Marcela", date: "2024-12-16", start: "09:00", end: "11:00", subject: "Filosofia" }
+  ];
 
   useEffect(() => {
 
@@ -104,6 +110,9 @@ function TeacherDashboard() {
             </tr>
           </table>
         </div>
+      </div>
+      <div className="container bg-white">
+        <TeacherCalendar scheduledDates={scheduledDates} />
       </div>
     </div>
 

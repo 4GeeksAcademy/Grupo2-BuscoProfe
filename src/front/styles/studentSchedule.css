@@ -1,16 +1,16 @@
-.rbc-day-bg.highlighted-date {
+.student-calendar .rbc-day-bg.highlighted-date {
     background-color: lightgreen !important;
 }
 
-.rbc-event {
+.student-calendar .rbc-event {
     display:none;
 }
 
-.rbc-calendar {
+.student-calendar .rbc-calendar {
     margin: 30px !important;
 }
 
-.reference {
+.student-calendar .reference {
     display: inline-block;
     width: 15px;
     height: 15px;
@@ -18,30 +18,34 @@
     margin-right: 5px;
   }
 
-.rbc-day-bg[style*='background-color:white'] {
+  .student-calendar .rbc-day-bg[style*='background-color:white'] {
     cursor:not-allowed;
 }
 
-.rbc-event-content {
+.student-calendar .rbc-event-content {
     display: none;
     opacity: 0;
 }
 
-.rbc-events-container {
+.student-calendar .rbc-events-container {
     display: none;
 }
 
-.rbc-time-slot:hover {
+.student-calendar .rbc-time-slot:hover {
     background-color: #e3fce6;
     box-shadow:
       rgba(109, 201, 120, 1) 0px 1px 2px 0px,
       rgba(109, 201, 120, 1) 0px 1px 3px 1px;
 }
 
-.rbc-time-slot{
+.student-calendar .rbc-time-slot{
     background-color: white;
 }
 
-.rbc-button-link:hover{
+.student-calendar .rbc-button-link:hover{
     display:none;
+}
+
+.student-calendar .rbc-allday-cell .rbc-row {
+    background-color:white;
 }

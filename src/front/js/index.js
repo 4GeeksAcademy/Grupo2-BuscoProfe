@@ -7,6 +7,8 @@ import "../styles/index.css";
 
 import 'react-toastify/dist/ReactToastify.css';
 
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
 //import your own components
 import Layout from "./layout";
 
