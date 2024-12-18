@@ -15,6 +15,7 @@ import StudentDashboard from "./pages/StudentDashboard.js";
 import TeacherDashboard from "./pages/TeacherDashboard.js";
 import StudentSchedule from "./pages/studentSchedule.js";
 import ClassDetails from "./pages/classDetails.js"; 
+import Classdetailsteacher from "./pages/classdetailsteacher.js";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -86,6 +87,7 @@ const Layout = () => {
                         {/* Ruta por defecto */}
                         <Route element={<h1>Not found!</h1>} path="*" />
                         <Route element={<ClassDetails />} path="/classDetails" />
+                        <Route element={<Classdetailsteacher />} path="/classdetailsteacher" />
                         <Route element={<SearchClass />} path="/searchclass" />
                         <Route element={<SelectClass />} path="/selectclass" />
                         <Route element={<StudentSchedule />} path="/studentSchedule" />
