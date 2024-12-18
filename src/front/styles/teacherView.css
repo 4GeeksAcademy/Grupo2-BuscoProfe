@@ -12,27 +12,23 @@
   margin-top: 110px;
   background-color: #FFFFFF;
   border-radius: 25px;
-  padding: 3rem;
+  padding: 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: flex-start;
   gap: 2rem;
-  width: 1900px;
-  height: 1050px;
-  text-align: center;
+  width: 2000px;
+  height: 1160px;
 }
 
 .profile-card {
-  align-self: flex-start;
+  text-align: center;
   flex-shrink: 0;
-  position: sticky;
   top: 20px;
-  max-width: 400px;
-  height: auto;
+  height: 1100px;
   z-index: 10;
-  height: 950px;
-  width: 400px;
+  width: 500px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   flex-direction: column;
@@ -42,10 +38,11 @@
 }
 
 .profile-card {
-  background: linear-gradient(135deg, #f6f6f6, #8eb4be5d);
+  background: linear-gradient(135deg, #f6f6f6, #97e3d85d);
 }
 
 .profile-card img-container {
+  margin-top: 20px;
   width: 150px;
   height: 150px;
   margin: 0 auto;
@@ -90,6 +87,32 @@
   color: #FFFFFF;
 }
 
+span {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 600;
+  color: #415e66;
+  font-size: 25px;
+}
+
+.contact-info h5{
+  font-weight: 600;
+  color: #415e66;
+  font-size: 25px;
+}
+
+.contact-info h2{
+  font-weight: 400;
+  color: #415e66;
+  font-size: 20px;
+}
+
+.agendar {
+  display: flex;
+  margin-top: 10px;
+  width: 400%;
+}
+
 .calificaciones {
   align-items: center;
   text-align: center;
@@ -98,7 +121,6 @@
   color: #415e66;
 }
 
-/* Estilo para las estrellas llenas */
 .starFilled {
   font-size: 20px;
   color: #40b5ad;
@@ -107,33 +129,126 @@
 
 .starEmpty {
   font-size: 20px;
-  color: #D3D3D3; 
+  color: #D3D3D3;
   cursor: pointer;
 }
 
-
 .contact-info {
-  margin: 0 auto;
-  padding: 1rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  max-width: 90%;
-  text-align: left;
-  margin-top: 5px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos internos estén en columna */
+  align-items: center; /* Centra los elementos dentro del contenedor */
+  justify-content: center;
+  margin: 0 auto; /* Centra horizontalmente el bloque completo */
 }
 
 .contact-info p {
   margin: 0.5rem 0;
 }
 
-.contact-info a {
-  color: #607848;
-  text-decoration: none;
+/* Precio y Agendar */
+.agendar {
+  width: 90%;
 }
 
-.contact-info a:hover {
-  text-decoration: underline;
+.price-card {
+  width: 90%;
+}
+
+.agendar, .price-card {
+  max-width: 500px; /* Puedes ajustar el tamaño máximo según sea necesario */
+  margin: 0 auto; /* Centrado horizontal */
+}
+
+.card-body h5 {
+  color: #415e66;
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+input.input-field, button {
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.card-text {
+  font-size: 1.5rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.card-body h5 {
+  color: #415e66;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+/* price-card */
+.comments-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* body price-card */
+.price-card .card-body {
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.profile-card p {
+  color: #415e66;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+/* Título de la card */
+.card-body h5 {
+  color: #415e66;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+/* Ajustes de texto dentro de la card */
+.price-card .card-body p {
+  font-size: 20px;
+  color: #000000;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+/* Título de la card */
+.price-card .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Subtítulo de la card */
+.card-body .card-subtitle {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Enlaces de la card */
+.card-body a.card-link {
+  margin-top: 1rem;
 }
 
 /* about section */
@@ -141,35 +256,37 @@
 .about,
 .comments-card,
 .price-card {
-  flex: 1;
-  max-width: 1000px;
-  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
 }
 
 .about {
-  margin: 0 auto;
   padding: 1rem;
   background-color: #fff;
   border-radius: 8px;
-  max-width: 90%;
   text-align: left;
   font-size: 1rem;
   color: #333;
-  flex: 1 1 100%;
-  max-width: 1000px;
+  height: auto;
+  width: 1050px;
   border-radius: 10px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: left;
+  overflow-y: auto;
 }
 
 .about h1 {
   color: #415e66;
-  font-weight: 500;
-  margin-bottom: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
   position: relative;
   display: inline-block;
   font-size: 3.5rem;
+}
+
+.espe-h4 {
+  margin-top: 20px;
 }
 
 .about h1::after {
@@ -185,7 +302,18 @@
 .about p {
   color: #555;
   line-height: 1.6;
+  word-wrap: break-word; /* Ajusta las palabras largas */
+  overflow-wrap: break-word; /* Soporte adicional para navegadores */
 }
+
+.about button {
+  width: auto; /* Permite que el botón se ajuste a su contenido */
+  max-width: 200px; /* Establece un tamaño máximo, ajustable según tus necesidades */
+  padding: 10px 15px; /* Espaciado interno para un diseño más compacto */
+  font-size: 16px; /* Ajusta el tamaño del texto */
+  border-radius: 6px; /* Bordes redondeados */
+}
+
 
 /* comentarios */
 
@@ -195,9 +323,9 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
-  width: 100%;
-  height: 100%;
-  max-width: 800px;
+  max-width: 100%; /* No excede el contenedor principal */
+  width: auto;
+  max-height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -254,97 +382,29 @@
 }
 
 
-/* price-card */
-.comments-card {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* body price-card */
-.price-card .card-body {
-  border: 1px solid #ccc;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  overflow: hidden;
-}
-
-/* Título de la card */
-.card-body h5 {
-  color: #415e66;
-  font-weight: 600;
-  font-size: 2rem;
-}
-
-/* Ajustes de texto dentro de la card */
-.price-card .card-body p {
-  font-size: 20px;
-  color: #000000;
-  line-height: 1.5;
-  font-weight: 300;
-}
-
-/* Ajustes de la card */
-.price-card {
-  max-width: 100%;
-  margin-top: 1rem;
-}
-
-.card-body {
-  padding: 10px;
-}
-
-/* Título de la card */
-.price-card .card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Subtítulo de la card */
-.card-body .card-subtitle {
-  font-size: 1rem;
-  color: #333;
-}
-
-/* Enlaces de la card */
-.card-body a.card-link {
-  margin-top: 1rem;
-}
-
 /* Ajustes de tamaño de las estrellas para pantallas pequeñas */
 .rating .starFilled {
   font-size: 1.2rem;
 }
 
-/* Estilo para el botón Modificar */
+.comment-item {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+
+/* Ajustes generales para los botones */
 button,
 .volver {
   margin: 5px;
-  background: linear-gradient(45deg, #40b5ad, #a2c3a6);
-  /* Degradado brillante */
-  border: 2px solid #4efff3;
-  /* Borde del botón */
-  color: #fff;
-  /* Color del texto */
-  padding: 10px 20px;
-  /* Espaciado interno */
-  font-size: 16px;
-  /* Tamaño de la fuente */
-  border-radius: 5px;
-  /* Bordes redondeados */
-  cursor: pointer;
-  /* Cambia el cursor al pasar por encima */
-  transition: all 0.3s ease;
-  /* Transición suave */
+  background: linear-gradient(45deg, #40b5ad, #a2c3a6); /* Degradado brillante */
+  border: 2px solid #4efff3; /* Borde del botón */
+  color: #fff; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de la fuente */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: all 0.3s ease; /* Transición suave */
 }
 
 /* Efecto hover */
@@ -353,103 +413,132 @@ button:hover {
   border-color: #ffffff;
 }
 
-
-
-@media (max-width: 768px) {
-  .view-container {
-    flex-direction: column;
-    padding: 1.5rem;
-  }
-
-  .profile-card {
-    width: 100%;
-    margin-bottom: 2rem;
-  }
-
-  .about,
-  .comments-card,
-  .price-card {
-    width: 100%;
-    max-width: 100%;
-  }
+/* Ajuste general de botones */
+button {
+  align-items: center; /* Centra verticalmente el contenido */
+  justify-content: center; /* Centra horizontalmente el contenido */
+  padding: 10px 20px; /* Espaciado interno */
+  margin: 5px;
+  background: linear-gradient(45deg, #40b5ad, #a2c3a6);
+  border: 2px solid #4efff3;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .view-container {
-    margin-top: 200px;
-    flex-direction: column;
-    /* Solo cambia la dirección de los elementos en pantallas pequeñas */
-    padding: 1.5rem;
-    /* Se ajusta el padding en pantallas pequeñas */
-    width: auto;
-    /* Asegura que el contenedor no se desborde */
-    height: auto;
-    /* Ajusta la altura en pantallas pequeñas */
-  }
 
-  .profile-card {
-    width: 100%;
-    /* Asegura que la tarjeta de perfil ocupe todo el ancho en pantallas pequeñas */
-    margin-bottom: 2rem;
-    /* Añade espacio entre las tarjetas */
-    height: auto;
-    /* Permite que la tarjeta de perfil se ajuste a su contenido */
-    position: relative;
-    /* Se quita el sticky para evitar que se desborde */
-    top: 0;
-    /* Remueve el sticky */
-  }
-
-  .about,
-  .comments-card,
-  .price-card {
-    width: 100%;
-    /* Asegura que las cards ocupen todo el ancho */
-    max-width: none;
-    /* Evita que se limite el ancho máximo */
-    margin-top: 1rem;
-    /* Añade espacio entre las cards */
-  }
-
-  /* Ajuste del tamaño de las estrellas para pantallas pequeñas */
-  .starFilled {
-    font-size: 1.5rem; /* Ajusta el tamaño de las estrellas para pantallas pequeñas */
-  }
-
-  /* Ajuste de la imagen del perfil */
-  .profile-card img-container {
-    width: 120px;
-    /* Ajusta el tamaño de la imagen */
-    height: 120px;
-    /* Ajusta el tamaño de la imagen */
-  }
-
-  /* Ajuste de los textos */
-  .about h1 {
-    font-size: 2.5rem;
-    /* Ajusta el tamaño del título */
-  }
-
-  .about p {
-    font-size: 1rem;
-    /* Ajusta el tamaño del texto */
-  }
-
-  /* Ajusta los márgenes y paddings en las cards */
-  .contact-info {
-    max-width: 100%;
-    /* Hace que la card ocupe todo el ancho */
-    padding: 1rem;
-    /* Ajusta el padding */
-  }
+button:hover {
+  background-color: #97e3d8;
+  color: #fff;
 }
 
-.volver a {
+/* Botón específico */
+.modificar-agenda button,
+.modificar-precio-btn {
+  display: flex; /* Flexbox para alineación */
+  align-items: center;
+  justify-content: center;
+  background-color: #789048;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 12px 18px; /* Ajusta si es necesario */
+}
+
+.guardar-btn {
+  background-color: #40b5ad;
+  color: #fff;
+}
+
+.cancelar-btn {
+  background-color: #f44336;
+  color: #fff;
+}
+
+/* Botón para modificar precio */
+.modificar-precio-btn {
+  background-color: #789048;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+/* Cards */
+.price-card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-text {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #415e66;
+}
+
+/* Inputs */
+.input-field {
+  width: calc(100% - 24px); /* Respeta márgenes */
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+}
+
+/* Tipografía */
+h2, h3, p {
+  font-family: 'Poppins', sans-serif;
+  color: #415e66;
+}
+
+/* Enlaces */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+textarea {
+  max-width: 1000px; 
+  height: 500px;
+  padding: 10px;
+  margin: 15px 0; 
+  border: 2px solid #40b5ad; 
+  border-radius: 8px; 
+  font-size: 16px; 
+  font-family: Arial, sans-serif; 
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); 
+  resize: vertical; 
+}
+
+textarea:focus {
+  border-color: #40b5ad; 
+  outline: none; 
+  box-shadow: 0 0 10px rgba(113, 195, 228, 0.5); 
+}
+
+.profile-edit {
   display: flex;
-  justify-content: baseline;
-  font-size:large;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea el contenido a la izquierda */
+  max-width: 600px;
+  margin: 0 auto; /* Centra el contenedor en la página */
 }
 
-.agendar {
-  display: flex;
+.profile-edit label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px; /* Espacio entre el label y el textarea */
+  color: #40b5ad; /* Color de texto acorde a tu paleta */
 }
+
+

@@ -103,7 +103,7 @@ function TeacherView() {
     };
 
     return (
-        <div className="view-container" style={{ width: "100%" }}>
+        <div className="view-container">
             <div className="profile-card">
                 <div className="profile-pic">
                     <label htmlFor="file-input" style={{ cursor: store.role?.includes("student") ? "default" : "pointer" }}>
@@ -111,7 +111,7 @@ function TeacherView() {
                             src={displayedPhoto || store.teacher.image}
                             className="card-img-top rounded-circle"
                             alt={store.teacher.name}
-                            style={{ width: "50%" }}
+                            style={{ width: "70%", padding: "20px" }}
                         />
                     </label>
                     {!store.role?.includes("student") && (
@@ -140,7 +140,7 @@ function TeacherView() {
                 </div>
 
                 <section className="calificaciones">
-                    <span className="teacher-name">Calificación</span>
+                    <span className="calificacion-titulo">Calificación</span>
                     <div
                         className="rating m-2"
                         onClick={() => {
@@ -174,14 +174,42 @@ function TeacherView() {
 
                 <div className="contact-info">
                     <div className="row">
-                        <div className="icon">
-                            <i className="fa fa-envelope-open" />
+                        <div className="contact-title">
+                            <h5>Información de contacto</h5>
                         </div>
-                        <div className="content">
-                            <span>Email</span>
-                            <h5>{store.teacher.email || "Correo no disponible"}</h5>
+                        <div className="contact-info">
+                            <h2>{store.teacher.email || "Información de contacto no disponible"}</h2>
                         </div>
                     </div>
+                </div>
+
+                <div className="agendar" style={{padding: "10px"}}>
+                    <button className="modificar-agenda">
+                        <a href="../studentSchedule">Modificar mi Agenda</a>
+                    </button>
+                </div>
+
+                <div className="price-card">
+                    {isEditing ? (
+                        <div>
+                            <input
+                                type="number"
+                                className="input-field"
+                                value={newPrice}
+                                onChange={(e) => setNewPrice(e.target.value)}
+                            />
+                            <button onClick={handleSave}>Guardar</button>
+                            <button onClick={() => setIsEditing(false)}>Cancelar</button>
+                        </div>
+                    ) : (
+                        <div>
+                            <p className="card-text">$ {price} x hr.</p>
+                            {!store.role?.includes("student") && (
+                                <button onClick={() => setIsEditing(true)}>Modificar precio</button>
+                            )}
+                        </div>
+                    )}
+
                 </div>
             </div>
 
@@ -214,7 +242,7 @@ function TeacherView() {
                     </div>
                 )}
                 <div>
-                    <h4>Especializaciones</h4>
+                    <h4 className="espe-h4">Especializaciones</h4>
                     {store?.teacher?.subjects?.length > 0 ? (
                         store.teacher.subjects.map((item, index) => (
                             <button
@@ -250,36 +278,8 @@ function TeacherView() {
                 </div>
             </div>
 
-            <div className="price-card">
-                <div className="card-body">
-                    <h5 className="card-title">Precio de las Clases</h5>
-                    {isEditing ? (
-                        <div>
-                            <input
-                                type="number"
-                                className="input-field"
-                                value={newPrice}
-                                onChange={(e) => setNewPrice(e.target.value)}
-                            />
-                            <button onClick={handleSave}>Guardar</button>
-                            <button onClick={() => setIsEditing(false)}>Cancelar</button>
-                        </div>
-                    ) : (
-                        <div>
-                            <p className="card-text">$ {price} x hr.</p>
-                            {!store.role?.includes("student") && (
-                                <button onClick={() => setIsEditing(true)}>Modificar</button>
-                            )}
-                        </div>
-                    )}
-                </div>
-                
-            </div>
-            <div className="agendar">
-                <button className="volver-boton">
-                <a href="../studentSchedule">Ver calendario para agendar</a>
-                </button>
-                </div>
+            
+           
         </div>
     );
 }
