@@ -3,12 +3,13 @@ import '../../styles/teacherView.css';
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import RatingModal from '../component/ratingModal';
+import { toast } from "react-toastify";
 
 function TeacherView() {
     const { actions, store } = useContext(Context);
     const { id } = useParams();
     const [photo, setPhoto] = useState(null);
-    const [showAlert, setShowAlert] = useState(false);
+    const [displayedPhoto, setDisplayedPhoto] = useState(null); // Estado para la foto mostrada
     const [price, setPrice] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [newPrice, setNewPrice] = useState("");
@@ -17,7 +18,6 @@ function TeacherView() {
     const [isModalOpen, setIsModalOpen] = useState(false); // Estado para la ventana emergente
     const [averageRating, setAverageRating] = useState(0); // Estado para la calificación promedio
     const [comments, setComments] = useState([]);
-    const userRol = 'teacher';
 
     useEffect(() => {
         actions.getTeacherById(id);
@@ -29,10 +29,8 @@ function TeacherView() {
                 } else {
                     setAverageRating(0);
                     setComments([]);
-
                 }
             });
-
     }, [id, actions]);
 
     useEffect(() => {
@@ -49,9 +47,15 @@ function TeacherView() {
         }
     }, [store.teacher.description]);
 
+    useEffect(() => {
+        if (store.teacher?.image) {
+            setDisplayedPhoto(store.teacher.image);
+        }
+    }, [store.teacher.image]);
+
     const handleSave = () => {
         if (newPrice === "" || isNaN(newPrice) || Number(newPrice) <= 0) {
-            alert("Por favor, ingresa un precio válido.");
+            toast.info("Por favor, ingresa un precio válido.");
             return;
         }
         setPrice(newPrice);
@@ -61,7 +65,7 @@ function TeacherView() {
 
     const handleSaveDescription = () => {
         if (newDescription === "") {
-            alert("Por favor, ingresa una descripción.");
+            toast.info("Por favor, ingresa una descripción.");
             return;
         }
         setDescription(newDescription);
@@ -77,39 +81,56 @@ function TeacherView() {
         setIsModalOpen(false);
     };
 
-    const handlePhoto = () => {
-        actions.updateTeacherPhoto(id, photo);
-        setShowAlert(true);
-        // Después de un tiempo, ocultar la alerta
-        setTimeout(() => {
-            setShowAlert(false);
-        }, 2000);
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setPhoto(file);
+            setDisplayedPhoto(URL.createObjectURL(file)); // Mostrar vista previa
+        }
+    };
+
+    const handlePhoto = async () => {
+        if (!photo) return;
+
+        try {
+            await actions.updateTeacherPhoto(id, photo); // Subir la foto al servidor
+            toast.success("¡Foto subida correctamente!");
+            setPhoto(null); // Limpiar la selección
+        } catch (error) {
+            toast.error("Error al subir la foto. Intenta nuevamente.");
+            setDisplayedPhoto(store.teacher.image); // Revertir a la imagen anterior en caso de error
+        }
     };
 
     return (
         <div className="view-container" style={{ width: "100%" }}>
             <div className="profile-card">
                 <div className="profile-pic">
-
-                    <img
-                        src={!photo ? store.teacher.image : URL.createObjectURL(photo)}
-                        className="card-img-top rounded-circle"
-                        alt={store.teacher.name}
-                        style={{ width: "50%" }}
-
-                    />
-                    {store.user?.typeUser !== "student" ? (
-                        <input type="file" onChange={event => setPhoto(event.target.files[0])} />
-                    ) : null}
-                    {store.user?.typeUser !== "student" ? (
-                        <button className="btn btn-light" onClick={handlePhoto} >Subir foto</button>
-                    ) : null}
-                    {showAlert && (
-                        <div className="alert alert-success" role="alert">
-                            ¡Foto subida correctamente!
-                        </div>
+                    <label htmlFor="file-input" style={{ cursor: store.role?.includes("student") ? "default" : "pointer" }}>
+                        <img
+                            src={displayedPhoto || store.teacher.image}
+                            className="card-img-top rounded-circle"
+                            alt={store.teacher.name}
+                            style={{ width: "50%" }}
+                        />
+                    </label>
+                    {!store.role?.includes("student") && (
+                        <>
+                            <input
+                                id="file-input"
+                                type="file"
+                                style={{ display: "none" }}
+                                onChange={handleFileChange}
+                            />
+                            {photo && (
+                                <button className="btn btn-light mt-3" onClick={handlePhoto}>
+                                    Subir foto
+                                </button>
+                            )}
+                        </>
                     )}
                 </div>
+
 
                 <div className="profile-info">
                     <div className="user-info">
@@ -120,10 +141,17 @@ function TeacherView() {
 
                 <section className="calificaciones">
                     <span className="teacher-name">Calificación</span>
-                    <div className="rating m-2" onClick={openRatingModal}>
+                    <div
+                        className="rating m-2"
+                        onClick={() => {
+                            if (!store.role?.includes("teacher")) {
+                                openRatingModal();
+                            }
+                        }}
+                        style={{ cursor: store.role?.includes("teacher") ? "default" : "pointer" }} // Cambia el cursor si es teacher
+                    >
                         {[...Array(5)].map((_, index) => {
                             const currentRating = parseFloat(averageRating);
-
                             return (
                                 <span
                                     key={index}
@@ -137,8 +165,6 @@ function TeacherView() {
                 </section>
 
 
-
-                {/* Ventana emergente de calificación */}
                 {isModalOpen && (
                     <RatingModal
                         onClose={closeRatingModal}
@@ -160,7 +186,7 @@ function TeacherView() {
             </div>
 
             <div className="about">
-                <h1>Sobre mi</h1>
+                <h1>Sobre mí</h1>
                 {isEditing ? (
                     <div>
                         <textarea
@@ -176,14 +202,15 @@ function TeacherView() {
                 ) : (
                     <div>
                         <p className="card-text">{description}</p>
-                        {store.user?.typeUser !== "student" ? (
+                        {/* Solo los que no son estudiantes pueden ver el botón de editar */}
+                        {!store.role?.includes("student") && (
                             <button
                                 onClick={() => setIsEditing(true)}
                                 className="edit-icon-button"
                             >
                                 <i className="fa-solid fa-pen-to-square"></i>
                             </button>
-                        ) : null}
+                        )}
                     </div>
                 )}
                 <div>
@@ -222,7 +249,6 @@ function TeacherView() {
                     </div>
                 </div>
             </div>
-
 
             <div className="price-card">
                 <div className="card-body">

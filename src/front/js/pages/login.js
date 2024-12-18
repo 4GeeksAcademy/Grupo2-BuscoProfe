@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const { actions } = useContext(Context);
@@ -23,10 +24,10 @@ export const Login = () => {
     const result = await actions.login(formData);
   
     if (result.error) {
-      alert(`Error: ${result.error}`);
-      setIsSubmitting(false); 
+      toast.error("Usuario y/o contraseña inválido."); 
+      setIsSubmitting(false);
     } else {
-      alert("Inicio de sesión exitoso");
+      toast.success("Inicio de sesión exitoso");
     }
   };
 

@@ -19,6 +19,7 @@ import Classdetailsteacher from "./pages/classdetailsteacher.js";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { ToastContainer } from "react-toastify";
 import injectContext from "./store/appContext";
 
 const Layout = () => {
@@ -57,7 +58,7 @@ const Layout = () => {
                                 </ProtectedRoute>
                             }
                         />
-
+    
                         {/* Rutas protegidas */}
                         <Route
                             path="/teacherview/:id"
@@ -83,7 +84,7 @@ const Layout = () => {
                                 </ProtectedRoute>
                             }
                         />
-
+    
                         {/* Ruta por defecto */}
                         <Route element={<h1>Not found!</h1>} path="*" />
                         <Route element={<ClassDetails />} path="/classDetails" />
@@ -95,8 +96,10 @@ const Layout = () => {
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
+    
+            <ToastContainer position="top-right" autoClose={3000} />
         </div>
-    );
+    );    
 };
 
 export default injectContext(Layout);
