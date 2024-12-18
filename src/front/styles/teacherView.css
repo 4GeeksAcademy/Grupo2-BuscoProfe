@@ -449,6 +449,10 @@ button:hover {
   padding: 12px 18px; /* Ajusta si es necesario */
 }
 
+.modificar-agenda a {
+  font-size: large;
+}
+
 .guardar-btn {
   background-color: #40b5ad;
   color: #fff;

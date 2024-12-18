@@ -17,7 +17,7 @@ function ClassDetails() {
               subtitle: "Estudiante de Bachillerato",
               description:
                   "En caso de no poder cumplir con la clase, debes cancelar con anticipación. Al estudiante le llegará una notificación de tu cancelación.",
-              price: "$300",
+              price: "$ 300",
               dashboardLink: "./teacherDashboard",
           }
         : {
@@ -25,14 +25,14 @@ function ClassDetails() {
               subtitle: "Profesora particular de matemática",
               description:
                   "En caso de no poder asistir a la clase, debes cancelar con anticipación. Cancelaciones con menos de 2 hrs de antelación serán cobradas. Al profesor le llegará una notificación de la cancelación.",
-              price: "$400",
+              price: "$ 300",
               dashboardLink: "./studentDashboard",
           };
 
     return (
         <div className="class-container">
             <div className="pic-usuario">
-                <img src={profileImage} alt="Perfil" className="profe-image" />
+                <img src={profileImage} alt="Perfil" className ="profe-image" />
                 <div className="informacion-usuario">
                     <h2 className="profile-name">{profileData.name}</h2>
                     <h6 className="profesor mb-2 text-body-secondary">{profileData.subtitle}</h6>
@@ -44,8 +44,8 @@ function ClassDetails() {
                 <h5 className="card-title">Detalles de la clase</h5>
                 <div className="info-adicional">
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Día: 20/12/24</li>
-                        <li className="list-group-item">Horario: 14:30 a 15:30 hrs</li>
+                        <li className="list-group-item">Día: 19/12/24</li>
+                        <li className="list-group-item">Horario: 08:00 a 09:00 hrs</li>
                         <li className="list-group-item">Modalidad: Online</li>
                         {!isTeacher && <li className="list-group-item">Nivel académico: Todos los niveles</li>}
                         <li className="list-group-item">Precio por hora: {profileData.price}</li>

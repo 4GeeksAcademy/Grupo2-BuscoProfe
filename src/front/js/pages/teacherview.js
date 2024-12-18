@@ -185,7 +185,7 @@ function TeacherView() {
 
                 <div className="agendar" style={{padding: "10px"}}>
                     <button className="modificar-agenda">
-                        <a href="../studentSchedule">Modificar mi Agenda</a>
+                        <a href="../studentSchedule">Agendar con {store.teacher.name} </a>
                     </button>
                 </div>
 
@@ -197,6 +197,7 @@ function TeacherView() {
                                 className="input-field"
                                 value={newPrice}
                                 onChange={(e) => setNewPrice(e.target.value)}
+                                placeholder="Agregar precio de clase x hr."
                             />
                             <button onClick={handleSave}>Guardar</button>
                             <button onClick={() => setIsEditing(false)}>Cancelar</button>
@@ -279,8 +280,7 @@ function TeacherView() {
             </div>
 
             
-           
-        </div>
+                   </div>
     );
 }
 

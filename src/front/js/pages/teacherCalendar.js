@@ -31,10 +31,10 @@ const scheduledDates = [
     { student_name: "Juan Lopez", date: "2024-12-16", start: "11:30", end: "13:00", subject: "Quimica" },
     { student_name: "Maria Fernandez", date: "2024-12-16", start: "13:00", end: "14:00", subject: "Fisica" },
     { student_name: "Laura Sanchez", date: "2024-12-16", start: "17:00", end: "18:00", subject: "Matematica" },
-    { student_name: "Ana Rodriguez", date: "2024-12-17", start: "08:00", end: "09:00", subject: "Matematica" },
+    { student_name: "Camila Pérez", date: "2024-12-19", start: "08:00", end: "09:00", subject: "Matematica" },
     { student_name: "Carlos Hernandez", date: "2024-12-17", start: "09:30", end: "10:30", subject: "Fisica" },
     { student_name: "Sara Gomez", date: "2024-12-17", start: "14:00", end: "15:00", subject: "Quimica" },
-    { student_name: "David Castro", date: "2024-12-17", start: "16:00", end:" 17:00", subject: "Fisica" }
+    { student_name: "Camila Pérez", date: "2024-12-20", start: "14:30", end:" 15:30", subject: "Matematica" }
 ];
 
 const CustomToolbar = (toolbar) => {

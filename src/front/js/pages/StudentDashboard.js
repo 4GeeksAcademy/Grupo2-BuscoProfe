@@ -48,7 +48,7 @@ function StudentDashboard() {
                           
               <tr>
                 <td>Laura Gómez</td>
-                <td>20/12/24 14:30</td>
+                <td>19/12/24 08:00</td>
                 <td>Matematica</td>
                 <td><a href="./classDetails" className="vermas">Ver mas</a></td>
               </tr>

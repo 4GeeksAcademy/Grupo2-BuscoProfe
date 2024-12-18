@@ -75,7 +75,7 @@ function TeacherDashboard() {
             </tr>
             <tr>
               <td>Camila Pérez</td>
-              <td>20/12/24 14:30</td>
+              <td>19/12/24 08:00</td>
               <td>$ 300</td>
               <td><a href="./classDetails" className="vermas">Ver mas</a></td>
             </tr>
