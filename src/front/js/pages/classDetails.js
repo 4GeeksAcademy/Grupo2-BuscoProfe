@@ -6,7 +6,8 @@ function ClassDetails() {
     const { store } = useContext(Context);
 
     // Estado para la imagen de perfil
-    const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/avatar.php?g=female");
+    const [profileImage, setProfileImage] = useState("https://xsgames.co/randomusers/assets/avatars/female/32.jpg");
+    const [studentProfileImage, setstudentProfileImage] = useState("https://img.freepik.com/fotos-premium/foto-joven-india-20-anos-estudiante-universitaria-sosteniendo-libro-contra-su-pecho_878783-7163.jpg");
 
     // Definición de datos en función del rol
     const isTeacher = store.role?.includes("teacher");
@@ -32,7 +33,19 @@ function ClassDetails() {
     return (
         <div className="class-container">
             <div className="pic-usuario">
-                <img src={profileImage} alt="Perfil" className ="profe-image" />
+            {isTeacher && (
+                <>
+                    {/* <img src={profileImage} alt="Perfil de profesor" className="profe-image" /> */}
+                    <img src={studentProfileImage} alt="Perfil de estudiante" className="profe-image" />
+                </>
+            )}
+            {!isTeacher && (
+                <>
+                    {/* <img src={studentProfileImage} alt="Perfil de estudiante" className="estudiante-image" /> */}
+                    <img src={profileImage} alt="Perfil de profesor" className="profe-image" />
+                </>
+            )}
+                {/* <img src={profileImage} alt="Perfil" className ="profe-image" /> */}
                 <div className="informacion-usuario">
                     <h2 className="profile-name">{profileData.name}</h2>
                     <h6 className="profesor mb-2 text-body-secondary">{profileData.subtitle}</h6>
