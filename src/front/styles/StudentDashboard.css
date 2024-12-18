@@ -1,8 +1,9 @@
 body {
-    box-sizing: border-box;
-    padding: 0;
-    text-decoration: none;
-    font-family: poppins, sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0; /* Añadido para evitar márgenes globales */
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
 }
 
 .studentdashboard-container {
@@ -11,52 +12,51 @@ body {
   border-radius: 25px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  width: 100%;
-  max-width: 1800px;
-  height: 1500px;
-  position: relative; /* Cambiado de absolute a relative */
+  width: 90%; /* Cambiado para mejorar responsividad */
+  max-width: 1200px;
+  min-height: 100vh; /* Para usar toda la altura de la ventana */
   margin-left: auto;
   margin-right: auto;
 }
+
 .classes-and-recommendations {
-    margin: 300px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+  margin-top: 30px; 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
 }
 
 
-/* perfil de usuario */
+/* perfil */
 .student-perfil {
   display: flex;
-  gap: 10px;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-  margin-top: 50px;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-  
-  .profe-image {
-    margin-left: 20px;
-    width: 350px; /* Tamaño de la imagen */
-    height: 350px; /* Tamaño de la imagen */
-    border-radius: 50%; /* Para que la imagen sea redonda */
-    border: 4px solid #40b5ad; /* Borde que resalta la imagen */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
-  }
-  
-  .container-perfil h2 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #415e66;
-    margin: 0;
-  }
+.prof-image {
+  margin-left: 20px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%; /* Para que la imagen sea redonda */
+  border: 4px solid #40b5ad; /* Borde que resalta la imagen */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
+}
+
+.student-perfil {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #415e66;
+  margin: 0;
+}
+
   
   
 /* clases agendadas tabla */

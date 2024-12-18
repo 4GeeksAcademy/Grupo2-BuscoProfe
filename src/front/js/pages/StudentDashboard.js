@@ -30,7 +30,9 @@ function StudentDashboard() {
           alt="Estudiante"
           className="profe-image"
         />
-        <h2 className="profile-name">{store.user?.name}</h2>
+        <div className="student-profile">
+        <h2 className="student-name">{store.user?.name}</h2>
+        </div>
       </div>
 
       {/* Stats */}
