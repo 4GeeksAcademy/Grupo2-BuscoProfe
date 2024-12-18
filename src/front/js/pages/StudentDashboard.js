@@ -23,7 +23,7 @@ function StudentDashboard() {
   return (
     <div className="studentdashboard-container">
 
-      <div className="container-perfil">
+      <div className="student-perfil">
         <img
           src={store.user?.photo} 
           alt="Estudiante"

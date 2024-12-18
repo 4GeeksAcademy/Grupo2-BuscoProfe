@@ -2,12 +2,12 @@
 
 /* Contenedor principal */
 .teacher-profiles-container {
-    max-width: 2000px;
-    min-width: 1800px;
-    width: 100%;
+    width: 2000px;
+    height: 1000px;
+    width: 200%;
     height: auto;
     margin: 10px auto 0 auto;
-    background-color: #FFFFFF;
+    background-color: #cfe0dc;
     border-radius: 25px;
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

@@ -6,48 +6,62 @@ body {
 }
 
 .studentdashboard-container {
-    margin: 100px;
-    background-color: #FFFFFF;
-    border-radius: 25px;
-    padding: 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 110px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 2000px;
+  min-height: 1600px;
+  position: relative; /* Cambiado de absolute a relative */
+  margin-left: auto;
+  margin-right: auto;
+}
+.classes-and-recommendations {
+    margin: 300px;
+    display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    width: 2000px;
-    height: 1050px;
-    position: relative;
+    gap: 1.5rem;
 }
 
-/* perfil de usuario */
 
-.studentdashboard-container .container-perfil {
-    display: flex;
-    gap: 10px; 
-    position: absolute;
-    top: 30px; 
-    left: 20px; /* Ajusta la distancia desde la parte izquierda */
-    z-index: 10; /* Asegura que este elemento esté encima de otros */
-  }
+/* perfil de usuario */
+.student-perfil {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  margin-top: 50px;
+}
+
   
-  .profile-image {
+  .profe-image {
     margin-left: 20px;
-    width: 250px; /* Tamaño de la imagen */
-    height: 250px; /* Tamaño de la imagen */
+    width: 350px; /* Tamaño de la imagen */
+    height: 350px; /* Tamaño de la imagen */
     border-radius: 50%; /* Para que la imagen sea redonda */
     border: 4px solid #40b5ad; /* Borde que resalta la imagen */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
   }
   
   .container-perfil h2 {
-    margin-left: auto;
-    font-size: 1.8rem; /* Tamaño del nombre */
-    font-weight: bold; /* Resalta el nombre */
-    color: #415e66; /* Color del texto */
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #415e66;
+    margin: 0;
   }
+  
   
 /* clases agendadas tabla */
 
-.clases-agendadas {
+.container {
     background-color: #f9f9f9;
     flex: 1 1 100%;
     max-width: 1000px;
@@ -56,115 +70,49 @@ body {
     border: 1px solid #ccc;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: left;
-    margin-bottom: 20px;
-    margin-left: auto;
 }
 
-.clases-agendadas table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.clases-agendadas th {
-    text-align: left;
-    padding: 10px;
-    background-color: #f2f2f2;
-    font-size: 1rem;
-    color: #415e66;
-}
-
-.clases-agendadas td {
-    padding: 10px;
-    font-size: 1rem;
-    color: #415e66;
-    border-bottom: 1px solid #ddd;
-}
-
-.clases-agendadas tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.clases-agendadas td a {
-    color: #ffffff;
-    font-weight: 400;
-    transition: color 0.3s ease;
-}
-
-.clases-agendadas tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* recomendaciones */
-
-.student-recomend h2 {
-    margin-top: 20px;
-    color: #415e66;
-    position: relative;
-    display: inline-block;
-    font-size: 2.4rem;
-    font-weight: 700;
+.clases-agendadas {
+    flex: 1;
+    max-width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-.teacher-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 20px;
-    justify-items: center;
-    margin-top: 20px;
-}
-
-.teacher-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.teacher-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.teacher-image {
+.tablah2 h2{
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #34495e;
+  }
+  
+  .clases-agendadas table {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.teacher-info {
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .clases-agendadas th, 
+  .clases-agendadas td {
+    text-align: left;
     padding: 15px;
-    text-align: center;
-}
-
-.teacher-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.teacher-profession {
-    font-size: 1rem;
-    font-weight: bold;
+  }
+  
+  .clases-agendadas th {
+    background-color: #f2f2f2;
     color: #415e66;
-    margin-bottom: 10px;
-}
-
-.teacher-subjects,
-.teacher-rating,
-.teacher-price {
+    font-weight: bold;
+  }
+  
+  .clases-agendadas td {
+    border-bottom: 1px solid #ddd;
     font-size: 0.9rem;
-    margin: 5px 0;
-}
+  }
+  
+  .clases-agendadas tr:hover {
+    background-color: #f1f1f1;
+  }
 
-.availability-button {
-    background: linear-gradient(90deg, #40b5ad, #a2c3a6);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
