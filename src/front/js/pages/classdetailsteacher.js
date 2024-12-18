@@ -40,7 +40,7 @@ function Classdetailsteacher() {
                         <li className="list-group-item">Día: 20/12/24</li>
                         <li className="list-group-item">Horario: 14:30 a 15:30 hrs</li>
                         <li className="list-group-item">Modalidad: Online</li>
-                        <li className="list-group-item">Precio por hora: $400</li>
+                        <li className="list-group-item">Precio por hora: $ 300</li>
                         <li className="list-group-item">Idiomas: Español</li>
                     </ul>
                 </div>

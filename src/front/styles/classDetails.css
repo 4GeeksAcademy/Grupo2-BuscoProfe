@@ -90,3 +90,9 @@ body {
 .info-adicional li {
     font-size:large;
 }
+
+.volver-boton a{
+    color: white;
+    font-size: large;
+    text-decoration: none;
+}
