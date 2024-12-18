@@ -1,57 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  font-family: poppins, sans-serif;
+.teacher-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre los componentes */
+  padding: 20px;
 }
 
 .view-container {
-  margin-top: 110px;
+  margin: 110px;
   background-color: #FFFFFF;
   border-radius: 25px;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  gap: 2rem;
-  width: 2000px;
-  height: 1160px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
 }
 
 .profile-card {
-  text-align: center;
-  flex-shrink: 0;
-  top: 20px;
-  height: 1100px;
-  z-index: 10;
-  width: 500px;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
+  background: linear-gradient(135deg, #f6f6f6, #97e3d85d);
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  padding: 1.5rem;
 }
+
 
 .profile-card {
   background: linear-gradient(135deg, #f6f6f6, #97e3d85d);
 }
 
 .profile-card img-container {
-  margin-top: 20px;
-  width: 150px;
-  height: 150px;
-  margin: 0 auto;
-  overflow: hidden;
+  margin: 20px auto;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
+  background-color: #ddd;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ddd;
+  overflow: hidden;
 }
 
 .profile-card .profile-pic {
@@ -71,11 +64,11 @@
   width: 100%;
 }
 
-.profile-info .user-info h2 {
-  margin-top: 20px;
-  text-align: center;
+.profile-card .profile-info h2 {
+  margin-top: 10px;
   font-weight: 600;
   color: #415e66;
+  font-size: 1.5rem; /* 24px */
 }
 
 .profile-info .user-info h4 {
@@ -85,32 +78,31 @@
   padding: 5px 10px;
   margin: 8px;
   color: #FFFFFF;
+  font-size: 0.9rem;
 }
 
-span {
-  margin-top: 10px;
-  text-align: center;
+span, .contact-info h5 {
   font-weight: 600;
+  font-size: 1.2rem;
   color: #415e66;
-  font-size: 25px;
 }
 
 .contact-info h5{
   font-weight: 600;
   color: #415e66;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .contact-info h2{
   font-weight: 400;
   color: #415e66;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .agendar {
-  display: flex;
   margin-top: 10px;
-  width: 400%;
+  width: 100%; /* Cambiado a 100% para evitar problemas */
+  max-width: 500px;
 }
 
 .calificaciones {
@@ -134,7 +126,7 @@ span {
 }
 
 .contact-info {
-  padding: 15px;
+  padding: 5px;
   display: flex;
   flex-direction: column; /* Asegura que los elementos internos estén en columna */
   align-items: center; /* Centra los elementos dentro del contenedor */
@@ -168,13 +160,9 @@ span {
 }
 
 input.input-field, button {
+  justify-content: center;
   padding: 10px;
   margin-top: 10px;
-  width: 100%; /* Ocupa todo el ancho disponible */
-}
-
-.card-text {
-  font-size: 1.5rem;
 }
 
 button {
@@ -189,10 +177,8 @@ button {
 
 /* price-card */
 .comments-card {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  max-width: 600px;
 }
 
 /* body price-card */
@@ -211,7 +197,7 @@ button {
 .profile-card p {
   color: #415e66;
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 20px;
 }
 
 /* Título de la card */
@@ -252,40 +238,32 @@ button {
 }
 
 /* about section */
-
-.about,
-.comments-card,
-.price-card {
-  padding: 1rem;
-  border-radius: 8px;
-}
-
 .about {
+  overflow: auto;
+  height: fit-content;
   padding: 1rem;
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
   text-align: left;
   font-size: 1rem;
   color: #333;
-  height: auto;
-  width: 1050px;
-  border-radius: 10px;
+  width: 600px;
+  height: 800px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  overflow-y: auto;
 }
 
 .about h1 {
   color: #415e66;
   font-weight: 600;
   margin-bottom: 1rem;
+  font-size: 2rem;
   position: relative;
   display: inline-block;
-  font-size: 3.5rem;
 }
 
 .espe-h4 {
+  font-size: 20px;
   margin-top: 20px;
 }
 
@@ -302,8 +280,8 @@ button {
 .about p {
   color: #555;
   line-height: 1.6;
-  word-wrap: break-word; /* Ajusta las palabras largas */
-  overflow-wrap: break-word; /* Soporte adicional para navegadores */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .about button {
@@ -317,46 +295,54 @@ button {
 
 /* comentarios */
 
+/* Contenedor de comentarios, dentro de un contenedor flex */
 .comments-card {
-  border: 1px solid #ccc;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  max-width: 100%; /* No excede el contenedor principal */
-  width: auto;
-  max-height: fit-content;
-  display: flex;
+  overflow: auto;
+  margin-top: 30px;
   flex-direction: column;
   gap: 1rem;
-  overflow: hidden;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Si la lista de comentarios es muy larga, establecer altura máxima y scroll */
+.comments-list {
+  flex-grow: 1; /* Asegura que la lista crezca si hay espacio */
+  overflow-y: auto; /* Scroll vertical si se desborda */
+  max-height: 400px; /* Limitar la altura */
+  padding-right: 10px;
+}
+
+/* Comentarios individuales */
+.comments-item {
+  height: fit-content;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+  width: 60%;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .comments-card h3 {
   color: #415e66;
-  font-weight: 600;
-  font-size: 2rem;
-}
-
-.comments-card .comments-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-height: 400px;
-  overflow-y: auto;
-  /* Muestra scroll si la lista excede el contenedor */
-  padding-right: 10px;
-  /* Añade espacio para el scroll */
+  font-weight: 700;
+  font-size: 20px; /* Puedes ajustar este tamaño según el diseño */
+  margin-bottom: 1rem; /* Espaciado inferior */
 }
 
 .comments-card .comments-list::-webkit-scrollbar {
   width: 8px;
-  /* Personaliza el ancho del scrollbar */
 }
 
 .comments-card .comments-list::-webkit-scrollbar-thumb {
   background: #a2c3a6;
-  /* Color del scroll */
   border-radius: 4px;
 }
 
@@ -373,14 +359,13 @@ button {
   color: #333;
 }
 
-/* card */
-.comments-card {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Lista de comentarios con altura limitada */
+.comments-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 400px;
+  padding-right: 10px;
 }
-
 
 /* Ajustes de tamaño de las estrellas para pantallas pequeñas */
 .rating .starFilled {
@@ -392,47 +377,36 @@ button {
   margin-bottom: 0.5rem;
 }
 
-
-/* Ajustes generales para los botones */
-button,
-.volver {
-  margin: 5px;
-  background: linear-gradient(45deg, #40b5ad, #a2c3a6); /* Degradado brillante */
-  border: 2px solid #4efff3; /* Borde del botón */
-  color: #fff; /* Color del texto */
-  padding: 10px 20px; /* Espaciado interno */
-  font-size: 16px; /* Tamaño de la fuente */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  transition: all 0.3s ease; /* Transición suave */
-}
-
-/* Efecto hover */
-button:hover {
-  background: linear-gradient(145deg, #61e9e9, #8feaa6);
-  border-color: #ffffff;
-}
-
 /* Ajuste general de botones */
-button {
-  align-items: center; /* Centra verticalmente el contenido */
-  justify-content: center; /* Centra horizontalmente el contenido */
-  padding: 10px 20px; /* Espaciado interno */
-  margin: 5px;
+.button-primary {
   background: linear-gradient(45deg, #40b5ad, #a2c3a6);
-  border: 2px solid #4efff3;
+  border: none;
   color: #fff;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 10px 15px;
+  font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
+}
+
+.button-primary:hover {
+  background: linear-gradient(45deg, #61e9e9, #8feaa6);
 }
 
 
-button:hover {
-  background-color: #97e3d8;
+button {
+  background: linear-gradient(45deg, #40b5ad, #a2c3a6);
+  border: none;
   color: #fff;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #61e9e9, #8feaa6);
 }
 
 /* Botón específico */
@@ -450,7 +424,7 @@ button:hover {
 }
 
 .modificar-agenda a {
-  font-size: large;
+  font-size: 17px;
 }
 
 .guardar-btn {
@@ -474,17 +448,15 @@ button:hover {
 
 /* Cards */
 .price-card {
-  max-width: 400px;
+  max-width: fit-content;
   margin: 0 auto;
   padding: 1.5rem;
   background-color: #ffffff;
-  border: 1px solid #ccc;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card-text {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #415e66;
 }
@@ -543,6 +515,29 @@ textarea:focus {
   font-weight: bold;
   margin-bottom: 8px; /* Espacio entre el label y el textarea */
   color: #40b5ad; /* Color de texto acorde a tu paleta */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .view-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .profile-card, .comments-card {
+    width: 100%;
+    max-width: 90%;
+  }
+
+  .profile-card img-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
 }
 
 

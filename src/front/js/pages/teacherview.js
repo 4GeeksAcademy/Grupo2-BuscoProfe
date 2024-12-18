@@ -256,11 +256,8 @@ function TeacherView() {
                         ))
                     ) : (
                         <p>Sin especializaciones</p>
-                    )}
+                    )}      
                 </div>
-            </div>
-
-            <div>
                 <div>
                     <div className="comments-card">
                         <h3>Comentarios</h3>
@@ -277,10 +274,8 @@ function TeacherView() {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            
-                   </div>
+            </div>    
+        </div>
     );
 }
 
