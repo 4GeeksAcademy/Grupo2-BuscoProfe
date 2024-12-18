@@ -15,7 +15,7 @@ import StudentDashboard from "./pages/StudentDashboard.js";
 import TeacherDashboard from "./pages/TeacherDashboard.js";
 import StudentSchedule from "./pages/studentSchedule.js";
 import ClassDetails from "./pages/classDetails.js"; 
-import Classdetailsteacher from "./pages/classdetailsteacher.js";
+
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
